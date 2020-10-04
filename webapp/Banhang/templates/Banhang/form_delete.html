@@ -1,0 +1,29 @@
+
+<header class="w3-container w3-light-blue"> 
+    <span onclick="document.getElementById('id{{item.id}}{{item.id}}{{item.id}}').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+    <h4 align="center" style="color: #000099"><strong>Thông báo từ sản phẩm {{item.product.title}}</strong></h4>
+</header>
+
+<div class="w3-container">        
+    <br>
+    <div align="center">
+        <hr>
+            <form action="" method="post" action="" enctype="multipart/form-data">
+                <div>
+                    <div>
+                        <p><span class="glyphicon glyphicon-alert"></span> Bạn có chắc là hủy mua sản phẩm "<b>{{item.product.title}}</b>" với số lượng <b>"{{item.num}}"</b></p>
+                        <p>Đồng ý xin vui lòng nhấn <b>"Agree"</b> | Không đồng ý nhấn <b>"Ignore"</b></p>
+                    </div>                    
+                </div>    
+                <div>
+                </div>             
+            </form> 
+        <hr>
+    </div>
+    <div align="right">
+        <a href="{% url 'Banhang_page:page_Buy' item.id %}"><button type="button" class="btn btn-success  btn-xs">Agree</button></a>
+        <span onclick="document.getElementById('id{{item.id}}{{item.id}}{{item.id}}').style.display='none'"><button type="button" class="btn btn-warning  btn-xs">Ignore</button></span>
+    </div>
+    <br>
+</div>
+      

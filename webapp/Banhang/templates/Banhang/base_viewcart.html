@@ -1,0 +1,55 @@
+{% extends 'baseView.html '%}
+{% block content %}
+<div class="row">
+	<br>
+	<div class="col-sm-12 col-lg-12">
+    <div class="panel panel-info">
+        <div class="panel-heading" align="center"><b>THÔNG TIN SẢN PHẨM TRONG GIỎ HÀNG CỦA KHÁCH HÀNG</b>
+        </div>     
+		<table class="table table-bordered">
+            <thead>
+            	<tr>
+            		<th>#</th>
+            		<th>Sản phẩm</th>
+            		<th>Giá sản phẩm</th>
+            		<th>Số lượng</th>
+            		<th>Thành tiền</th>
+            		<th></th>
+            	</tr>
+            </thead>
+            <tbody>
+            	{% for item in cart%}
+            	<tr>
+            		<td>{{forloop.counter}}</td>
+            		<td>{{item.product.title}}&nbsp;{% if item.is_pay != True %}<span class="glyphicon glyphicon-trash" onclick="document.getElementById('id{{item.id}}').style.display='block'" class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Xóa sản phẩm">          
+                    </span>  
+                        <div id="id{{item.id}}" class="w3-modal">
+                            <div class="w3-modal-content">
+                                {% include 'Banhang/form_thongbaoxoa.html'%}
+                            </div>                       
+                        </div>
+                    </td>{% endif %}
+            		<td>{{item.product.price|floatformat:'-1'}} VNĐ</td>
+            		<td>{% if item.num > 1 %}<a href="{% url 'Banhang_page:page_MinusProduct' item.id item.product.id %}"><button><span class="small text-muted"><span class="glyphicon glyphicon-minus"></span></span></button></a>{% elif item.num == 1 %}<button><span class="small text-muted"><span class="glyphicon glyphicon-minus"></span></span></button>{% endif %}&nbsp;<input type="num" name="" value="{{item.num}}" size="3"></input>&nbsp;<a href="{% url 'Banhang_page:page_AddProduct' item.id item.product.id %}"><button><span class="small text-muted"><span class="glyphicon glyphicon-plus"></span></span></button></a></td>
+            		<td>{{item.sum_product|floatformat:'-1'}} VNĐ</td>
+            		<td>{% if item.is_pay == False %}<button><span class="" onclick="document.getElementById('id{{item.id}}{{item.id}}').style.display='block'" class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Mua sản phẩm">Buy         
+                    </span>  </button>
+                        <div id="id{{item.id}}{{item.id}}" class="w3-modal">
+                            <div class="w3-modal-content">
+                                {% include 'Banhang/form_buy.html'%}
+                            </div>                       
+                        </div>{% elif item.is_pay == True %}<button><span class="" onclick="document.getElementById('id{{item.id}}{{item.id}}{{item.id}}').style.display='block'" class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Hủy đặt sản phẩm">Delete        
+                    </span>  </button>
+                        <div id="id{{item.id}}{{item.id}}{{item.id}}" class="w3-modal">
+                            <div class="w3-modal-content">
+                                {% include 'Banhang/form_delete.html'%}
+                            </div>                       
+                        </div>{% endif %}
+                    </td>
+            	</tr>
+            	{% endfor %}
+            </tbody>
+        </table>
+	</div>
+</div>
+{% endblock%}

@@ -1,0 +1,154 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<script>
+    jQuery(function(){
+        var max = 1;
+        var checkboxes = $('input[type="checkbox"][name="buoiChamcong"]');
+        checkboxes.change(function(){
+            var current = checkboxes.filter(':checked').length;
+            checkboxes.filter(':not(:checked)').prop('disabled', current >= max);
+            });
+        });
+    jQuery(function(){
+        var max = 1;
+        var checkboxes = $('input[type="checkbox"][name="congtac"]');
+        checkboxes.change(function(){
+            var current = checkboxes.filter(':checked').length;
+            checkboxes.filter(':not(:checked)').prop('disabled', current >= max);
+            });
+        });
+    jQuery(function(){
+        var max = 1;
+        var checkboxes = $('input[type="checkbox"][name="buoiType"]');
+        checkboxes.change(function(){
+            var current = checkboxes.filter(':checked').length;
+            checkboxes.filter(':not(:checked)').prop('disabled', current >= max);
+            });
+        });
+    jQuery(function(){
+        var max = 1;
+        var checkboxes = $('input[type="checkbox"][name="buoiPC"]');
+        checkboxes.change(function(){
+            var current = checkboxes.filter(':checked').length;
+            checkboxes.filter(':not(:checked)').prop('disabled', current >= max);
+            });
+        });
+    jQuery(function(){
+        var max = 1;
+        var checkboxes = $('input[type="checkbox"][name="buoiEnd"]');
+        checkboxes.change(function(){
+            var current = checkboxes.filter(':checked').length;
+            checkboxes.filter(':not(:checked)').prop('disabled', current >= max);
+            });
+        });
+    jQuery(function(){
+        var max = 1;
+        var checkboxes = $('input[type="checkbox"][name="chamCong"]');
+        checkboxes.change(function(){
+            var current = checkboxes.filter(':checked').length;
+            checkboxes.filter(':not(:checked)').prop('disabled', current >= max);
+            });
+        });
+    jQuery(function(){
+        var max = 1;
+        var checkboxes = $('input[type="checkbox"][name="week"]');
+        checkboxes.change(function(){
+            var current = checkboxes.filter(':checked').length;
+            checkboxes.filter(':not(:checked)').prop('disabled', current >= max);
+            });
+        });
+    jQuery(function(){
+        var max = 1;
+        var checkboxes = $('input[type="checkbox"][name="user"]');
+        checkboxes.change(function(){
+            var current = checkboxes.filter(':checked').length;
+            checkboxes.filter(':not(:checked)').prop('disabled', current >= max);
+            });
+        });
+    jQuery(function(){
+        var max = 1;
+        var checkboxes = $('input[type="checkbox"][name="viTri"]');
+        checkboxes.change(function(){
+            var current = checkboxes.filter(':checked').length;
+            checkboxes.filter(':not(:checked)').prop('disabled', current >= max);
+            });
+        });
+    $('[rel="popover"]').popover({
+        container: 'body',
+        html: true,
+        content: function () {
+            var clone = $($(this).data('popover-content')).clone(true).removeClass('hide');
+            return clone;
+        }
+        }).click(function(e) {
+                e.preventDefault();
+    });
+
+    $(document).ready(function(){
+      $('[data-toggle="popover"]').popover({placement: "bottom"});   
+    });   
+
+    $(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+        });
+    });
+
+    var UserProfileListPage = {
+        init: function() {
+            this.$container = $('.userprofiles-container');
+            this.render();
+            this.bindEvents();
+        },
+        render: function() {
+        },
+        bindEvents: function() {
+            $('.btn-favorite', this.$container).on('click', function(e) {
+                e.preventDefault();
+
+                var self = $(this);
+                var url = $(this).attr('href');
+                $.getJSON(url, function(result) {
+                    if (result.success) {
+                        $('.glyphicon-star', self).toggleClass('active');
+                    }
+                });
+                return false;
+            });
+            $('.btn-delete', this.$container).on('click', function(e) {
+                e.preventDefault();
+
+                var self = $(this);
+                var url = $(this).attr('href');
+                $.getJSON(url, function(result) {
+                    if (result.success) {
+                        $('.glyphicon-remove-sign', self).toggleClass('active');
+                    }
+                });
+                return false;
+            });
+            $('.btn-accepts', this.$container).on('click', function(e) {
+                e.preventDefault();
+
+                var self = $(this);
+                var url = $(this).attr('href');
+                $.getJSON(url, function(result) {
+                    if (result.success) {
+                        $('.glyphicon-check', self).toggleClass('active');
+                    }
+                });
+                return false;
+            });
+        }
+    };
+    $(document).ready(function() {        
+        UserProfileListPage.init();
+    });
+
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+        
+ 
+</script>

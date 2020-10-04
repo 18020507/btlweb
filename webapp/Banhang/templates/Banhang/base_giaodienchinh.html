@@ -1,0 +1,23 @@
+{% extends 'baseView.html '%}
+
+{% block content %}
+
+<div class="row">
+    <br>
+    <div class="col-sm-12 col-lg-12">
+    	{% if user.custumer.type == 'US' %}
+            {% include 'Banhang/base_user.html' %}
+        {% elif user.custumer.type == 'MN' %}
+            {% include 'Banhang/base_admin.html' %}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
+
+
+
+
+
+
+

@@ -1,0 +1,78 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!------------------------------------------------------------------------------------------------------------->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand w3-bar-item w3-button w3-border-right" href="{% url 'Banhang_page:page_Index_User' %}">
+                <span class="glyphicon glyphicon-home"></span> Trang chủ
+            </a>
+            <a class="navbar-brand w3-bar-item w3-button w3-border-right" href="{% url 'Banhang_page:page_present_page' %}">
+                <span></span> Giới thiệu
+            </a>
+            <a class="navbar-brand w3-bar-item w3-button w3-border-right" href="{% url 'Banhang_page:page_link_page' %}">
+                <span></span> Liên hệ
+            </a>
+            <a class="navbar-brand w3-bar-item w3-button w3-border-right" href="{% url 'Banhang_page:page_paper_page' %}">
+                <span></span> Bài viết
+            </a>
+        </div>
+        <!------------------------------------------------------------------------------------------------------------->
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="myNavbar">
+                {% if user.username == "Admin" %}
+<!--                % if user.manager.type == "MN" %}-->
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{% url 'Banhang_page:page_ViewConfirmQL' %}">
+                            <strong>
+                                <span class="glyphicon glyphicon-th-list">
+                                </span>&nbsp;&nbsp;Quản lý sản phẩm
+                            </strong>
+                        </a>
+                    </li>
+                </ul>
+                {% endif %}
+                {% if user.custumer.type == "US" %}
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{% url 'Banhang_page:page_ViewSPUserBuy' user.id %}">
+                            <strong>
+                                <span class="glyphicon glyphicon-scale">
+                                </span>&nbsp;&nbsp;Thông tin sản phẩm mua
+                            </strong>
+                        </a>
+                    </li>
+                </ul>
+                {% endif %}
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.custumer.type == "US" %}
+                    <li>
+                        <a href="{% url 'Banhang_page:page_BaseViewCart' %}">
+                            <strong>
+                                <span class="glyphicon glyphicon-shopping-cart">
+                                </span><span class="badge" style="background:#999">{% if sum_cart != None %}{{sum_cart}}{% endif %}</span>
+                            </strong>
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li class="dropdown">
+                        <button type="button" class="btn btn-default navbar-btn" id="menu1" data-toggle="dropdown">
+                            <strong>{{user.username}}</strong>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">                        
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href=""><span class="glyphicon glyphicon-erase"></span>&nbsp;Đổi Mật khẩu</a></li>                   
+                            <li role="presentation" class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url 'Banhang_page:page_logout_user' %}"><span class="glyphicon glyphicon-off"></span>&nbsp;Đăng Xuất</a></li>                            
+                        </ul>   
+                    </li>
+                </ul>
+            </div>
+        </div>           
+    </div>
+</nav>
+
