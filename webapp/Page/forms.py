@@ -24,15 +24,17 @@ class UserForm(forms.ModelForm):
 #         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
 class SignUpForm(forms.Form):
-    username = forms.CharField(label='Username', max_length=30)
-    email = forms.EmailField(label='Email')
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput())
-    password2 = forms.CharField(label='Input Password Again', widget=forms.PasswordInput())
-    fullname = forms.CharField(label='Fullname', max_length=30)
-    address = forms.CharField(label='Address', max_length=30)
-    age = forms.IntegerField(label='Age', max_value=100, min_value=2)
-    sex = forms.CharField(max_length=3, required=False)
-    phone = forms.CharField(label='Phone_Number', max_length=11)
+    sexual_choices = ['Male', 'Female']
+
+    username = forms.CharField(label='Username', max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}))
+    email = forms.EmailField(label='Email Address', widget=forms.EmailInput(attrs={'class':'form-control'}))
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password2 = forms.CharField(label='Cofirm Password', widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    fullname = forms.CharField(label='Full Name', max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}))
+    address = forms.CharField(label='Address', max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}))
+    age = forms.IntegerField(label='Date of birth', widget=forms.TextInput(attrs={'class':'form-control'}))
+    sexual = forms.CharField(label='Sexual', max_length=3, required=False, widget=forms.TextInput(attrs={'class':'form-control'}))
+    phone = forms.CharField(label='Phone Number', max_length=11, widget=forms.TextInput(attrs={'class':'form-control'}))
 
     def clean_password2(self):
         if 'password1' in self.cleaned_data:
