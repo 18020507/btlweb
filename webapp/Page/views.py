@@ -50,27 +50,62 @@ def login(request):
 			return render(request, template_name, {'error_message': 'Invalid login'})
 	return render(request, template_name, {})
 
+# def register_user(request):
+# 	template_name = '../Templates/NavigationBar/Register_Page.html'
+# 	if request.method == 'POST':
+# 		form = SignUpForm(request.POST)
+# 		if form.is_valid():
+# 			form.save()
+# 			username = form.cleaned_data.get('username')
+# 			raw_password = form.cleaned_data.get('password')
+# 			email = request.POST['email']
+# 			age = request.POST['age']
+# 			phone = request.POST['phone']
+# 			address = request.POST['address']
+# 			name = request.POST['name']
+#
+# 			user = authenticate(username=username, password=raw_password, email=email)
+# 			customer = Custumer.objects.create(user=user, age=age, address=address, phone=phone, name=name)
+# 			customer.save()
+# 			auth_login(request, user)
+# 			return redirect('Page:page_Index_User')
+# 		else:
+# 			return render(request, template_name, {'error_message': 'Username or Email is Duplicated!!'})
+# 	else:
+# 		form = SignUpForm()
+# 	return render(request, template_name, {'form': form})
+
+
 def register_user(request):
 	template_name = '../Templates/NavigationBar/Register_Page.html'
+	form = SignUpForm(request.POST)
 	if request.method == 'POST':
 		form = SignUpForm(request.POST)
 		if form.is_valid():
 			form.save()
-			username = form.cleaned_data.get('username')
-			raw_password = form.cleaned_data.get('password1')
-			email = request.POST['email']
-			age = request.POST['age']
-			phone = request.POST['phone']
-			address = request.POST['address']
-
-			user = authenticate(username=username, password=raw_password)
-			customer = Custumer.objects.create(user=user, age=age, address=address, phone=phone)
-			customer.save()
-			auth_login(request, user)
-			return redirect('Page:page_Index_User')
-	else:
-		form = SignUpForm()
+			return HttpResponseRedirect('/')
 	return render(request, template_name, {'form': form})
+
+def save_user(request):
+	template_name = '../Templates/NavigationBar/Register_Page.html'
+	if request.method == "POST":
+		username = request.POST['username']
+		password = request.POST['password']
+		email = request.POST['email']
+		name = request.POST['name']
+		age = request.POST['age']
+		address = request.POST['address']
+		phone_number = request.POST['phone_number']
+		sex = request.POST['sex']
+
+		if User.DoesNotExist:
+			user = User.objects.create_user(username, email, password)
+			messages.success(request, "Success")
+			customer = Custumer.objects.create(user=user, name=name, age=age, address=address, phone=phone_number, sex=sex)
+			customer.save()
+		else:
+			return render(request, template_name, {'error_message':'Invalid!'})
+	return HttpResponseRedirect('/index')
 
 def logout_user(request):
     logout(request)
