@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
-    <h1>Detail!!!</h1>
+    <div>
+        {% for obj in id_sanpham %}
+        {{obj.id}}
+        {{obj.description}}
+        {% endfor %}
+    </div>
 </body>
 </html>

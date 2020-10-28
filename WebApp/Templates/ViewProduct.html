@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div>
+        {% for obj in sanpham %}
+        <div>
+            <a href="">
+                <img src="{{ obj.img.url }}">
+            </a>
+            <div>
+                <b>{{ obj.title }} <br>
+                Giá: {{ obj.price|floatformat:'-1' }} VND</b>
+                <hr>
+                <p>
+                    <a href="{% url 'Page:page_ViewDetail' obj.id %}">View Detail</a>
+                </p>
+                <span>
+                    <a title="Add Cart" href="{% url 'Page:page_login' %}">
+                        <span></span> Add Cart
+                    </a>
+                </span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
