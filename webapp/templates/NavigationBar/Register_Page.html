@@ -5,129 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-    <style>
-        center{
-            background-color:darkseagreen;
-        }
-        .container{
-            padding: 50px;
-            /* margin-top: 100; */
-            /* margin-bottom: 100; */
-            /* background-color: tomato; */
-        }
-        .form-group{
-            color:blue;
-            border: 1px solid black;
-        }
-        .information{
-            color: blue;
-            font-size: large;
-            font-style: italic;
-            font-weight: 500;
-            text-align: left;
-        }
-        .form{
-            border: 2px black;
-        }
-    </style>
 </head>
 <body>
     <center>
         <form action="." method="POST">
-            {% csrf_token %}           
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-5 mx-auto">        
-                            <div class="myform form">
-                                <div class="logo mb-3">
-                                    <div class="col-md-12 text-center">
-                                        <h1 >Sign Up now for new Experience !</h1>
-                                    </div>
-                                </div>
-
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.username.label}}
-                                </div>
-                                {{form.username}}
-                            </div>
-
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.email.label}}
-                                </div>
-                                {{form.email}}  
-                            </div>
-
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.password1.label}}
-                                </div>
-                                {{form.password1}}
-                            </div>
-
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.password2.label}}
-                                </div>
-                                {{form.password2}}
-                            </div>
-
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.fullname.label}}
-                                </div>
-                                {{form.fullname}}
-                            </div>
-
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.address.label}}
-                                </div>
-                                {{form.address}}
-                            </div>
-
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.age.label}}
-                                </div>
-                                {{form.age}}
-                            </div>
-
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.sexual.label}}
-                                </div>
-                                {{form.sexual}}
-                            </div>
-
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.phone.label}}
-                                </div>
-                                {{form.phone}}
-                            </div>
-                                
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class = "mb-3 btn btn-block mybtn btn-primary tx-tfm" value="Đăng ký"/>Start Explore Now !</button>
-                            </div>
-
-                            <div class="col-md-12 form">
-                                <p class="text-center"><a href="../login_user/#" id="signin">Already have an account?</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% csrf_token %}
+<!--            Cần chỉnh cái này theo css nhé Hải-->
+            {{form.username.label}}
+            {{form.username}}
+            <input type="submit" value="Đăng ký"/>
         </form>
     </center>
 </body>
