@@ -5,6 +5,16 @@
     <title>Trang chủ</title>
 </head>
 <body>
-    <h1>Hello</h1>
+    {% include 'NavigationBar/nav_User_or_Manager.html' %}
+    <br>
+    <br>
+    <br>
+    <div>
+        {% if user.custumer.type == 'US' %}
+            {% include 'User_View.html' %}
+        {% elif user.custumer.type == 'MN' %}
+            {% include 'Manager_View.html' %}
+        {% endif %}
+    </div>
 </body>
 </html>

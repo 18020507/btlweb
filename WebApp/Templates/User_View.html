@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        {% for obj in sanpham %}
+        <div>
+            <div>
+                <a href="">
+                    <img src="{{ obj.img.url }}">
+                </a>
+                <div>
+                    <b>{{ obj.title }} <br>
+                        Giá: {{ obj.price|floatformat:'-1' }} VNĐ</b>
+                    <hr>
+                    <p><a href="{% url 'Page:page_ViewDetail' obj.id %}" role="button">View Detail</a></p>
+                    <span>
+                        {% if cart %}
+                            {% for item in cart %}
+                            {% if forloop.first %}
+                            <a title="Add Cart" href="{% url 'Page:page_AddCart' obj.id user.id %}">
+                                <span></span>Add Cart
+                            </a>
+                            {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <a title="Add Cart" href="{% url 'Page:page_AddCartEmpty' obj.id user.id %}">
+                                <span></span>Add Cart
+                            </a>
+                        {% endif %}
+                    </span>
+                    <a href="" role="button">
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

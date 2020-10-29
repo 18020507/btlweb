@@ -138,7 +138,6 @@ class Index_User(TemplateView, LoginRequiredMixin):
 
 class AddCartEmpty(TemplateView, LoginRequiredMixin):
 	login_url = '/'
-	template_name = '../Templates/Base_Addcart.html'
 
 	def get(self, request, id_sp, id_user):
 		if request.user.is_authenticated():
@@ -153,7 +152,6 @@ class AddCartEmpty(TemplateView, LoginRequiredMixin):
 
 class AddCart(TemplateView, LoginRequiredMixin):
 	login_url = '/'
-	template_name = '../Templates/Base_Addcart.html'
 
 	def get(self, request, id_sp, id_user):
 		if request.user.is_authenticated():

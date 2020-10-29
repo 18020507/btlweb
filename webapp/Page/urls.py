@@ -16,7 +16,6 @@ from .views import (
 	ViewSPUserBuy,
 	ViewConfirmManager,
 	register_user,
-	# save_user,
 	Present_Page,
 	Link,
 	Blog,
@@ -27,7 +26,6 @@ urlpatterns = [
 	url('^$', Index_Page.as_view(), name='page_Index_Page'),
 	url(r'^login_user/$', login, name='page_login'),
 	url(r'^register_user/$', register_user, name='page_register_user'),
-	# url(r'^save_user/$', save_user, name='save_user'),
 	url(r'^logout_user/$', logout_user, name='page_logout_user'),
 	url(r'^present/$', Present_Page, name='page_present_page'),
 	url(r'^link/$', Link, name='page_link_page'),
@@ -43,5 +41,5 @@ urlpatterns = [
 	url(r'^delete_product/(?P<id_cart>\w+)/isproduct/(?P<id_product>\w+)/$', DeleteCart, name='page_DeleteCart'),
 	url(r'^is_buy/(?P<id_cart>\w+)/$', Buy, name='page_Buy'),
 	url(r'^is_confirm/(?P<id_cart>\w+)/$', confirm, name='page_confirm'),
-	url(r'^view_sanpham/(?P<user_to>\w+)/$', ViewSPUserBuy.as_view(), name='page_ViewSPUserBuy'),
+	url(r'^view_sanpham/(?P<user_to>\w+)/$', ViewSPUserBuy.as_view(), name='page_ViewProductUserBuy'),
 ]
