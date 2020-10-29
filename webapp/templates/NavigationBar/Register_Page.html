@@ -13,32 +13,8 @@
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link href="/static/style.css" rel="stylesheet" />
-    <!-- <style>
-        center{
-            background-color:darkseagreen;
-        }
-        .container{
-            padding: 50px;
-            /* margin-top: 100; */
-            /* margin-bottom: 100; */
-            /* background-color: tomato; */
-        }
-        .form-group{
-            color:blue;
-            border: 1px solid black;
-        }
-        .information{
-            color: blue;
-            font-size: large;
-            font-style: italic;
-            font-weight: 500;
-            text-align: left;
-        }
-        .form{
-            border: 2px black;
-        }
-    </style> -->
+    <link href="/static/style_register.css" rel="stylesheet" />
+    
 </head>
 <body>
     <center>
@@ -46,13 +22,12 @@
             {% csrf_token %}           
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-5 mx-auto">        
-                            <div class="myform form">
-                                <div class="logo mb-3">
-                                    <div class="col-md-12 text-center">
-                                        <h1 >Sign Up now for new Experience !</h1>
-                                    </div>
+                        <div class="col-md-8 mx-auto">        
+                            <div class="logo mb-3">
+                                <div class="col-md-12 text-center title">
+                                    <h3>Sign Up now for new Experience !</h3>
                                 </div>
+                            </div>
 
                             <div class="form-group form-control">
                                 <div class = "information">
@@ -117,17 +92,22 @@
                                 {{form.phone}}
                             </div>
                                 
-                            <div class="col-md-12 text-center">
+                            <div class="col-md-12 text-center start-button">
                                 <button type="submit" class = "mb-3 btn btn-block mybtn btn-primary tx-tfm" value="Đăng ký"/>Start Explore Now !</button>
                             </div>
 
                             <div class="col-md-12 form">
                                 <p class="text-center"><a href="../login_user/#" id="signin">Already have an account?</a></p>
                             </div>
+
+                            {% if error_message %}
+                            <div class="col-md-12 text-center warning">
+                                <p><strong>{{ error_message }}</strong></p>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
-            </div>
         </form>
     </center>
 </body>
