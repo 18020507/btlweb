@@ -1,10 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Navigation Bar</title>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <h1>Navigation cho User hoặc Manager</h1>
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
+            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+                href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
+                    class="fa fa-bars"></i></a>
+            <a href="{% url 'Page:page_Index_Page' %}" class="w3-bar-item w3-button w3-padding-large">TRANG CHỦ</a>
+            <a href="{% url 'Page:page_present_page' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">GIỚI THIỆU</a>
+            <a href="{% url 'Page:page_blog_page' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BÀI VIẾT</a>
+            <a href="{% url 'Page:page_link_page' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LIÊN HỆ</a>
+            {% if user.custumer.type == "US" %}
+            <a href="{% url 'Page:page_ViewProductUserBuy' user.id %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">THÔNG TIN SẢN PHẨM MUA</a>
+            {% endif %}
+
+            {% if user.custumer.type == "US" %}
+<!--            Chỉnh chỗ này thành dropdown-->
+            <div class="w3-padding-large w3-hover-red w3-hide-small w3-right">
+                <strong>{{user.username}}</strong>
+            </div>
+            <a href="{% url 'Page:page_BaseViewCart' %}" class="w3-padding-large w3-hover-red w3-hide-small w3-right">
+                <strong>
+                    <span class="fa fa-shopping-cart"></span>
+<!--                    Cần sửa cái span bên dưới-->
+                    <span class="badge" style="background:#999">{% if sum_cart != None %}{{sum_cart}}{% endif %}</span>
+                </strong>
+            </a>
+            <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>

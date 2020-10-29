@@ -30,49 +30,6 @@
 
 <body>
     {% include 'NavigationBar/nav.html' %}
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col-md-5 mx-auto">
-                <div class="myform form">
-
-                        <div class="logo mb-3 title">
-                            <div class="col-md-12 text-center">
-                                <h2>Login Now</h2>
-                            </div>
-                        </div>
-
-                        <form role="form" action="{% url 'Page:page_login' %}" method="POST" name="login">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <div class="information">
-                                    <label for="id_username">Account Name</label>
-                                </div>
-                                <input type="text" name="username" class="form-control" id="id_username"
-                                    aria-describedby="emailHelp" placeholder="Enter Account Name">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="id_password">Password</label>
-                                <input type="password" name="password" id="id_password" class="form-control"
-                                    aria-describedby="emailHelp" placeholder="Enter Password">
-                            </div>
-
-                            <div class="col-md-12 text-center ">
-                                <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
-                            </div>
-                        
-                            <div class="form-group">
-                                <p class="text-center">Don't have account? <a href="../register_user/#" id="signup">Sign
-                                        up here</a></p>
-                            </div>
-                        </form>
-                    </div>
-                    
-                    {% if error_message %}
-                        <p><strong>{{ error_message }}</strong></p>
-                    {% endif %}
-            </div>
-        </div> -->
     <center>
         <form role="form" action="{% url 'Page:page_login' %}" method="POST" name="login">
             {% csrf_token %}
