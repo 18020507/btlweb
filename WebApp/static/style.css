@@ -1,0 +1,21 @@
+center{
+    background-color: green;
+}
+.container{
+    padding: 100px;
+    background-color: tomato;
+}
+.form-group{
+    color:blue;
+    border: 1px solid black;
+}
+.information{
+    color: blue;
+    font-size: large;
+    font-style: italic;
+    font-weight: 500;
+    text-align: left;
+}
+.form{
+    border: 2px black;
+}
