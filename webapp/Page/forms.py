@@ -48,7 +48,7 @@ class SignUpForm(forms.Form):
             User.objects.get(username=username)
         except User.DoesNotExist:
             return username
-        raise forms.ValidationError("Username Already Exist")
+        raise forms.ValidationError("Username already exist")
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -56,7 +56,7 @@ class SignUpForm(forms.Form):
             User.objects.get(email=email)
         except User.DoesNotExist:
             return email
-        raise forms.ValidationError("Email Already Exist")
+        raise forms.ValidationError("Email already exist")
 
     def save(self):
         user = User.objects.create_user(username=self.cleaned_data['username'], email=self.cleaned_data['email'],
