@@ -1,8 +1,10 @@
 center{
     /* background-color:aqua; */
     background-image: url("background1.jpg");
-    padding: 50px;
+    padding: 100px;
+    height: 100vh;
 }
+
 .container{
     padding: 20px;
     background-color: lightgray;
