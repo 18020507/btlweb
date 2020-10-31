@@ -1,31 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <style>
+    #product_name {
+      height: 50px;
+    }
+  </style>
 </head>
+
 <body>
-    <div>
-        {% for obj in sanpham %}
-        <div>
-            <a href="">
-                <img src="{{ obj.img.url }}">
+  <div class="w3-container" id="items">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Mặt hàng</h3>
+  </div>
+  <div class="w3-row-padding" id = "all_products">
+    {% for obj in sanpham %}
+    <div class="w3-col w3-card l4 m6 w3-margin-bottom w3-hover-shadow w3-center" id ="product">
+      <div class = "w3-container">
+        <a href="">
+          <img src="{{ obj.img.url }}" class="w3-hover-opacity">
+        </a>
+      </div>
+      
+      <div class="w3-container w3-white w3-row">
+        <div class = "w3-center" id = "product_name">{{ obj.title }}</div>
+        <div class = "w3-center">Giá: {{ obj.price|floatformat:'-1' }} VND</div>
+        <div class = "w3-row-padding">
+          <div class = "w3-col w3-card w3-margin-top w3-padding-16 w3-half w3-hover-shadow">
+            <a href="{% url 'Page:page_ViewDetail' obj.id %}" style="text-decoration: none;">View Detail</a>
+          </div>
+          <div class = "w3-col w3-card w3-margin-top w3-padding-16 w3-half w3-hover-shadow" >
+            <a title="Add Cart" href="{% url 'Page:page_login' %}" style="text-decoration: none;">
+              Add Cart
             </a>
-            <div>
-                <b>{{ obj.title }} <br>
-                Giá: {{ obj.price|floatformat:'-1' }} VND</b>
-                <hr>
-                <p>
-                    <a href="{% url 'Page:page_ViewDetail' obj.id %}">View Detail</a>
-                </p>
-                <span>
-                    <a title="Add Cart" href="{% url 'Page:page_login' %}">
-                        <span></span> Add Cart
-                    </a>
-                </span>
-            </div>
+          </div>
         </div>
-        {% endfor %}
+        <p>
+          
+        </p>
+        <span>
+          
+        </span>
+      </div>
     </div>
+    {% endfor %}
+  </div>
 
 </body>
+
 </html>
