@@ -11,6 +11,23 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #lblCartCount {
+            font-size: 9px;
+            background: #ff0000;
+            color: #fff;
+            padding: 0 5px;
+            vertical-align: top;
+            margin-left: -10px;
+        }
+        .badge {
+            padding-left: 9px;
+            padding-right: 9px;
+            -webkit-border-radius: 9px;
+            -moz-border-radius: 9px;
+            border-radius: 9px;
+        }
+    </style>
 </head>
 <body>
     <div class="w3-top">
@@ -28,14 +45,20 @@
 
             {% if user.custumer.type == "US" %}
 <!--            Chỉnh chỗ này thành dropdown-->
-            <div class="w3-padding-large w3-hover-red w3-hide-small w3-right">
-                <strong>{{user.username}}</strong>
+            
+            <div class="w3-dropdown-hover w3-hide-small w3-right">
+                <button class="w3-button w3-padding-large" title="username">{{user.username}} <i class="fa fa-caret-down"></i></button>
+                <div class="w3-dropdown-content w3-bar-block w3-black">
+                    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-sign-out" style="font-size:12px"></i> Log out</a>
+                    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-lock" style="font-size:12px"></i> Change Password</a>
+                </div>
             </div>
+            
             <a href="{% url 'Page:page_BaseViewCart' %}" class="w3-padding-large w3-hover-red w3-hide-small w3-right">
                 <strong>
                     <span class="fa fa-shopping-cart"></span>
 <!--                    Cần sửa cái span bên dưới-->
-                    <span class="badge" style="background:#999">{% if sum_cart != None %}{{sum_cart}}{% endif %}</span>
+                    <span class="badge badge-warning" id='lblCartCount' style="background:#999">{% if sum_cart != None %}{{sum_cart}}{% endif %}</span>
                 </strong>
             </a>
             <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
