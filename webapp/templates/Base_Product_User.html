@@ -5,6 +5,34 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>View Product User</h1>
+    <div class="row">
+	<br>
+    <div>
+        <div class="panel-heading" align="center"><b>THÔNG TIN SẢN PHẨM ĐÃ MUA CỦA KHÁCH HÀNG</b></div>
+
+    	<table>
+            <thead>
+                <tr>
+                	<th>#</th>
+                	<th>Sản phẩm</th>
+                	<th>Giá sản phẩm</th>
+                	<th>Số lượng</th>
+                	<th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in carts%}
+                <tr>
+                	<td>{{forloop.counter}}</td>
+                    <td>{{item.product.title}} <a href=""><span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Thông tin sản phầm"></span></a></td>
+                    <td>{{item.product.price|floatformat:'-1'}} VNĐ</td>
+                    <td>{{item.num}}</td>
+                    <td>{{item.sum_product|floatformat:'-1'}} VNĐ</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+	</div>
+    </div>
 </body>
 </html>
