@@ -3,31 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        #history-table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+        }
+        #history-table td, #history-table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        #history-table tr:nth-child(even){background-color: #f2f2f2;}
+
+        #history-table tr:hover {background-color: #ddd;}
+
+        #history-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 </head>
 <body>
+    {% include 'NavigationBar/nav_User_or_Manager.html' %}
+    <br>
+    <br>
     <div class="row">
-	<br>
     <div>
         <div class="panel-heading" align="center"><b>THÔNG TIN SẢN PHẨM ĐÃ MUA CỦA KHÁCH HÀNG</b></div>
-
-    	<table>
+    	<table class="w3-table-all" id="history-table">
             <thead>
                 <tr>
-                	<th>#</th>
+                	<th class="w3-center">STT</th>
                 	<th>Sản phẩm</th>
-                	<th>Giá sản phẩm</th>
-                	<th>Số lượng</th>
-                	<th>Thành tiền</th>
+                	<th class="w3-center">Giá sản phẩm</th>
+                	<th class="w3-center">Số lượng</th>
+                	<th class="w3-center">Thành tiền</th>
                 </tr>
             </thead>
             <tbody>
                 {% for item in carts%}
                 <tr>
-                	<td>{{forloop.counter}}</td>
-                    <td>{{item.product.title}} <a href=""><span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Thông tin sản phầm"></span></a></td>
-                    <td>{{item.product.price|floatformat:'-1'}} VNĐ</td>
-                    <td>{{item.num}}</td>
-                    <td>{{item.sum_product|floatformat:'-1'}} VNĐ</td>
+                	<td class="w3-center">{{forloop.counter}}</td>
+                    <td>{{item.product.title}}
+                        <a href="">
+                            <span class="fa fa-info-circle" data-toggle="tooltip" title="Thông tin sản phầm"></span>
+                        </a>
+                    </td>
+                    <td class="w3-center">{{item.product.price|floatformat:'-1'}} VNĐ</td>
+                    <td class="w3-center">{{item.num}}</td>
+                    <td class="w3-center">{{item.sum_product|floatformat:'-1'}} VNĐ</td>
                 </tr>
                 {% endfor %}
             </tbody>

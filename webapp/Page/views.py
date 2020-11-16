@@ -155,6 +155,7 @@ class AddCart(TemplateView, LoginRequiredMixin):
 
 	def get(self, request, id_sp, id_user):
 		if request.user.is_authenticated():
+			print(type(id_user))
 			all_cart = Cart.objects.all()
 			id_sanpham = get_object_or_404(Product, id=id_sp)
 			user_id = get_object_or_404(User, id=id_user)

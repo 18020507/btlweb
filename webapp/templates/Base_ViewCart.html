@@ -3,76 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        #cart-table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+        }
+        #cart-table td, #cart-table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        #cart-table tr:nth-child(even){background-color: #f2f2f2;}
+
+        #cart-table tr:hover {background-color: #ddd;}
+
+        #cart-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     {% include 'NavigationBar/nav_User_or_Manager.html' %}
     <br>
     <br>
-    <br>
     <div class="row">
-        <div class="col-sm-12 col-lg-12">
-            <div class="panel-heading" align="center">
-                <b>THÔNG TIN SẢN PHẨM TRONG GIỎ HÀNG CỦA KHÁCH HÀNG</b>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>#</th>
-            		    <th>Sản phẩm</th>
-            		    <th>Giá sản phẩm</th>
-            		    <th>Số lượng</th>
-            		    <th>Thành tiền</th>
-            		    <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in cart %}
-                    <tr>
-                        <td>{{forloop.counter}}</td>
-                        <td>{{item.product.title}}&nbsp;{% if item.is_pay != True %}
-                            <span class="glyphicon glyphicon-trash" onclick="document.getElementById('id{{item.id}}').style.display='block'"
-                                  class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Xóa sản phẩm"></span>
+        <div class="panel-heading" align="center"><b>THÔNG TIN SẢN PHẨM TRONG GIỎ HÀNG CỦA KHÁCH HÀNG</b></div>
+		<table class="w3-table-all" id="cart-table">
+            <thead>
+            	<tr>
+                    <th class="w3-center">STT</th>
+                	<th>Sản phẩm</th>
+                	<th class="w3-center">Giá sản phẩm</th>
+                	<th class="w3-center">Số lượng</th>
+                	<th class="w3-center">Thành tiền</th>
+                    <th class="w3-center"></th>
+            	</tr>
+            </thead>
+            <tbody>
+            	{% for item in cart%}
+            	<tr>
+            		<td class="w3-center">{{forloop.counter}}</td>
+            		<td>{{item.product.title}}&nbsp;
+                        {% if item.is_pay != True %}
+                        <span class="fa fa-trash" onclick="document.getElementById('id{{item.id}}').style.display='block'"
+                              data-toggle="tooltip" title="Xóa sản phẩm">
+                        </span>
                         <div id="id{{item.id}}" class="w3-modal">
                             <div class="w3-modal-content">
-                                {% include 'Form/form_DeleteForm.html'%}
+                                {% include 'Form/form_DeleteForm.html' %}
                             </div>
                         </div>
-                        </td>{% endif %}
-                   		<td>{{item.product.price|floatformat:'-1'}} VNĐ</td>
-                        <td>{% if item.num > 1 %}
-                            <a href="{% url 'Page:page_MinusProduct' item.id item.product.id %}">
-                                <button><span class="small text-muted"><span class="glyphicon glyphicon-minus"></span></span></button>
-                            </a>{% elif item.num == 1 %}
-                            <button><span class="small text-muted"><span class="glyphicon glyphicon-minus"></span></span></button>
-                            {% endif %}&nbsp;<input type="num" name="" value="{{item.num}}" size="3"><a href="{% url 'Page:page_AddProduct' item.id item.product.id %}">
-                                <button><span class="small text-muted"><span class="glyphicon glyphicon-plus"></span></span></button></a>
-                        </td>
-                        <td>{{item.sum_product|floatformat:'-1'}} VNĐ</td>
-            		    <td>{% if item.is_pay == False %}
-                            <button>
-                                <span class="" onclick="document.getElementById('id{{item.id}}{{item.id}}').style.display='block'" class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Mua sản phẩm">Buy</span>
-                            </button>
-                            <div id="id{{item.id}}{{item.id}}" class="w3-modal">
-                                <div class="w3-modal-content">
-                                    {% include 'Form/form_BuyForm.html'%}
-                                </div>
-                            </div>{% elif item.is_pay == True %}
-                            <button>
-                                <span class="" onclick="document.getElementById('id{{item.id}}{{item.id}}{{item.id}}').style.display='block'"
-                                      class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Hủy đặt sản phẩm">Delete
-                                </span>
-                            </button>
-                            <div id="id{{item.id}}{{item.id}}{{item.id}}" class="w3-modal">
-                                <div class="w3-modal-content">
-                                    {% include 'Form/form_DeleteForm.html'%}
-                                </div>
-                            </div>{% endif %}
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
+                    </td>
+                    {% endif %}
+            		<td class="w3-center">{{item.product.price|floatformat:'-1'}} VNĐ</td>
+            		<td class="w3-center">{% if item.num > 1 %}
+                        <a href="{% url 'Page:page_MinusProduct' item.id item.product.id %}" class="fa fa-minus" style="text-decoration:none"></a>
+                        {% elif item.num == 1 %}
+                        <a href="" class="fa fa-minus" style="text-decoration:none"></a>
+                        {% endif %}&nbsp;<input type="num" name="" value="{{item.num}}" size="3">&nbsp;
+                        <a href="{% url 'Page:page_AddProduct' item.id item.product.id %}" class="fa fa-plus" style="text-decoration:none"></a>
+                    </td>
+            		<td class="w3-center">{{item.sum_product|floatformat:'-1'}} VNĐ</td>
+            		<td class="w3-center">{% if item.is_pay == False %}
+                        <button>
+                            <span class="" onclick="document.getElementById('id{{item.id}}{{item.id}}').style.display='block'"
+                                  data-toggle="tooltip" title="Mua sản phẩm">Buy
+                            </span>
+                        </button>
+                        <div id="id{{item.id}}{{item.id}}" class="w3-modal">
+                            <div class="w3-modal-content">
+                                {% include 'Form/form_BuyForm.html'%}
+                            </div>
+                        </div>{% elif item.is_pay == True %}
+                        <button>
+                            <span class="" onclick="document.getElementById('id{{item.id}}{{item.id}}{{item.id}}').style.display='block'"
+                                  data-toggle="tooltip" title="Hủy đặt sản phẩm">Delete
+                            </span>
+                        </button>
+                        <div id="id{{item.id}}{{item.id}}{{item.id}}" class="w3-modal">
+                            <div class="w3-modal-content">
+                                {% include 'Form/form_CancelBuyForm.html'%}
+                            </div>
+                        </div>{% endif %}
+                    </td>
+            	</tr>
+            	{% endfor %}
+            </tbody>
+        </table>
+	</div>
 </body>
 </html>
