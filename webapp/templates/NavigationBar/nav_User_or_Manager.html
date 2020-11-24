@@ -41,19 +41,21 @@
             <a href="{% url 'Page:page_blog_page' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BÀI VIẾT</a>
             <a href="{% url 'Page:page_link_page' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LIÊN HỆ</a>
             {% if user.custumer.type == "US" %}
-            <a href="{% url 'Page:page_ViewProductUserBuy' user.id %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">THÔNG TIN SẢN PHẨM MUA</a>
+                <a href="{% url 'Page:page_ViewProductUserBuy' user.id %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">THÔNG TIN SẢN PHẨM MUA</a>
+            {% endif %}
+            {% if user.custumer.type == "MN" %}
+                <a href="{% url 'Page:page_ViewConfirmManager' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">QUẢN LÝ SẢN PHẨM</a>
             {% endif %}
 
-            {% if user.custumer.type == "US" %}
-            
             <div class="w3-dropdown-hover w3-hide-small w3-right">
                 <button class="w3-button w3-padding-large" title="username">{{user.username}} <i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-bar-block w3-black">
-                    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-sign-out" style="font-size:12px"></i> Log out</a>
+                    <a href="{% url 'Page:page_logout_user' %}" class="w3-bar-item w3-button"><i class="fa fa-sign-out" style="font-size:12px"></i> Log out</a>
                     <a href="#" class="w3-bar-item w3-button"><i class="fa fa-lock" style="font-size:12px"></i> Change Password</a>
                 </div>
             </div>
-            
+
+            {% if user.custumer.type == "US" %}
             <a href="{% url 'Page:page_BaseViewCart' %}" class="w3-padding-large w3-hover-red w3-hide-small w3-right">
                 <strong>
                     <span class="fa fa-shopping-cart"></span>

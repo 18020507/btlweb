@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header class="w3-container w3-light-blue">
+        <span onclick="document.getElementById('id{{item.id}}{{item.id}}').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+        <h4 align="center" style="color: #000099"><strong>Thông tin người dùng đặt sản phẩm {{item.product.title}}</strong></h4>
+    </header>
+
+    <div class="w3-container">
+    <br>
+    <div align="">
+        <hr>
+            <form action="" method="post" action="" enctype="multipart/form-data">
+                <div>
+                    <div>
+                        <p><b>Người dùng: {{item.user.custumer.name}}</b></p>
+                        <p><b>Địa chỉ mail: {{item.user.email}}</b></p>
+                        <p><b>Số điện thoại: 0{{item.user.custumer.phone}}</b></p>
+                        <p><b>Địa chỉ: {{item.user.custumer.address|linebreaksbr}}</b></p>
+                    </div>
+                </div>
+            </form>
+        <hr>
+    </div>
+    <div align="right">
+        <span onclick="document.getElementById('id{{item.id}}{{item.id}}').style.display='none'">
+            <button type="button" class="btn btn-warning  btn-xs">Ignore</button>
+        </span>
+    </div>
+    <br>
+</div>
+
+
+</body>
+</html>

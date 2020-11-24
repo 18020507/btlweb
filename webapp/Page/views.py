@@ -88,7 +88,7 @@ def logout_user(request):
     context = {
         "form": form,
     }
-    return render(request, '../Templates/Navigation/LogIn_Page.html', context)
+    return render(request, 'NavigationBar/LogIn_Page.html', context)
 
 def Present_Page(request):
 	template_name = '../Templates/NavigationBar/Present_Page.html'

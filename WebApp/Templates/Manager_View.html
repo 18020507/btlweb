@@ -3,8 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        #cart-table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+        }
+        #cart-table td, #cart-table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        #cart-table tr:nth-child(even){background-color: #f2f2f2;}
+
+        #cart-table tr:hover {background-color: #ddd;}
+
+        #cart-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <h1>Manager</h1>
+    <div class="row">
+        <div class="panel panel-info">
+            <div class="panel-heading" align="center"><b>THÔNG TIN SẢN PHẨM ĐẶT HÀNG CỦA KHÁCH HÀNG</b></div>
+            <table class="w3-table-all" id="cart-table">
+                <thead>
+                    <tr>
+                        <th class="w3-center">STT</th>
+                        <th class="w3-center">Người đặt</th>
+                        <th>Sản phẩm</th>
+                        <th class="w3-center">Giá sản phẩm</th>
+                        <th class="w3-center">Số lượng</th>
+                        <th class="w3-center">Thành tiền</th>
+                        <th class="w3-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in carts%}
+                    <tr>
+                        <td class="w3-center">{{forloop.counter}}</td>
+                        <td>{{item.user.custumer.name}}&nbsp
+                            <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('id{{item.id}}{{item.id}}').style.display='block'"
+                                  class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin User">
+                            </span>
+                            <div id="id{{item.id}}{{item.id}}" class="w3-modal">
+                                <div class="w3-modal-content">
+                                    {% include 'Form/form_userInfo.html'%}
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{item.product.title}}</td>
+                        <td class="w3-center">{{item.product.price|floatformat:'-1'}} VNĐ</td>
+                        <td class="w3-center">{{item.num}}</td>
+                        <td class="w3-center">{{item.sum_product|floatformat:'-1'}} VNĐ</td>
+                        <td class="w3-center">
+                            <button>
+                                <span class="" onclick="document.getElementById('id{{item.id}}').style.display='block'"
+                                      class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Xác nhận đơn hàng">Confirm
+                                </span>
+                            </button>
+                            <div id="id{{item.id}}" class="w3-modal">
+                                <div class="w3-modal-content">
+                                    {% include 'Form/form_confirm.html'%}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
