@@ -9,12 +9,12 @@
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
 <body>
-    {% include 'NavigationBar/nav.html' %}
+    {% include 'NavigationBar/nav_User_or_Manager.html' %}
     <br>
     <br>
     <br>
     <div class="container">
-        {% for obj in id_sanpham %}
+        {% for obj in product_id %}
         <div class="row">
             <div class="col-md-4" style="border: 1px solid grey" align="center">
                 <img src="{{ obj.img.url }}">
@@ -34,14 +34,5 @@
         </div>
         {% endfor %}
     </div>
-<!--    <div>-->
-<!--        {% for obj in id_sanpham %}-->
-<!--        <a href="" style="text-decoration:none">-->
-<!--            <img src="{{ obj.img.url }}">-->
-<!--        </a>-->
-<!--        {{obj.id}}-->
-<!--        {{obj.description}}-->
-<!--        {% endfor %}-->
-<!--    </div>-->
 </body>
 </html>

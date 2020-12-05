@@ -39,12 +39,11 @@
             <a href="{% url 'Page:page_Index_User' %}" class="w3-bar-item w3-button w3-padding-large">TRANG CHỦ</a>
             <a href="{% url 'Page:page_present_page' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">GIỚI THIỆU</a>
             <a href="{% url 'Page:page_blog_page' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BÀI VIẾT</a>
-            <a href="{% url 'Page:page_link_page' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LIÊN HỆ</a>
-            {% if user.custumer.type == "US" %}
+            {% if user.customer.type == "US" %}
                 <a href="{% url 'Page:page_ViewProductUserBuy' user.id %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">THÔNG TIN SẢN PHẨM MUA</a>
             {% endif %}
-            {% if user.custumer.type == "MN" %}
-                <a href="{% url 'Page:page_ViewConfirmManager' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">QUẢN LÝ SẢN PHẨM</a>
+            {% if user.customer.type == "MN" %}
+                <a href="" class="w3-bar-item w3-button w3-padding-large w3-hide-small">QUẢN LÝ SẢN PHẨM</a>
             {% endif %}
 
             <div class="w3-dropdown-hover w3-hide-small w3-right">
@@ -55,23 +54,22 @@
                 </div>
             </div>
 
-            {% if user.custumer.type == "US" %}
-            <a href="{% url 'Page:page_BaseViewCart' %}" class="w3-padding-large w3-hover-red w3-hide-small w3-right">
+            {% if user.customer.type == "US" %}
+            <a href="{% url 'Page:page_BaseViewCart' user.id %}" class="w3-padding-large w3-hover-red w3-hide-small w3-right">
                 <strong>
                     <span class="fa fa-shopping-cart"></span>
-                    <span class="badge badge-warning" id='lblCartCount' style="background:#999">{% if sum_cart != None %}{{sum_cart}}{% endif %}</span>
+                    <span class="badge badge-warning" id='lblCartCount' style="background:#999">{% if numberOfCart != None %}{{numberOfCart}}{% endif %}</span>
                 </strong>
             </a>
             <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
             {% endif %}
 
-            {% if user.custumer.type == "US" %}
+            {% if user.customer.type == "US" %}
             <!-- Navbar on small screens -->
             <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
                 <a href="{% url 'Page:page_present_page' %}" class="w3-bar-item w3-button">GIỚI THIỆU</a>
                 <a href="{% url 'Page:page_blog_page' %}" class="w3-bar-item w3-button">BÀI VIẾT</a>
-                <a href="{% url 'Page:page_link_page' %}" class="w3-bar-item w3-button">LIÊN HỆ</a>
-                <a href="{% url 'Page:page_ViewProductUserBuy' user.id %}" class="w3-bar-item w3-button">THÔNG TIN SẢN PHẨM MUA</a>
+                <a href="" class="w3-bar-item w3-button">THÔNG TIN SẢN PHẨM MUA</a>
             </div>
             {% endif %}
         </div>
@@ -80,7 +78,7 @@
                 var x = document.getElementById("navDemo");
                 if (x.className.indexOf("w3-show") == -1) {
                     x.className += " w3-show";
-                } else { 
+                } else {
                     x.className = x.className.replace(" w3-show", "");
                 }
             }

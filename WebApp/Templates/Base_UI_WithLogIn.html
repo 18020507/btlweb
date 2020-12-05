@@ -10,9 +10,9 @@
     <br>
     <br>
     <div>
-        {% if user.custumer.type == 'US' %}
+        {% if user.customer.type == 'US' %}
             {% include 'User_View.html' %}
-        {% elif user.custumer.type == 'MN' %}
+        {% elif user.customer.type == 'MN' %}
             {% include 'Manager_View.html' %}
         {% endif %}
     </div>

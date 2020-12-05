@@ -22,13 +22,13 @@
           <img src="{{ obj.img.url }}" class="w3-hover-opacity">
         </a>
       </div>
-      
+
       <div class="w3-container w3-white w3-row">
         <div class = "w3-center" id = "product_name">{{ obj.title }}</div>
-        <div class = "w3-center">Giá: {{ obj.price|floatformat:'-1' }} VND</div>
+        <div class = "w3-center">Giá: {{ obj.price_sale|floatformat:'-1' }} VND</div>
         <div class = "w3-row-padding">
           <div class = "w3-col w3-card w3-margin-top w3-padding-16 w3-half w3-hover-shadow">
-            <a href="{% url 'Page:page_ViewDetail' obj.id %}" style="text-decoration: none;">View Detail</a>
+            <a href="" style="text-decoration: none;">View Detail</a>
           </div>
           <div class = "w3-col w3-card w3-margin-top w3-padding-16 w3-half w3-hover-shadow" >
             <a title="Add Cart" href="{% url 'Page:page_login' %}" style="text-decoration: none;">

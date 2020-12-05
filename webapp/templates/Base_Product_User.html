@@ -33,30 +33,34 @@
     <br>
     <div class="row">
     <div>
-        <div class="panel-heading" align="center"><b>THÔNG TIN SẢN PHẨM ĐÃ MUA CỦA KHÁCH HÀNG</b></div>
+        <div class="panel-heading" align="center"><b>THÔNG TIN ĐƠN HÀNG ĐANG CHỜ CỦA KHÁCH HÀNG</b></div>
     	<table class="w3-table-all" id="history-table">
             <thead>
                 <tr>
                 	<th class="w3-center">STT</th>
-                	<th>Sản phẩm</th>
-                	<th class="w3-center">Giá sản phẩm</th>
-                	<th class="w3-center">Số lượng</th>
-                	<th class="w3-center">Thành tiền</th>
+                	<th class="w3-center">Đơn Hàng</th>
+                	<th class="w3-center">Trạng thái</th>
                 </tr>
             </thead>
             <tbody>
-                {% for item in carts%}
+                {% for item in order %}
+                {% if item.status != 'completed' %}
                 <tr>
                 	<td class="w3-center">{{forloop.counter}}</td>
-                    <td>{{item.product.title}}
-                        <a href="">
-                            <span class="fa fa-info-circle" data-toggle="tooltip" title="Thông tin sản phầm"></span>
-                        </a>
+                    <td class="w3-center">Create At: {{item.id_cart.CreateAt}}
+                        <span class="fa fa-trash" onclick="document.getElementById('productInfo').style.display='block'"
+                              class="w3-button w3-black" style="color: #0077b3"
+                              data-toggle="tooltip" title="Xóa sản phẩm">
+                        </span>
+                        <div id="productInfo" class="w3-modal">
+                            <div class="w3-modal-content">
+                                {% include 'Form/form_productInfo.html' %}
+                            </div>
+                        </div>
                     </td>
-                    <td class="w3-center">{{item.product.price|floatformat:'-1'}} VNĐ</td>
-                    <td class="w3-center">{{item.num}}</td>
-                    <td class="w3-center">{{item.sum_product|floatformat:'-1'}} VNĐ</td>
+                    <td class="w3-center">{{item.status}}</td>
                 </tr>
+                {% endif %}
                 {% endfor %}
             </tbody>
         </table>

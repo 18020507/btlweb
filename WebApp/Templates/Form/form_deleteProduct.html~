@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <header class="w3-container w3-light-blue">
+        <span onclick="document.getElementById('deleteProduct').style.display='none'"
+          class="w3-button w3-display-topright">&times;</span>
+        <h4 align="center" style="color: #000099"><strong>Thông báo từ sản phẩm {{item}}</strong></h4>
+    </header>
+
+    <div class="w3-container">
+        <br>
+        <div align="center">
+            <hr>
+                <form action="" method="post" action="" enctype="multipart/form-data">
+                    <div>
+                        <div>
+                            <p><span class="fa fa-warning"></span> Bạn có chắc là hủy mua sản phẩm "<b>{{item.id_product}}</b>" với số lượng <b>"{{item.num}}"</b></p>
+                            <p align="center">Đồng ý xin vui lòng nhấn <b>"Agree"</b> | Không đồng ý nhấn <b>"Ignore"</b></p>
+                        </div>
+                    </div>
+                </form>
+            <hr>
+        </div>
+        <div align="right">
+            <a href=""
+               class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge" style="text-decoration:none"><b style="font-size:12px">Accept</b>
+            </a>
+            <span onclick="document.getElementById('deleteProduct').style.display='none'" class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge">
+                <b style="font-size:12px">Ignore</b>
+            </span>
+        </div>
+        <br>
+    </div>
+</body>
+</html>

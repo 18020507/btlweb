@@ -36,43 +36,60 @@
                     <tr>
                         <th class="w3-center">STT</th>
                         <th class="w3-center">Người đặt</th>
-                        <th>Sản phẩm</th>
-                        <th class="w3-center">Giá sản phẩm</th>
-                        <th class="w3-center">Số lượng</th>
-                        <th class="w3-center">Thành tiền</th>
-                        <th class="w3-center"></th>
+                        <th class="w3-center">Đơn hàng</th>
+                        <th class="w3-center">Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for item in carts%}
+                    {% for item in order %}
                     <tr>
                         <td class="w3-center">{{forloop.counter}}</td>
-                        <td>{{item.user.custumer.name}}&nbsp
-                            <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('id{{item.id}}{{item.id}}').style.display='block'"
+                        <td>{{item.id_user}}
+                            <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('userInfo').style.display='block'"
                                   class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin User">
                             </span>
-                            <div id="id{{item.id}}{{item.id}}" class="w3-modal">
+                            <div id="userInfo" class="w3-modal">
                                 <div class="w3-modal-content">
                                     {% include 'Form/form_userInfo.html'%}
                                 </div>
                             </div>
                         </td>
-                        <td>{{item.product.title}}</td>
-                        <td class="w3-center">{{item.product.price|floatformat:'-1'}} VNĐ</td>
-                        <td class="w3-center">{{item.num}}</td>
-                        <td class="w3-center">{{item.sum_product|floatformat:'-1'}} VNĐ</td>
                         <td class="w3-center">
-                            <button>
-                                <span class="" onclick="document.getElementById('id{{item.id}}').style.display='block'"
-                                      class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Xác nhận đơn hàng">Confirm
-                                </span>
-                            </button>
-                            <div id="id{{item.id}}" class="w3-modal">
+                            {{item.id_cart.CreateAt}}
+                            <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('productInfo').style.display='block'"
+                                  class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin User">
+                            </span>
+                            <div id="productInfo" class="w3-modal">
                                 <div class="w3-modal-content">
-                                    {% include 'Form/form_confirm.html'%}
+                                    {% include 'Form/form_productInfo.html'%}
                                 </div>
                             </div>
                         </td>
+                        {% if item.status == 'pending' %}
+                        <td class="w3-center">
+                            <button>
+                                <a href="">Confirm</a>
+                            </button>
+                        </td>
+                        {% elif item.status == 'confirm' %}
+                        <td class="w3-center">
+                            <button>
+                                <a href="">Shipping</a>
+                            </button>
+                        </td>
+                        {% elif item.status == 'shipping' %}
+                        <td class="w3-center">
+                            <button>
+                                <a href="">Paid</a>
+                            </button>
+                        </td>
+                        {% elif item.status == 'paid' %}
+                        <td class="w3-center">
+                            <button>
+                                <a href="">Completed</a>
+                            </button>
+                        </td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>

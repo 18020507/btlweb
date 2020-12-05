@@ -8,7 +8,7 @@
         height: 50px;
     }
     </style>
-    
+
 </head>
 <body>
     <div class="w3-container" id="items">
@@ -19,32 +19,25 @@
         <div  class="w3-col w3-card l4 m6 w3-margin-bottom w3-hover-shadow w3-center" id ="product">
             <div  class = "w3-container">
                 <a href="">
-                    <img src="{{ obj.img.url }}"  class="w3-hover-opacity">
+                    <img align="center" src="{{ obj.img.url }}"  class="w3-hover-opacity">
                 </a>
                 <div class="w3-container w3-white w3-row">
                     <div class = "w3-center" id = "product_name">{{ obj.title }}</div>
-                    <div class = "w3-center">Giá: {{ obj.price|floatformat:'-1' }} VNĐ</div>
+                    <div class="w3-center">Giá gốc: {{ obj.price|floatformat:'-1' }} VNĐ</div>
+                    <div class = "w3-center">Giá: {{ obj.price_sale|floatformat:'-1' }} VNĐ</div>
                     <div class = "w3-row-padding">
                         <div class = "w3-col w3-card w3-margin-top w3-padding-16 w3-half w3-hover-shadow">
-                            <a href="{% url 'Page:page_ViewDetail' obj.id %}" role="button" style="text-decoration: none;">View Detail</a>
+                            <a href="{% url 'Page:page_ViewDetail' obj.id %}" role="button" style="text-decoration: none;">
+                                View Detail
+                            </a>
                         </div>
                         <div class = "w3-col w3-card w3-margin-top w3-padding-16 w3-half w3-hover-shadow">
-                            {% if cart %}
-                                {% for item in cart %}
-                                {% if forloop.first %}
-                                <a title="Add Cart" href="{% url 'Page:page_AddCart' obj.id user.id %}" style="text-decoration: none;">
-                                    Add Cart
-                                </a>
-                                {% endif %}
-                                {% endfor %}
-                            {% else %}
-                                <a title="Add Cart" href="{% url 'Page:page_AddCartEmpty' obj.id user.id %}" style="text-decoration: none;">
-                                    Add Cart
-                                </a>
-                            {% endif %}
+                            <a href="{% url 'Page:page_AddCart' obj.id user.id %}" role="button" style="text-decoration: none;">
+                                Add Cart
+                            </a>
                         </div>
                     </div>
-        
+
                 </div>
             </div>
         </div>
