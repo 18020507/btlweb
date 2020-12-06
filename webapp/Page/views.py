@@ -154,14 +154,15 @@ class ViewCart(TemplateView, LoginRequiredMixin):
             return HttpResponseRedirect(reverse('Page:page_login'))
 
 
-def Buy(id_user):
+def Buy(request, id_user):
+    address = request.POST.get('addressInputText', False)
     user_id = get_object_or_404(User, id=id_user)
     cart_id = Cart.objects.get(id_user=user_id, is_new=True)
     if cart_id.is_new:
         cart_id.is_new = False
         cart_id.save()
 
-    Order.objects.create(id_user=user_id, id_cart=cart_id, status='pending')
+    Order.objects.create(id_user=user_id, id_cart=cart_id, status='pending', address=address)
     return HttpResponseRedirect(reverse('Page:page_Index_User'))
 
 
@@ -198,3 +199,11 @@ def DeleteCartItem(id_cart, id_product):
     cartItem = get_object_or_404(id_cart=id_cart, id_product=id_product)
     CartItem.objects.get(id=cartItem).delete()
     return HttpResponseRedirect(reverse('page_BaseViewCart'))
+
+
+def confirm(id_order):
+    order_id = Order.objects.filter(id=id_order)
+    order_id.status = 'confirm'
+    order_id.save()
+    return HttpResponseRedirect(reverse('Page:page_Index_User'))
+

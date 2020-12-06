@@ -15,25 +15,39 @@
         <br>
         <div align="center">
             <hr>
-                <form action="" method="post" action="" enctype="multipart/form-data">
+                <form action="{% url 'Page:page_Buy' user.id %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div>
                         <div>
                             <p><span class="glyphicon glyphicon-alert"></span> Bạn có chắc muốn thanh toán đơn hàng</p>
                             <p align="center">Đồng ý xin vui lòng nhấn <b>"Agree"</b> | Không đồng ý nhấn <b>"Ignore"</b></p>
                         </div>
                     </div>
+                    <div>
+                        Địa Chỉ:
+                        <textarea name="addressInputText" cols="40", rows="10"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit">Agree</button>
+                    </div>
                 </form>
             <hr>
         </div>
     </div>
     <div align="right">
-        <a href="{% url 'Page:page_Buy' user.id %}"
-            class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge" style="text-decoration:none"><b style="font-size:12px">Agree</b>
-        </a>
-        <span onclick="document.getElementById('id{{item.id}}').style.display='none'"
-              class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge">
-            <b style="font-size:12px">Ignore</b>
-        </span>
+            <span onclick="document.getElementById('id{{item.id}}').style.display='none'"
+                  class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge">
+                <b style="font-size:12px">Ignore</b>
+            </span>
+        </div>
+<!--    <div align="right">-->
+<!--        <a href="{% url 'Page:page_Buy' user.id %}"-->
+<!--            class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge" style="text-decoration:none"><b style="font-size:12px">Agree</b>-->
+<!--        </a>-->
+<!--        <span onclick="document.getElementById('id{{item.id}}').style.display='none'"-->
+<!--              class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge">-->
+<!--            <b style="font-size:12px">Ignore</b>-->
+<!--        </span>-->
     </div>
     <br>
 </body>

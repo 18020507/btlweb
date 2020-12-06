@@ -10,5 +10,20 @@
           class="w3-button w3-display-topright">&times;</span>
         <h4 align="center" style="color: #000099"><strong>Thông báo các sản phẩm mà khách hàng {{item.id_user.customer.name}} mua</strong></h4>
     </header>
+    <div class="w3-container">
+        <br>
+        <div align="center">
+            <hr>
+                <form action="" method="post" action="" enctype="multipart/form-data">
+                    <div>
+                        <div>
+                            <p><span class="fa fa-warning"></span> Bạn có chắc là hủy mua sản phẩm "<b>{{item.id_cart.CreateAt}}</b>" với số lượng</p>
+                            <p align="center">Đồng ý xin vui lòng nhấn <b>"Agree"</b> | Không đồng ý nhấn <b>"Ignore"</b></p>
+                        </div>
+                    </div>
+                </form>
+            <hr>
+        </div>
+    </div>
 </body>
 </html>

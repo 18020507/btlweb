@@ -14,6 +14,7 @@ from .views import (
     Buy,
     ViewProductUserBuy,
     DeleteCartItem,
+    confirm,
 )
 
 urlpatterns = [
@@ -30,4 +31,5 @@ urlpatterns = [
     url(r'^is_buy/(?P<id_user>\w+)/$', Buy, name='page_Buy'),
     url(r'^view_sanpham/(?P<id_user>\w+)/$', ViewProductUserBuy.as_view(), name='page_ViewProductUserBuy'),
     url(r'^delete_product/(?P<id_cart>\w+)/isproduct/(?P<id_product>\w+)/$', DeleteCartItem, name='page_DeleteCart'),
+    url(r'^confirm/(?P<id_order>\w+)/$', confirm, name='page_confirm'),
 ]

@@ -37,6 +37,7 @@
                         <th class="w3-center">STT</th>
                         <th class="w3-center">Người đặt</th>
                         <th class="w3-center">Đơn hàng</th>
+                        <th class="w3-center">Địa chỉ</th>
                         <th class="w3-center">Trạng thái</th>
                     </tr>
                 </thead>
@@ -44,7 +45,7 @@
                     {% for item in order %}
                     <tr>
                         <td class="w3-center">{{forloop.counter}}</td>
-                        <td>{{item.id_user}}
+                        <td>{{item.id_user}}&nbsp
                             <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('userInfo').style.display='block'"
                                   class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin User">
                             </span>
@@ -56,19 +57,14 @@
                         </td>
                         <td class="w3-center">
                             {{item.id_cart.CreateAt}}
-                            <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('productInfo').style.display='block'"
-                                  class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin User">
-                            </span>
-                            <div id="productInfo" class="w3-modal">
-                                <div class="w3-modal-content">
-                                    {% include 'Form/form_productInfo.html'%}
-                                </div>
-                            </div>
+                        </td>
+                        <td class="w3-center">
+                            {{item.address}}
                         </td>
                         {% if item.status == 'pending' %}
                         <td class="w3-center">
                             <button>
-                                <a href="">Confirm</a>
+                                <a href="{% url 'Page:page_confirm' item.id %}">Confirm</a>
                             </button>
                         </td>
                         {% elif item.status == 'confirm' %}
