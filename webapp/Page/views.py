@@ -84,10 +84,12 @@ class Index_User(TemplateView, LoginRequiredMixin):
             sanpham = Product.objects.all()
             numberOfCart = list(CartItem.objects.aggregate(Sum('num')).values())[0]
             order = Order.objects.all()
+            cartItem = CartItem.objects.all()
             content = {
                 'sanpham': sanpham,
                 'numberOfCart': numberOfCart,
                 'order': order,
+                'cartItem': cartItem,
             }
             return render(request, self.template_name, content)
         else:
@@ -174,31 +176,20 @@ class ViewProductUserBuy(TemplateView, LoginRequiredMixin):
         if request.user.is_authenticated():
             user_id = get_object_or_404(User, id=id_user)
             order = Order.objects.filter(id_user=user_id)
+            cartItem = CartItem.objects.all()
             content = {
                 'order': order,
+                'cartItem': cartItem,
             }
             return render(request, self.template_name, content)
         else:
             return HttpResponseRedirect(reverse('Page:page_login'))
 
 
-class showInfoProduct(TemplateView, LoginRequiredMixin):
-    login_url = '/'
-    template_name = '../Templates/Form/form_productInfo.html'
+def DeleteCartItem(id_user):
 
-    def get(self, cart_id):
-        cart = get_object_or_404(Cart, id=cart_id)
-        cartItem = CartItem.objects.filter(id_cart=cart)
-        content = {
-            'cartItem': cartItem,
-        }
-        return render(self.template_name, content)
-
-
-def DeleteCartItem(id_cart, id_product):
-    cartItem = get_object_or_404(id_cart=id_cart, id_product=id_product)
-    CartItem.objects.get(id=cartItem).delete()
-    return HttpResponseRedirect(reverse('page_BaseViewCart'))
+    # CartItem.objects.filter(id_cart=cartItem_id).delete()
+    return HttpResponseRedirect(reverse('Page:page_BaseViewCart'), kwargs={'id_user': id_user})
 
 
 def confirm(id_order):

@@ -6,9 +6,9 @@
 </head>
 <body>
     <header class="w3-container w3-light-blue">
-        <span onclick="document.getElementById('id{{item.id}}').style.display='none'"
+        <span onclick="document.getElementById('{{item.id}}').style.display='none'"
           class="w3-button w3-display-topright">&times;</span>
-        <h4 align="center" style="color: #000099"><strong>Thông báo các sản phẩm mà khách hàng {{item.id_user.customer.name}} mua</strong></h4>
+        <h4 align="center" style="color: #000099"><strong>Các sản phẩm có trong order được tạo lúc {{item.id_cart.CreateAt}}</strong></h4>
     </header>
     <table>
         <thead>

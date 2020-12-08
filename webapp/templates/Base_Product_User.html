@@ -48,13 +48,12 @@
                 <tr>
                 	<td class="w3-center">{{forloop.counter}}</td>
                     <td class="w3-center">Create At: {{item.id_cart.CreateAt}}
-                        <span class="fa fa-trash" onclick="document.getElementById('productInfo').style.display='block'"
-                              class="w3-button w3-black" style="color: #0077b3"
-                              data-toggle="tooltip" title="Xóa sản phẩm">
+                        <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('{{item.id}}').style.display='block'"
+                              class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin User">
                         </span>
-                        <div id="productInfo" class="w3-modal">
+                        <div id="{{item.id}}" class="w3-modal">
                             <div class="w3-modal-content">
-                                {% include 'Form/form_productInfo.html' %}
+                                {% include 'Form/form_orderInfo.html'%}
                             </div>
                         </div>
                     </td>

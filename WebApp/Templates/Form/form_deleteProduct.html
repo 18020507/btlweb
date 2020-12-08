@@ -5,9 +5,9 @@
 </head>
 <body>
     <header class="w3-container w3-light-blue">
-        <span onclick="document.getElementById('deleteProduct').style.display='none'"
+        <span onclick="document.getElementById('{{item.id}}').style.display='none'"
           class="w3-button w3-display-topright">&times;</span>
-        <h4 align="center" style="color: #000099"><strong>Thông báo từ sản phẩm {{item.id}}</strong></h4>
+        <h4 align="center" style="color: #000099"><strong>Thông báo từ sản phẩm {{item.id_product}}</strong></h4>
     </header>
 
     <div class="w3-container">
@@ -25,10 +25,10 @@
             <hr>
         </div>
         <div align="right">
-            <a href=""
+            <a href="{% url 'Page:page_DeleteCart' user.id %}"
                class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge" style="text-decoration:none"><b style="font-size:12px">Accept</b>
             </a>
-            <span onclick="document.getElementById('deleteProduct').style.display='none'" class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge">
+            <span onclick="document.getElementById('{{item.id}}').style.display='none'" class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge">
                 <b style="font-size:12px">Ignore</b>
             </span>
         </div>

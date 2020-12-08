@@ -49,9 +49,14 @@
             		<td class="w3-center">{{ forloop.counter }}</td>
             		<td>
                         <a href="{% url 'Page:page_ViewDetail' item.id_product.id %}" role="button">{{item.id_product}}</a>
-<!--                        <a href="{% url 'Page:page_DeleteCart' item.id_cart.id item.id_product.id %}"-->
-<!--                            class="fa fa-trash" style="text-decoration:none">-->
-<!--                        </a>-->
+                        <span class="fa fa-trash" onclick="document.getElementById('{{item.id}}').style.display='block'"
+                                  class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Xóa Sản Phẩm">
+                        </span>
+                        <div id="{{item.id}}" class="w3-modal">
+                            <div class="w3-modal-content">
+                                {% include 'Form/form_deleteProduct.html'%}
+                            </div>
+                        </div>
                     </td>
             		<td class="w3-center">{{item.id_product.price_sale|floatformat:'-1'}} VNĐ</td>
             		<td class="w3-center">{% if item.num > 1 %}

@@ -63,9 +63,6 @@ class CartItem(models.Model):
     num = models.IntegerField(default=0, null=True, blank=True)
     sum_product = models.FloatField(default=0, null=True, blank=True)
 
-    # def __str__(self):
-    #     return self.id_cart
-
 
 class Order(models.Model):
     id_cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True, blank=True)

@@ -6,7 +6,7 @@
 </head>
 <body>
     <header class="w3-container w3-light-blue">
-        <span onclick="document.getElementById('userInfo').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+        <span onclick="document.getElementById('{{item.id}}').style.display='none'" class="w3-button w3-display-topright">&times;</span>
         <h4 align="center" style="color: #000099"><strong>Thông tin khách hàng</strong></h4>
     </header>
 
@@ -27,7 +27,7 @@
         <hr>
     </div>
     <div align="right">
-        <span onclick="document.getElementById('userInfo').style.display='none'">
+        <span onclick="document.getElementById('{{item.id}}').style.display='none'">
             <button type="button" class="btn btn-warning  btn-xs">Ignore</button>
         </span>
     </div>
