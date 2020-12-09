@@ -15,6 +15,11 @@ from .views import (
     ViewProductUserBuy,
     DeleteCartItem,
     confirm,
+    DeleteOrder,
+    shipping,
+    paid,
+    completed,
+    CancelOrder,
 )
 
 urlpatterns = [
@@ -30,6 +35,11 @@ urlpatterns = [
     url(r'^view_cart/(?P<id_user>\w+)/$', ViewCart.as_view(), name='page_BaseViewCart'),
     url(r'^is_buy/(?P<id_user>\w+)/$', Buy, name='page_Buy'),
     url(r'^view_sanpham/(?P<id_user>\w+)/$', ViewProductUserBuy.as_view(), name='page_ViewProductUserBuy'),
-    url(r'^delete_product/(?P<id_user>\w+)/$', DeleteCartItem, name='page_DeleteCart'),
     url(r'^confirm/(?P<id_order>\w+)/$', confirm, name='page_confirm'),
+    url(r'^is_shipping/(?P<id_order>\w+)/$', shipping, name='page_isShipping'),
+    url(r'^is_paid/(?P<id_order>\w+)/$', paid, name='page_isPaid'),
+    url(r'^is_complete/(?P<id_order>\w+)/$', completed, name='page_isCompleted'),
+    url(r'^delete_order/(?P<id_order>\w+)/$', DeleteOrder, name='page_deleteOrder'),
+    url(r'^delete_product/(?P<id_user>\w+)/(?P<id_cartItem>\w+)/$', DeleteCartItem, name='page_DeleteCart'),
+    url(r'^cancel_order/(?P<id_user>\w+)/(?P<id_order>\w+)/$', CancelOrder, name='page_cancelOrder'),
 ]

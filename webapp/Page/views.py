@@ -186,15 +186,50 @@ class ViewProductUserBuy(TemplateView, LoginRequiredMixin):
             return HttpResponseRedirect(reverse('Page:page_login'))
 
 
-def DeleteCartItem(id_user):
+def DeleteCartItem(request, id_user, id_cartItem):
+    CartItem.objects.filter(id=id_cartItem).delete()
+    return HttpResponseRedirect(reverse('Page:page_BaseViewCart', kwargs={'id_user': id_user}))
 
-    # CartItem.objects.filter(id_cart=cartItem_id).delete()
-    return HttpResponseRedirect(reverse('Page:page_BaseViewCart'), kwargs={'id_user': id_user})
+
+def DeleteOrder(request, id_order):
+    order_id = Order.objects.get(id=id_order)
+    Cart_id = Cart.objects.get(id=order_id.id_cart.id)
+    order_id.delete()
+    Cart_id.delete()
+    return HttpResponseRedirect(reverse('Page:page_Index_User'))
 
 
-def confirm(id_order):
-    order_id = Order.objects.filter(id=id_order)
+def CancelOrder(request, id_user, id_order):
+    order_id = Order.objects.get(id=id_order)
+    Cart_id = Cart.objects.get(id=order_id.id_cart.id)
+    order_id.delete()
+    Cart_id.delete()
+    return HttpResponseRedirect(reverse('Page:page_ViewProductUserBuy', kwargs={'id_user': id_user}))
+
+
+def confirm(request, id_order):
+    order_id = Order.objects.get(id=id_order)
     order_id.status = 'confirm'
     order_id.save()
     return HttpResponseRedirect(reverse('Page:page_Index_User'))
 
+
+def shipping(request, id_order):
+    order_id = Order.objects.get(id=id_order)
+    order_id.status = 'shipping'
+    order_id.save()
+    return HttpResponseRedirect(reverse('Page:page_Index_User'))
+
+
+def paid(request, id_order):
+    order_id = Order.objects.get(id=id_order)
+    order_id.status = 'paid'
+    order_id.save()
+    return HttpResponseRedirect(reverse('Page:page_Index_User'))
+
+
+def completed(request, id_order):
+    order_id = Order.objects.get(id=id_order)
+    order_id.status = 'completed'
+    order_id.save()
+    return HttpResponseRedirect(reverse('Page:page_Index_User'))

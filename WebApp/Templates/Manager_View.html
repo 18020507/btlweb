@@ -43,6 +43,7 @@
                 </thead>
                 <tbody>
                     {% for item in order %}
+                    {% if item.status != 'completed' %}
                     <tr>
                         <td class="w3-center">{{forloop.counter}}</td>
                         <td>{{item.id_user}}&nbsp
@@ -74,27 +75,31 @@
                             <button>
                                 <a href="{% url 'Page:page_confirm' item.id %}">Confirm</a>
                             </button>
+                            <button>
+                                <a href="{% url 'Page:page_deleteOrder' item.id %}" class="fa fa-trash" data-toggle="tooltip" title="Xóa Đơn Hàng"></a>
+                            </button>
                         </td>
                         {% elif item.status == 'confirm' %}
                         <td class="w3-center">
                             <button>
-                                <a href="">Shipping</a>
+                                <a href="{% url 'Page:page_isShipping' item.id %}">Shipping</a>
                             </button>
                         </td>
                         {% elif item.status == 'shipping' %}
                         <td class="w3-center">
                             <button>
-                                <a href="">Paid</a>
+                                <a href="{% url 'Page:page_isPaid' item.id %}">Paid</a>
                             </button>
                         </td>
                         {% elif item.status == 'paid' %}
                         <td class="w3-center">
                             <button>
-                                <a href="">Completed</a>
+                                <a href="{% url 'Page:page_isCompleted' item.id %}">Completed</a>
                             </button>
                         </td>
                         {% endif %}
                     </tr>
+                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>

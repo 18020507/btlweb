@@ -53,9 +53,6 @@ class Cart(models.Model):
     is_new = models.BooleanField(default=True)
     is_pending = models.BooleanField(default=True)
 
-    # def __str__(self):
-    #     return self.id_user
-
 
 class CartItem(models.Model):
     id_product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)

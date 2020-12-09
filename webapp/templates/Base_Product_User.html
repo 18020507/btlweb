@@ -49,7 +49,7 @@
                 	<td class="w3-center">{{forloop.counter}}</td>
                     <td class="w3-center">Create At: {{item.id_cart.CreateAt}}
                         <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('{{item.id}}').style.display='block'"
-                              class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin User">
+                              class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin đơn hàng">
                         </span>
                         <div id="{{item.id}}" class="w3-modal">
                             <div class="w3-modal-content">
@@ -57,7 +57,20 @@
                             </div>
                         </div>
                     </td>
+                    {% if item.status == 'pending' or item.status == 'confirm' %}
+                    <td class="w3-center">{{item.status}}
+                        <span class="fa fa-trash" onclick="document.getElementById('id{{item.id}}').style.display='block'"
+                              class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Xóa Đơn Đặt Hàng">
+                        </span>
+                        <div id="id{{item.id}}" class="w3-modal">
+                            <div class="w3-modal-content">
+                                {% include 'Form/form_cancelOrder.html'%}
+                            </div>
+                        </div>
+                    </td>
+                    {% else %}
                     <td class="w3-center">{{item.status}}</td>
+                    {% endif %}
                 </tr>
                 {% endif %}
                 {% endfor %}
