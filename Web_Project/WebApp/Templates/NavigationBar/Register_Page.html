@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="/static/style_register.css" rel="stylesheet" />
+
+</head>
+<body>
+    <center>
+        <form action="." method="POST">
+            {% csrf_token %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 mx-auto">
+                            <div class="logo mb-3">
+                                <div class="col-md-12 text-center title">
+                                    <h3>Sign Up now for new Experience !</h3>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-control">
+                                <div class = "information">
+                                    {{form.username.label}}
+                                </div>
+                                {{form.username}}
+                            </div>
+
+                            <div class="form-group form-control">
+                                <div class = "information">
+                                    {{form.email.label}}
+                                </div>
+                                {{form.email}}
+                            </div>
+
+                            <div class="form-group form-control">
+                                <div class = "information">
+                                    {{form.password1.label}}
+                                </div>
+                                {{form.password1}}
+                            </div>
+
+                            <div class="form-group form-control">
+                                <div class = "information">
+                                    {{form.password2.label}}
+                                </div>
+                                {{form.password2}}
+                            </div>
+
+                            <div class="form-group form-control">
+                                <div class = "information">
+                                    {{form.fullname.label}}
+                                </div>
+                                {{form.fullname}}
+                            </div>
+
+<!--                            <div class="form-group form-control">-->
+<!--                                <div class = "information">-->
+<!--                                    {{form.address.label}}-->
+<!--                                </div>-->
+<!--                                {{form.address}}-->
+<!--                            </div>-->
+
+<!--                            <div class="form-group form-control">-->
+<!--                                <div class = "information">-->
+<!--                                    {{form.age.label}}-->
+<!--                                </div>-->
+<!--                                {{form.age}}-->
+<!--                            </div>-->
+
+<!--                            <div class="form-group form-control">-->
+<!--                                <div class = "information">-->
+<!--                                    {{form.sexual.label}}-->
+<!--                                </div>-->
+<!--                                {{form.sexual}}-->
+<!--                            </div>-->
+
+<!--                            <div class="form-group form-control">-->
+<!--                                <div class = "information">-->
+<!--                                    {{form.phone.label}}-->
+<!--                                </div>-->
+<!--                                {{form.phone}}-->
+<!--                            </div>-->
+
+                            <div class="col-md-12 text-center start-button">
+                                <button type="submit" class = "mb-3 btn btn-block mybtn btn-primary tx-tfm" value="Đăng ký">Start Explore Now !</button>
+                            </div>
+
+                            <div class="col-md-12 form">
+                                <p class="text-center"><a href="../login_user/#" id="signin">Already have an account?</a></p>
+                            </div>
+
+                            {% if error_message %}
+                            <div class="col-md-12 text-center warning">
+                                <p><strong>{{ error_message }}</strong></p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </center>
+</body>
+</html>

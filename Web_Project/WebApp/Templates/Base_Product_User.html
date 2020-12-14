@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        #history-table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+        }
+        #history-table td, #history-table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        #history-table tr:nth-child(even){background-color: #f2f2f2;}
+
+        #history-table tr:hover {background-color: #ddd;}
+
+        #history-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    {% include 'NavigationBar/nav_User_or_Manager.html' %}
+    <br>
+    <br>
+    <div class="row">
+    <div>
+        <div class="panel-heading" align="center"><b>THÔNG TIN ĐƠN HÀNG ĐANG CHỜ CỦA KHÁCH HÀNG</b></div>
+    	<table class="w3-table-all" id="history-table">
+            <thead>
+                <tr>
+                	<th class="w3-center">STT</th>
+                	<th class="w3-center">Đơn Hàng</th>
+                	<th class="w3-center">Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order %}
+                {% if item.status != 'completed' %}
+                <tr>
+                	<td class="w3-center">{{forloop.counter}}</td>
+                    <td class="w3-center">Create At: {{item.id_cart.CreateAt}}
+                        <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('{{item.id}}').style.display='block'"
+                              class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin đơn hàng">
+                        </span>
+                        <div id="{{item.id}}" class="w3-modal">
+                            <div class="w3-modal-content">
+                                {% include 'Form/form_orderInfo.html'%}
+                            </div>
+                        </div>
+                    </td>
+                    {% if item.status == 'pending' or item.status == 'confirm' %}
+                    <td class="w3-center">{{item.status}}
+                        <span class="fa fa-trash" onclick="document.getElementById('id{{item.id}}').style.display='block'"
+                              class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Xóa Đơn Đặt Hàng">
+                        </span>
+                        <div id="id{{item.id}}" class="w3-modal">
+                            <div class="w3-modal-content">
+                                {% include 'Form/form_cancelOrder.html'%}
+                            </div>
+                        </div>
+                    </td>
+                    {% else %}
+                    <td class="w3-center">{{item.status}}</td>
+                    {% endif %}
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+	</div>
+    </div>
+</body>
+</html>

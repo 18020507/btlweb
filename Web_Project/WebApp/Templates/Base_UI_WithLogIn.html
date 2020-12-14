@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+</head>
+<body>
+    {% include 'NavigationBar/nav_User_or_Manager.html' %}
+    <br>
+    <br>
+    <br>
+    <div>
+        {% if user.customer.type == 'US' %}
+            {% include 'User_View.html' %}
+        {% elif user.customer.type == 'MN' %}
+            {% include 'Manager_View.html' %}
+        {% endif %}
+    </div>
+</body>
+</html>

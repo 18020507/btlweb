@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Navigation Bar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="colorlib.com">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <style>
+        #lblCartCount {
+            font-size: 9px;
+            background: #ff0000;
+            color: #fff;
+            padding: 0 5px;
+            vertical-align: top;
+            margin-left: -10px;
+        }
+        .badge {
+            padding-left: 9px;
+            padding-right: 9px;
+            -webkit-border-radius: 9px;
+            -moz-border-radius: 9px;
+            border-radius: 9px;
+        }
+    </style>
+</head>
+<body>
+    <div class="w3-top">
+        <div class="w3-bar w3-black w3-card">
+            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+                href="javascript:void(0)" onclick="openNav()" title="Toggle Navigation Menu"><i
+                    class="fa fa-bars"></i></a>
+            <a href="{% url 'Page:page_Index_User' %}" class="w3-bar-item w3-button w3-padding-large">TRANG CHỦ</a>
+            <a href="{% url 'Page:page_present_page' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">GIỚI THIỆU</a>
+            <a href="{% url 'Page:page_blog_page' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BÀI VIẾT</a>
+            {% if user.customer.type == "US" %}
+                <a href="{% url 'Page:page_ViewProductUserBuy' user.id %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">THÔNG TIN SẢN PHẨM MUA</a>
+            {% endif %}
+            {% if user.customer.type == "MN" %}
+                <a href="" class="w3-bar-item w3-button w3-padding-large w3-hide-small">QUẢN LÝ SẢN PHẨM</a>
+            {% endif %}
+
+            <div class="w3-dropdown-hover w3-hide-small w3-right">
+                <button class="w3-button w3-padding-large" title="username">{{user.username}} <i class="fa fa-caret-down"></i></button>
+                <div class="w3-dropdown-content w3-bar-block w3-black">
+                    <a href="{% url 'Page:page_logout_user' %}" class="w3-bar-item w3-button"><i class="fa fa-sign-out" style="font-size:12px"></i> Log out</a>
+                    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-lock" style="font-size:12px"></i> Change Password</a>
+                </div>
+            </div>
+
+            {% if user.customer.type == "US" %}
+            <a href="{% url 'Page:page_BaseViewCart' user.id %}" class="w3-padding-large w3-hover-red w3-hide-small w3-right">
+                <strong>
+                    <span class="fa fa-shopping-cart"></span>
+                    <span class="badge badge-warning" id='lblCartCount' style="background:#999"></span>
+                </strong>
+            </a>
+            <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+            {% endif %}
+
+            {% if user.customer.type == "US" %}
+            <!-- Navbar on small screens -->
+            <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+                <a href="{% url 'Page:page_present_page' %}" class="w3-bar-item w3-button">GIỚI THIỆU</a>
+                <a href="{% url 'Page:page_blog_page' %}" class="w3-bar-item w3-button">BÀI VIẾT</a>
+                <a href="" class="w3-bar-item w3-button">THÔNG TIN SẢN PHẨM MUA</a>
+            </div>
+            {% endif %}
+        </div>
+        <script>
+            function openNav() {
+                var x = document.getElementById("navDemo");
+                if (x.className.indexOf("w3-show") == -1) {
+                    x.className += " w3-show";
+                } else {
+                    x.className = x.className.replace(" w3-show", "");
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
