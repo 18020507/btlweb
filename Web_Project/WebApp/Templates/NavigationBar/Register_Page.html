@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    
+    <title>Register</title>
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -21,7 +22,7 @@
         <form action="." method="POST">
             {% csrf_token %}
                 <div class="container">
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-8 mx-auto">
                             <div class="logo mb-3">
                                 <div class="col-md-12 text-center title">
@@ -64,33 +65,33 @@
                                 {{form.fullname}}
                             </div>
 
-<!--                            <div class="form-group form-control">-->
-<!--                                <div class = "information">-->
-<!--                                    {{form.address.label}}-->
-<!--                                </div>-->
-<!--                                {{form.address}}-->
-<!--                            </div>-->
+                            <div class="form-group form-control">
+                                <div class = "information">
+                                    {{form.address.label}}
+                                </div>
+                                {{form.address}}
+                            </div>
 
-<!--                            <div class="form-group form-control">-->
-<!--                                <div class = "information">-->
-<!--                                    {{form.age.label}}-->
-<!--                                </div>-->
-<!--                                {{form.age}}-->
-<!--                            </div>-->
+                            <div class="form-group form-control">
+                                <div class = "information">
+                                    {{form.age.label}}
+                                </div>
+                                {{form.age}}
+                            </div>
 
-<!--                            <div class="form-group form-control">-->
-<!--                                <div class = "information">-->
-<!--                                    {{form.sexual.label}}-->
-<!--                                </div>-->
-<!--                                {{form.sexual}}-->
-<!--                            </div>-->
+                            <div class="form-group form-control">
+                                <div class = "information">
+                                    {{form.sexual.label}}
+                                </div>
+                                {{form.sexual}}
+                            </div>
 
-<!--                            <div class="form-group form-control">-->
-<!--                                <div class = "information">-->
-<!--                                    {{form.phone.label}}-->
-<!--                                </div>-->
-<!--                                {{form.phone}}-->
-<!--                            </div>-->
+                            <div class="form-group form-control">
+                                <div class = "information">
+                                    {{form.phone.label}}
+                                </div>
+                                {{form.phone}}
+                            </div>
 
                             <div class="col-md-12 text-center start-button">
                                 <button type="submit" class = "mb-3 btn btn-block mybtn btn-primary tx-tfm" value="Đăng ký">Start Explore Now !</button>
@@ -106,6 +107,46 @@
                             </div>
                             {% endif %}
                         </div>
+                    </div> -->
+                    <div class = 'title'>
+                        <h2>Đăng ký</h2>
+                    </div>
+    
+                    <div class = "information">
+                        <label>Tài khoản</label>
+                            {{form.username}}
+
+                        <label>Email</label>
+                            {{form.email}}
+
+                        <label>Mật khẩu</label>
+                            {{form.password1}}
+
+                        <label>Xác nhận mật khẩu</label>
+                            {{form.password2}}
+
+                        <label>Họ và tên</label>
+                            {{form.fullname}}
+
+                        <label>Số điện thoại</label>
+                            {{form.phone}}
+                    </div>
+    
+                    <div class = 'sign-up'>
+                        <button type="submit" value="Đăng ký">Đăng ký</button>
+                    </div>
+    
+                    <div class = "other">
+                        <p class="text-center">
+                            <a href="../login_user/#" id="link">Bạn đã có tài khoản ?</a>
+                        </p>
+                        <a href="../" id="link"> Quay lại trang chủ </a>
+                    </div>
+    
+                    <div class = 'warning'>
+                        {% if error_message %}
+                            <p><strong>{{ error_message }}</strong></p>
+                        {% endif %}
                     </div>
                 </div>
         </form>

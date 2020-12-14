@@ -6,11 +6,11 @@ from django.contrib.auth.models import User
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
-    sex_choice = (
-        ('Nam', 'Nam'),
-        ('Nữ', 'Nữ'),
-        ('Khác', 'Khác'),
-    )
+    # sex_choice = (
+    #     ('Nam', 'Nam'),
+    #     ('Nữ', 'Nữ'),
+    #     ('Khác', 'Khác'),
+    # )
     type_choice = (
         ('AD', 'Admin'),
         ('MN', 'Manager'),
@@ -18,10 +18,10 @@ class Customer(models.Model):
     )
     type = models.CharField(max_length=10, choices=type_choice, default='US')
     name = models.TextField(max_length=100, default='')
-    sex = models.CharField(max_length=10, choices=sex_choice, default='1')
-    age = models.IntegerField(null=True, blank=True)
+    # sex = models.CharField(max_length=10, choices=sex_choice, default='1')
+    # age = models.IntegerField(null=True, blank=True)
     phone = models.IntegerField(null=True, blank=True)
-    address = models.TextField(max_length=300, null=True, blank=True)
+    # address = models.TextField(max_length=300, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
@@ -52,6 +52,9 @@ class Cart(models.Model):
     CreateAt = models.DateTimeField(auto_now=True)
     is_new = models.BooleanField(default=True)
     is_pending = models.BooleanField(default=True)
+
+    # def __str__(self):
+    #     return self.id_user
 
 
 class CartItem(models.Model):
