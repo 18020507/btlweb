@@ -41,6 +41,7 @@
                 	<th class="w3-center">Giá sản phẩm</th>
                 	<th class="w3-center">Số lượng</th>
                 	<th class="w3-center">Thành tiền</th>
+                    <th class="w3-center"></th>
             	</tr>
             </thead>
             <tbody>
@@ -67,6 +68,9 @@
                         <a href="" class="fa fa-plus" style="text-decoration:none"></a>
                     </td>
             		<td class="w3-center">{{item.sum_product|floatformat:'-1'}} VNĐ</td>
+                    <td class="w3-center">
+                        <input type="checkbox" value="1" checked>
+                    </td>
             	</tr>
             	{% endfor %}
                 {% if cartItem|length != 0%}

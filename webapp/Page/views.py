@@ -82,12 +82,10 @@ class Index_User(TemplateView, LoginRequiredMixin):
     def get(self, request):
         if request.user.is_authenticated():
             sanpham = Product.objects.all()
-            numberOfCart = list(CartItem.objects.aggregate(Sum('num')).values())[0]
             order = Order.objects.all()
             cartItem = CartItem.objects.all()
             content = {
                 'sanpham': sanpham,
-                'numberOfCart': numberOfCart,
                 'order': order,
                 'cartItem': cartItem,
             }
@@ -108,34 +106,40 @@ class ViewDetail(TemplateView, LoginRequiredMixin):
         return render(request, self.template_name, content)
 
 
-class AddCart(TemplateView, LoginRequiredMixin):
-    login_url = '/'
+def AddCart(request, id_sp, id_user):
+    numPro = request.POST.get('numberInputText', False)
+    Product_id = get_object_or_404(Product, id=id_sp)
+    User_id = get_object_or_404(User, id=id_user)
+    value = Product_id.price_sale * float(numPro)
 
-    def get(self, request, id_sp, id_user):
-        if request.user.is_authenticated():
-            Product_id = get_object_or_404(Product, id=id_sp)
-            User_id = get_object_or_404(User, id=id_user)
-            value = Product_id.price_sale
-
-            if Cart.objects.filter(id_user=User_id, is_new=True).exists():
-                cart_id = Cart.objects.get(id_user=User_id, is_new=True)
-                if CartItem.objects.filter(id_product=Product_id, id_cart=cart_id).exists():
-                    cartItem = CartItem.objects.get(id_product=Product_id, id_cart=cart_id)
-                    num = cartItem.num + 1
-                    cartItem.num = num
-                    cartItem.sum_product = value * num
-                    cartItem.save()
-                    return HttpResponseRedirect(reverse('Page:page_Index_User'))
-                else:
-                    cart_id = Cart.objects.get(id_user=User_id, is_new=True)
-                    CartItem.objects.create(id_product=Product_id, id_cart=cart_id, num=1, sum_product=value)
-                    return HttpResponseRedirect(reverse('Page:page_Index_User'))
-            else:
-                Cart_id = Cart.objects.create(id_user=User_id, total_price=0)
-                CartItem.objects.create(id_product=Product_id, id_cart=Cart_id, num=1, sum_product=value)
-                return HttpResponseRedirect(reverse('Page:page_Index_User'))
+    if Cart.objects.filter(id_user=User_id, is_new=True).exists():
+        cart_id = Cart.objects.get(id_user=User_id, is_new=True)
+        if CartItem.objects.filter(id_product=Product_id, id_cart=cart_id).exists():
+            cartItem = CartItem.objects.get(id_product=Product_id, id_cart=cart_id)
+            numOld = cartItem.num
+            cartItem.num = int(numPro) + numOld
+            cartItem.sum_product = value
+            cartItem.save()
+            return HttpResponseRedirect(reverse('Page:page_Index_User'))
         else:
-            return HttpResponseRedirect(reverse('Page:page_login'))
+            CartItem.objects.create(id_product=Product_id, id_cart=cart_id, num=numPro, sum_product=value)
+            return HttpResponseRedirect(reverse('Page:page_Index_User'))
+    else:
+        Cart_id = Cart.objects.create(id_user=User_id, total_price=0)
+        CartItem.objects.create(id_product=Product_id, id_cart=Cart_id, num=numPro, sum_product=value)
+        return HttpResponseRedirect(reverse('Page:page_Index_User'))
+
+
+def Buy(request, id_user):
+    address = request.POST.get('addressInputText', False)
+    user_id = get_object_or_404(User, id=id_user)
+    cart_id = Cart.objects.get(id_user=user_id, is_new=True)
+    if cart_id.is_new:
+        cart_id.is_new = False
+        cart_id.save()
+
+    Order.objects.create(id_user=user_id, id_cart=cart_id, status='pending', address=address)
+    return HttpResponseRedirect(reverse('Page:page_Index_User'))
 
 
 class ViewCart(TemplateView, LoginRequiredMixin):
@@ -154,18 +158,6 @@ class ViewCart(TemplateView, LoginRequiredMixin):
             return render(request, self.template_name, content)
         else:
             return HttpResponseRedirect(reverse('Page:page_login'))
-
-
-def Buy(request, id_user):
-    address = request.POST.get('addressInputText', False)
-    user_id = get_object_or_404(User, id=id_user)
-    cart_id = Cart.objects.get(id_user=user_id, is_new=True)
-    if cart_id.is_new:
-        cart_id.is_new = False
-        cart_id.save()
-
-    Order.objects.create(id_user=user_id, id_cart=cart_id, status='pending', address=address)
-    return HttpResponseRedirect(reverse('Page:page_Index_User'))
 
 
 class ViewProductUserBuy(TemplateView, LoginRequiredMixin):
