@@ -66,6 +66,7 @@ def Register_Page(request):
     return render(request, template_name, {'form': form})
     # return render(request, template_name, {})
 
+
 def LogOut(request):
     logout(request)
     form = UserForm(request.POST or None)
@@ -118,7 +119,7 @@ def AddCart(request, id_sp, id_user):
             cartItem = CartItem.objects.get(id_product=Product_id, id_cart=cart_id)
             numOld = cartItem.num
             cartItem.num = int(numPro) + numOld
-            cartItem.sum_product = value
+            cartItem.sum_product = Product_id.price_sale * float(cartItem.num)
             cartItem.save()
             return HttpResponseRedirect(reverse('Page:page_Index_User'))
         else:
@@ -132,13 +133,31 @@ def AddCart(request, id_sp, id_user):
 
 def Buy(request, id_user):
     address = request.POST.get('addressInputText', False)
-    user_id = get_object_or_404(User, id=id_user)
-    cart_id = Cart.objects.get(id_user=user_id, is_new=True)
-    if cart_id.is_new:
-        cart_id.is_new = False
-        cart_id.save()
+    selected_value = request.POST.getlist('selected_product')
 
-    Order.objects.create(id_user=user_id, id_cart=cart_id, status='pending', address=address)
+    User_id = get_object_or_404(User, id=id_user)
+    cart_id = Cart.objects.get(id_user=User_id, is_new=True)
+
+    if len(selected_value) == 0:
+        pass
+    else:
+        if cart_id.is_new:
+            cart_id.is_new = False
+            cart_id.save()
+        Order.objects.create(id_user=User_id, id_cart=cart_id, status='pending', address=address)
+        Cart_id = Cart.objects.create(id_user=User_id, total_price=0)
+
+        for item in selected_value:
+            Product_id = get_object_or_404(Product, id=item)
+            cartItem_id = CartItem.objects.get(id_cart=cart_id, id_product=Product_id)
+            cartItem_id.is_checked = True
+            cartItem_id.save()
+
+        CartItem_id = CartItem.objects.filter(id_cart=cart_id, is_checked=False)
+        for item in CartItem_id:
+            item.id_cart = Cart_id
+            item.save()
+
     return HttpResponseRedirect(reverse('Page:page_Index_User'))
 
 

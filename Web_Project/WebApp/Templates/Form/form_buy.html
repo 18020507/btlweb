@@ -19,8 +19,31 @@
                     {% csrf_token %}
                     <div>
                         <div>
-                            <p><span class="glyphicon glyphicon-alert"></span> Bạn có chắc muốn thanh toán đơn hàng</p>
-                            <p align="center">Đồng ý xin vui lòng nhấn <b>"Agree"</b> | Không đồng ý nhấn <b>"Ignore"</b></p>
+                            <p><span class="glyphicon glyphicon-alert"></span> Bạn có chắc muốn thanh toán đơn hàng bao gồm:</p>
+                            <table>
+                                <thead>
+                                    <th>STT</th>
+                                    <th>Sản phẩm</th>
+                                    <th>Giá sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</th>
+                                </thead>
+                                <tbody>
+                                    {% for item in cartItem %}
+                                    <tr>
+                                        <td>{{forloop.counter}}</td>
+                                        <td>
+                                            <input type="checkbox" name="selected_product" value="{{item.id_product.id}}" checked>
+                                            {{item.id_product}}
+                                        </td>
+                                        <td>{{item.id_product.price_sale|floatformat:'-1'}} VNĐ</td>
+                                        <td>{{item.num}}</td>
+                                        <td>{{item.sum_product|floatformat:'-1'}} VNĐ</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <p align="center">Đồng ý xin vui lòng nhập địa chỉ giao hàng và nhấn <b>"Agree"</b> | Không đồng ý nhấn <b>"Ignore"</b></p>
                         </div>
                     </div>
                     <div>
