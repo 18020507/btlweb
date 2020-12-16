@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
     <style>
         #cart-table {
             font-family: Arial, Helvetica, sans-serif;
@@ -25,13 +27,16 @@
             background-color: #4CAF50;
             color: white;
         }
+
+        .cart-product-information {
+            padding-top: 6rem;
+        }
     </style>
 </head>
-<body>
+<body data-target=".fixed-top">
     {% include 'NavigationBar/nav_User_or_Manager.html' %}
-    <br>
-    <br>
-    <div class="row">
+    
+    <div class="row cart-product-information">
         <div class="panel-heading" align="center"><b>THÔNG TIN SẢN PHẨM TRONG GIỎ HÀNG CỦA KHÁCH HÀNG</b></div>
 		<table class="w3-table-all" id="cart-table">
             <thead>
@@ -92,6 +97,6 @@
                 {% endif %}
             </tbody>
         </table>
-	</div>
+    </div>
 </body>
 </html>
