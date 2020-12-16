@@ -7,44 +7,56 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="author" content="colorlib.com">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,800" rel="stylesheet" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <meta name="author" content="WOWTEAM">
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/fontawesome-all.css" rel="stylesheet">
+    <link href="../static/css/swiper.css" rel="stylesheet">
+    <link href="../static/css/magnific-popup.css" rel="stylesheet">
+    <link href="../static/css/styles_base_UI_home.css" rel="stylesheet">
 </head>
 <body>
-    <div class="w3-top">
-        <div class="w3-bar w3-black w3-card">
-            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
-                href="javascript:void(0)" onclick="openNav()" title="Toggle Navigation Menu"><i
-                    class="fa fa-bars"></i></a>
-            <a href="{% url 'Page:page_Index_Page' %}" class="w3-bar-item w3-button w3-padding-large">TRANG CHỦ</a>
-            <a href="{% url 'Page:page_present_page' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">GIỚI THIỆU</a>
-            <a href="{% url 'Page:page_blog_page' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small">BÀI VIẾT</a>
-            <a href="{% url 'Page:page_login' %}" class="w3-bar-item w3-button w3-padding-large w3-hide-small"
-                style="float:right;">Login</a>
-            <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i
-                    class="fa fa-shopping-cart"></i></a>
-            <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i
-                    class="fa fa-search"></i></a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
+        <!-- Text Logo - Use this if you don't have a graphic logo -->
+        <a class="navbar-brand logo-text page-scroll" href="{% url 'Page:page_Index_Page' %}">WOW</a>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-awesome fas fa-bars"></span>
+            <span class="navbar-toggler-awesome fas fa-times"></span>
+        </button>
+        <!-- end of mobile menu toggle button -->
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#header">TRANG CHỦ<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#intro">GIỚI THIỆU</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#posts">BÀI VIẾT</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#callMe">CALL ME</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#projects">MẶT HÀNG</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#contact">LIÊN HỆ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="{% url 'Page:page_login' %}">ĐĂNG NHẬP</a>
+                </li>
+            </ul>
         </div>
-        <!-- Navbar on small screens -->
-        <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
-            <a href="{% url 'Page:page_present_page' %}" class="w3-bar-item w3-button">GIỚI THIỆU</a>
-            <a href="{% url 'Page:page_blog_page' %}" class="w3-bar-item w3-button">BÀI VIẾT</a>
-            <a href="{% url 'Page:page_login' %}" class="w3-bar-item w3-button">Login</a>
-        </div>
-    </div>
-    <script>
-        function openNav() {
-            var x = document.getElementById("navDemo");
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-            } else {
-                x.className = x.className.replace(" w3-show", "");
-            }
-        }
-    </script>
+    </nav> <!-- end of navbar -->
+    <!-- end of navbar -->
 </body>
 </html>
