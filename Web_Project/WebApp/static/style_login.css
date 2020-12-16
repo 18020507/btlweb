@@ -2,7 +2,7 @@ center{
     /* background: url("login-bg.jpg") no-repeat; */
     background: url("login-bg1.jpg") no-repeat;
     background-size: cover;
-    padding: 100px;
+    /* padding: 100px; */
     height: 100vh;
 }
 .container{

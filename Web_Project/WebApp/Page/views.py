@@ -51,7 +51,7 @@ def Login_Page(request):
             else:
                 return render(request, template_name, {'error_message': 'Your account has been disabled'})
         else:
-            return render(request, template_name, {'error_message': 'Invalid Login'})
+            return render(request, template_name, {'error_message': 'Đăng nhập không hợp lệ'})
     return render(request, template_name, {})
 
 
@@ -64,7 +64,7 @@ def Register_Page(request):
             form.save()
             return HttpResponseRedirect('/')
     return render(request, template_name, {'form': form})
-
+    # return render(request, template_name, {})
 
 def LogOut(request):
     logout(request)
