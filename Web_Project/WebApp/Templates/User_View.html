@@ -31,22 +31,25 @@
                                 View Detail
                             </a>
                         </div>
-                        <form action="{% url 'Page:page_AddCart' obj.id user.id %}" method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div>
-                                <button type="submit">AddCart</button>
-                            </div>
-                            <div>
-                                Số lượng:
-                                <textarea name="numberInputText">1</textarea>
-                            </div>
-                        </form>
+                        <input type="number" name="quantities" value="1" min="1" id="cart_quantity_{{obj.id}}">
+                        <button onclick="addCart({{obj.id}}, {{user.id}})">Add Cart</button>
                     </div>
 
                 </div>
             </div>
         </div>
         {% endfor %}
+        <script>
+            $(document).ready(function() {
+                //alert("load Ok");
+            });
+            function addCart(id, user){
+                num = $(`#cart_quantity_${id}`).val();
+                $.post('/add_cart', {'id':id, 'num':num, 'user':user, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
+                   alert("Bạn vừa mua sản phẩm!");
+                });
+            }
+        </script>
     </div>
 </body>
 </html>

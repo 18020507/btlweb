@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.template.loader import render_to_string
 from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -108,27 +109,31 @@ class ViewDetail(TemplateView, LoginRequiredMixin):
 
 
 def AddCart(request, id_sp, id_user):
-    numPro = request.POST.get('numberInputText', False)
-    Product_id = get_object_or_404(Product, id=id_sp)
-    User_id = get_object_or_404(User, id=id_user)
-    value = Product_id.price_sale * float(numPro)
+    if request.is_ajax():
+        id_sp = request.POST.get('id')
+        num = request.POST.get('num')
+        user = request.POST.get('user')
 
-    if Cart.objects.filter(id_user=User_id, is_new=True).exists():
-        cart_id = Cart.objects.get(id_user=User_id, is_new=True)
-        if CartItem.objects.filter(id_product=Product_id, id_cart=cart_id).exists():
-            cartItem = CartItem.objects.get(id_product=Product_id, id_cart=cart_id)
-            numOld = cartItem.num
-            cartItem.num = int(numPro) + numOld
-            cartItem.sum_product = Product_id.price_sale * float(cartItem.num)
-            cartItem.save()
-            return HttpResponseRedirect(reverse('Page:page_Index_User'))
+        proDetail = Product.objects.get(id=id_sp)
+        User_id = User.objects.get(id=user)
+        value = proDetail.price_sale * float(num)
+
+        if Cart.objects.filter(id_user=User_id, is_new=True).exists():
+            Cart_id = Cart.objects.get(id_user=User_id, is_new=True)
+            if CartItem.objects.filter(id_product=proDetail, id_cart=Cart_id).exists():
+                cartItem = CartItem.objects.get(id_product=proDetail, id_cart=Cart_id)
+                numOld = cartItem.num
+                cartItem.num = int(num) + numOld
+                cartItem.sum_product = proDetail.price_sale * float(cartItem.num)
+                cartItem.save()
+            else:
+                CartItem.objects.create(id_product=proDetail, id_cart=Cart_id, num=num, sum_product=value)
         else:
-            CartItem.objects.create(id_product=Product_id, id_cart=cart_id, num=numPro, sum_product=value)
-            return HttpResponseRedirect(reverse('Page:page_Index_User'))
-    else:
-        Cart_id = Cart.objects.create(id_user=User_id, total_price=0)
-        CartItem.objects.create(id_product=Product_id, id_cart=Cart_id, num=numPro, sum_product=value)
-        return HttpResponseRedirect(reverse('Page:page_Index_User'))
+            Cart_id = Cart.objects.create(id_user=User_id, total_price=0)
+            CartItem.objects.create(id_product=proDetail, id_cart=Cart_id, num=num, sum_product=value)
+
+        html = render_to_string('addcart.html')
+    return HttpResponse(html)
 
 
 def Buy(request, id_user):
