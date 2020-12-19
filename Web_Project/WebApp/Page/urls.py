@@ -20,6 +20,7 @@ from .views import (
     paid,
     completed,
     CancelOrder,
+    ViewHistory,
 )
 
 urlpatterns = [
@@ -35,6 +36,7 @@ urlpatterns = [
     url(r'^view_cart/(?P<id_user>\w+)/$', ViewCart.as_view(), name='page_BaseViewCart'),
     url(r'^is_buy/(?P<id_user>\w+)/$', Buy, name='page_Buy'),
     url(r'^view_sanpham/(?P<id_user>\w+)/$', ViewProductUserBuy.as_view(), name='page_ViewProductUserBuy'),
+    url(r'^view_history/(?P<id_user>\w+)/$', ViewHistory.as_view(), name='page_ViewHistory'),
     url(r'^confirm/(?P<id_order>\w+)/$', confirm, name='page_confirm'),
     url(r'^is_shipping/(?P<id_order>\w+)/$', shipping, name='page_isShipping'),
     url(r'^is_paid/(?P<id_order>\w+)/$', paid, name='page_isPaid'),

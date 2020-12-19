@@ -17,6 +17,7 @@
     <link href="/static/css/swiper.css" rel="stylesheet">
     <link href="/static/css/magnific-popup.css" rel="stylesheet">
     <link href="/static/css/styles_base_UI_home.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -45,9 +46,12 @@
 
                 {% if user.customer.type == "US" %}
                     <li class="nav-item">
+                        <a class="nav-link history" href="{% url 'Page:page_ViewHistory' user.id %}">HISTORY</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link purchase_history" href="{% url 'Page:page_ViewProductUserBuy' user.id %}">PURCHASE HISTORY</a>
                     </li>
-                
 
                     <li class="nav-item">
                         <a href="{% url 'Page:page_BaseViewCart' user.id %}" class="icon-shopping-cart nav-link">

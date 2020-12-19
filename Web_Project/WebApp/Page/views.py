@@ -202,6 +202,22 @@ class ViewProductUserBuy(TemplateView, LoginRequiredMixin):
             return HttpResponseRedirect(reverse('Page:page_login'))
 
 
+class ViewHistory(TemplateView, LoginRequiredMixin):
+    login_url = '/'
+    template_name = '../Templates/Base_History.html'
+
+    def get(self, request, id_user):
+        if request.user.is_authenticated():
+            user_id = get_object_or_404(User, id=id_user)
+            order = Order.objects.filter(id_user=user_id)
+            content = {
+                'order': order,
+            }
+            return render(request, self.template_name, content)
+        else:
+            return HttpResponseRedirect(reverse('Page:page_login'))
+
+
 def DeleteCartItem(request, id_user, id_cartItem):
     CartItem.objects.filter(id=id_cartItem).delete()
     return HttpResponseRedirect(reverse('Page:page_BaseViewCart', kwargs={'id_user': id_user}))
