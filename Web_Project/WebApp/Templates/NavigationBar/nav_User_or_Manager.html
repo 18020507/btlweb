@@ -11,6 +11,7 @@
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
+    
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <link href="/static/css/fontawesome-all.css" rel="stylesheet">
     <link href="/static/css/swiper.css" rel="stylesheet">
@@ -33,23 +34,23 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="{% url 'Page:page_Index_User' %}">TRANG CHỦ<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'Page:page_Index_User' %}">TRANG CHỦ<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="{% url 'Page:page_blog_page' %}">BÀI VIẾT</a>
+                    <a class="nav-link" href="{% url 'Page:page_blog_page' %}">BÀI VIẾT</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#projects">MẶT HÀNG</a>
+                    <a class="nav-link" href="#projects">MẶT HÀNG</a>
                 </li>
 
                 {% if user.customer.type == "US" %}
                     <li class="nav-item">
-                        <a class="nav-link page-scroll purchase_history" href="{% url 'Page:page_ViewProductUserBuy' user.id %}">PURCHASE HISTORY</a>
+                        <a class="nav-link purchase_history" href="{% url 'Page:page_ViewProductUserBuy' user.id %}">PURCHASE HISTORY</a>
                     </li>
                 
 
                     <li class="nav-item">
-                        <a href="{% url 'Page:page_BaseViewCart' user.id %}" class="icon-shopping-cart nav-link page-scroll">
+                        <a href="{% url 'Page:page_BaseViewCart' user.id %}" class="icon-shopping-cart nav-link">
                             <i class="fa">&#xf07a;<span class='badge badge-warning' id='lblCartCount'> 5 </span></i>  
                         </a>
                     </li>
