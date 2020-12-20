@@ -38,15 +38,19 @@
                         <tbody>
                             {% for item in cartItem %}
                             <tr>
+                                <!-- Product Image -->
                                 <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+
                                 <!-- Product name -->
                                 <td>
                                     <a href="{% url 'Page:page_ViewDetail' item.id_product.id %}" 
                                     role="button" class="font-weight-bold" 
                                     >{{item.id_product}}</a>
                                 </td>
+
                                 <!-- Product Status -->
                                 <td>Còn hàng</td>
+
                                 <!-- Product Quantity -->
                                 <td class="text-center">
                                     {% if item.num > 1 %}
@@ -56,11 +60,13 @@
                                     {% endif %}&nbsp;<input type="text" name="" value="{{item.num}}" size="3">&nbsp;
                                     <a href="" class="fa fa-plus" style="text-decoration:none"></a>
                                 </td>
+
                                 <!-- Product price -->
                                 <td class="text-center">
                                     {{item.id_product.price_sale|floatformat:'-1'}} VNĐ
                                 </td>
-                                <!-- Remove -->
+
+                                <!-- Remove product -->
                                 <td class="text-right">
                                     <button class="btn btn-sm btn-danger">
                                         <span class="fa fa-trash" 
@@ -95,16 +101,23 @@
 
             <div class="col mb-2">
                 <div class="row">
-                    <div class="col-sm-12  col-md-6">
-                        <button class="btn btn-block btn-light">Tiếp tục mua sắm</button>
-                    </div>
-                    <div class="col-sm-6 col-md-3 text-right">
-                        <button class="btn btn-lg btn-block btn-success text-uppercase">
-                            <span class="" onclick="document.getElementById('id{{item.id}}').style.display='block'"
-                                  data-toggle="tooltip" title="Thanh toán">Thanh toán
-                            </span>
-                        </button>
-                    </div>
+                    <td><div class="col-sm-12  col-md-3"></div></td>
+                    <td><div class="col-sm-12  col-md-3"></div></td>
+                    <td>
+                        <div class="col-sm-6  col-md-3 text-center">
+                            <button class="btn btn-block btn-primary">Tiếp tục mua sắm</button>
+                        </div>                       
+                    </td>
+                    <td>
+                        <div class="col-sm-6 col-md-3 text-center">
+                            <button class="btn btn-block btn-block btn-success">
+                                <span class="" onclick="document.getElementById('id{{item.id}}').style.display='block'"
+                                      data-toggle="tooltip" title="Thanh toán">Thanh toán ngay
+                                </span>
+                            </button>
+                        </div>   
+                    </td>
+                    
                 </div>
             </div>
         </div>

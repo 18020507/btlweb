@@ -108,7 +108,7 @@ class ViewDetail(TemplateView, LoginRequiredMixin):
         return render(request, self.template_name, content)
 
 
-def AddCart(request, id_sp, id_user):
+def AddCart(request):
     if request.is_ajax():
         id_sp = request.POST.get('id')
         num = request.POST.get('num')
