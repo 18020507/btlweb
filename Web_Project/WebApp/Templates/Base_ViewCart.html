@@ -2,107 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
-    <link href="/static/css/bootstrap.css" rel="stylesheet">
-    <link href="/static/css/fontawesome-all.css" rel="stylesheet">
-    <link href="/static/css/swiper.css" rel="stylesheet">
-	<link href="/static/css/magnific-popup.css" rel="stylesheet">
-	<link href="/static/css/styles_base_UI_home.css" rel="stylesheet">
-    <style>
-        #cart-table {
-            font-family: Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-        }
-        #cart-table td, #cart-table th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        #cart-table tr:nth-child(even){background-color: #f2f2f2;}
-
-        #cart-table tr:hover {background-color: #ddd;}
-
-        #cart-table th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .cart-product-information {
-            padding-top: 6rem;
-        }
-
-        .navbar-custom .nav-item .nav-link.icon-shopping-cart {
-            color: #14bf98!important;
-        }
-    </style>
-</head>
-<body data-target=".fixed-top">
-    {% include 'NavigationBar/nav_User_or_Manager.html' %}
+    <title>Giỏ hàng</title>
     
-    <div class="row cart-product-information">
-        <div class="panel-heading" align="center"><b>THÔNG TIN SẢN PHẨM TRONG GIỎ HÀNG CỦA KHÁCH HÀNG</b></div>
-		<table class="w3-table-all" id="cart-table">
-            <thead>
-            	<tr>
-                    <th class="w3-center">STT</th>
-                	<th>Sản phẩm</th>
-                	<th class="w3-center">Giá sản phẩm</th>
-                	<th class="w3-center">Số lượng</th>
-                	<th class="w3-center">Thành tiền</th>
-            	</tr>
-            </thead>
-            <tbody>
-            	{% for item in cartItem %}
-            	<tr>
-            		<td class="w3-center">{{ forloop.counter }}</td>
-            		<td>
-                        <a href="{% url 'Page:page_ViewDetail' item.id_product.id %}" role="button">{{item.id_product}}</a>
-                        <span class="fa fa-trash" onclick="document.getElementById('{{item.id}}').style.display='block'"
-                                  class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Xóa Sản Phẩm">
-                        </span>
-                        <div id="{{item.id}}" class="w3-modal">
-                            <div class="w3-modal-content">
-                                {% include 'Form/form_deleteProduct.html'%}
-                            </div>
-                        </div>
-                    </td>
-            		<td class="w3-center">{{item.id_product.price_sale|floatformat:'-1'}} VNĐ</td>
-            		<td class="w3-center">{% if item.num > 1 %}
-                        <a href="" class="fa fa-minus" style="text-decoration:none"></a>
-                        {% elif item.num == 1 %}
-                        <a href="" class="fa fa-minus" style="text-decoration:none"></a>
-                        {% endif %}&nbsp;<input type="text" name="" value="{{item.num}}" size="3">&nbsp;
-                        <a href="" class="fa fa-plus" style="text-decoration:none"></a>
-                    </td>
-            		<td class="w3-center">{{item.sum_product|floatformat:'-1'}} VNĐ</td>
-            	</tr>
-            	{% endfor %}
-                {% if cartItem|length != 0%}
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="w3-center">
-                        <p>Tổng đơn hàng:</p>
-                        <button>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <link href="../static/css/cart.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <section class="jumbotron jumbotron-fluid">
+        <div class="container">
+            {% include 'NavigationBar/nav_User_or_Manager.html' %}
+         </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col"> </th>
+                                <th scope="col">Sản phẩm</th>
+                                <th scope="col">Tình trạng</th>
+                                <th scope="col" class="text-center">Số lượng</th>
+                                <th scope="col" class="text-center">Thành tiền</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cartItem %}
+                            <tr>
+                                <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                                <!-- Product name -->
+                                <td>
+                                    <a href="{% url 'Page:page_ViewDetail' item.id_product.id %}" 
+                                    role="button" class="font-weight-bold" 
+                                    >{{item.id_product}}</a>
+                                </td>
+                                <!-- Product Status -->
+                                <td>Còn hàng</td>
+                                <!-- Product Quantity -->
+                                <td class="text-center">
+                                    {% if item.num > 1 %}
+                                    <a href="" class="fa fa-minus" style="text-decoration:none"></a>
+                                    {% elif item.num == 1 %}
+                                    <a href="" class="fa fa-minus" style="text-decoration:none"></a>
+                                    {% endif %}&nbsp;<input type="text" name="" value="{{item.num}}" size="3">&nbsp;
+                                    <a href="" class="fa fa-plus" style="text-decoration:none"></a>
+                                </td>
+                                <!-- Product price -->
+                                <td class="text-center">
+                                    {{item.id_product.price_sale|floatformat:'-1'}} VNĐ
+                                </td>
+                                <!-- Remove -->
+                                <td class="text-right">
+                                    <button class="btn btn-sm btn-danger">
+                                        <span class="fa fa-trash" 
+                                            onclick="document.getElementById('{{item.id}}').style.display='block'"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            
+                            {% if cartItem|length != 0%}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Vận chuyển</td>
+                                <td class="text-right">Miễn phí</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Tổng tiền</strong></td>
+                                <td class="text-right"><strong>{{item.sum_product|floatformat:'-1'}} VNĐ</strong></td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col mb-2">
+                <div class="row">
+                    <div class="col-sm-12  col-md-6">
+                        <button class="btn btn-block btn-light">Tiếp tục mua sắm</button>
+                    </div>
+                    <div class="col-sm-6 col-md-3 text-right">
+                        <button class="btn btn-lg btn-block btn-success text-uppercase">
                             <span class="" onclick="document.getElementById('id{{item.id}}').style.display='block'"
                                   data-toggle="tooltip" title="Thanh toán">Thanh toán
                             </span>
                         </button>
-                        <div id="id{{item.id}}" class="w3-modal">
-                            <div class="w3-modal-content">
-                                {% include 'Form/form_buy.html'%}
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                {% endif %}
-            </tbody>
-        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
