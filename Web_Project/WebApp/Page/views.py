@@ -136,6 +136,28 @@ def AddCart(request):
     return HttpResponse(html)
 
 
+def Minus(request):
+    if request.is_ajax():
+        id_cartItem = request.POST.get('id')
+        CartItem_id = CartItem.objects.get(id=id_cartItem)
+        numOld = CartItem_id.num
+        CartItem_id.num = numOld - 1
+        CartItem_id.save()
+        html = render_to_string('minus_cart.html')
+    return HttpResponse(html)
+
+
+def Plus(request):
+    if request.is_ajax():
+        id_cartItem = request.POST.get('id')
+        CartItem_id = CartItem.objects.get(id=id_cartItem)
+        numOld = CartItem_id.num
+        CartItem_id.num = numOld + 1
+        CartItem_id.save()
+        html = render_to_string('plus_cart.html')
+    return HttpResponse(html)
+
+
 def Buy(request, id_user):
     address = request.POST.get('addressInputText', False)
     selected_value = request.POST.getlist('selected_product')
