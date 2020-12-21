@@ -73,6 +73,17 @@ def Blog_Page_2_Post_6(request):
     template_name = '../Templates/blog_post_without_login/post-6.html'
     return render(request, template_name)
 
+class Product_List(TemplateView, LoginRequiredMixin):
+    login_url = '/'
+    template_name = '../Templates/product-list.html'
+
+    def get(self, request):
+        sanpham = Product.objects.all()
+        content = {
+            'sanpham': sanpham
+        }
+        return render(request, self.template_name, content)
+
 
 def Login_Page(request):
     template_name = '../Templates/NavigationBar/LogIn_Page.html'
