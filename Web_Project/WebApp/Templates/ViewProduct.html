@@ -18,9 +18,9 @@
     {% for obj in sanpham %}
     <div class="w3-col w3-card l4 m6 w3-margin-bottom w3-hover-shadow w3-center" id ="product">
       <div class = "w3-container">
-        <a href="">
-          <img src="{{ obj.img.url }}" class="w3-hover-opacity">
-        </a>
+        {% if obj.img %}
+        <img align="center" src="{{ obj.img.url }}"  class="w3-hover-opacity">
+        {% endif %}
       </div>
 
       <div class="w3-container w3-white w3-row">
