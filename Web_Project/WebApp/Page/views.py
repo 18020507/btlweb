@@ -35,7 +35,35 @@ def Present_Page(request):
 
 
 def Blog_Page(request):
-    template_name = '../Templates/NavigationBar/Blog_Page.html'
+    template_name = '../Templates/blog_post_without_login/blog_page.html'
+    return render(request, template_name)
+
+def Blog_Page_2(request):
+    template_name = '../Templates/blog_post_without_login/blog_page_2.html'
+    return render(request, template_name)
+
+def Blog_Page_1_Post_1(request):
+    template_name = '../Templates/blog_post_without_login/post-1.html'
+    return render(request, template_name)
+
+def Blog_Page_1_Post_2(request):
+    template_name = '../Templates/blog_post_without_login/post-2.html'
+    return render(request, template_name)
+
+def Blog_Page_1_Post_3(request):
+    template_name = '../Templates/blog_post_without_login/post-3.html'
+    return render(request, template_name)
+
+def Blog_Page_2_Post_4(request):
+    template_name = '../Templates/blog_post_without_login/post-4.html'
+    return render(request, template_name)
+
+def Blog_Page_2_Post_5(request):
+    template_name = '../Templates/blog_post_without_login/post-5.html'
+    return render(request, template_name)
+
+def Blog_Page_2_Post_6(request):
+    template_name = '../Templates/blog_post_without_login/post-6.html'
     return render(request, template_name)
 
 

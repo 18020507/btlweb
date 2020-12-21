@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Aria is a business focused HTML landing page template built with Bootstrap to help you create lead generation websites for companies and their services.">
+    <meta name="author" content="Inovatik">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+	<meta property="og:site_name" content="" /> <!-- website name -->
+	<meta property="og:site" content="" /> <!-- website link -->
+	<meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+	<meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+	<meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+	<meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+	<meta property="og:type" content="article" />
+
+    <!-- Website Title -->
+    <title>WOW! BLOG</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/fontawesome-all.css" rel="stylesheet">
+    <link href="/static/css/swiper.css" rel="stylesheet">
+	  <link href="/static/css/magnific-popup.css" rel="stylesheet">
+	  <link href="/static/css/styles_base_UI_home.css" rel="stylesheet">
+    <link href="/static/css/style_blog.css" rel="stylesheet">
+    <style>
+      .posts-page {
+        color: #14fb98!important;
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'NavigationBar/Blog_Page.html' %}
+
+    <!-- Header -->
+    <header id="header" class="header posts-header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-container">
+                            <h1>WOW! BLOG</span></h1>
+                            <a class="btn-solid-lg page-scroll" href="#start-blog" style="margin-top: 2rem;">WHAT'S NEW?</a>
+                        </div>
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <!-- end of header -->
+    
+    <div class="start-blog container" id="start-blog">
+      <div class="row">
+        <!-- Latest Posts -->
+        <main class="post blog-post col-lg-8"> 
+          <div class="container">
+            <div class="post-single">
+              <div class="post-thumbnail"><img src="/static/posts/post-2/blog-post-3-2.jpg" alt="..." class="img-fluid"></div>
+              <div class="post-details">
+                <div class="post-meta d-flex justify-content-between">
+                </div>
+                <h1>Sự lên ngôi của 6 xu hướng hứa hẹn sẽ làm bùng nổ làng thời trang Thu Đông 2019<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+                <div class="post-footer d-flex align-items-center flex-column flex-sm-row">
+                </div>
+                <div class="post-body">
+                  <p class="lead">Chào mùa mới, các tín đồ thời trang lại rục rịch tìm kiếm ý tưởng độc – lạ để refresh tủ quần áo thu đông. Hình ảnh streetstyle ngập tràn trên trang cá nhân của các IT girls Á Âu là những gợi ý lý tưởng cho xu hướng năm nay. Dưới đây là  6 xu hướng hứa hẹn khuấy động làng mốt mà nàng có thể tham khảo.</p>
+                  <p> <img src="/static/posts/post-2/featured-pic-3-1.jpg" alt="..." class="img-fluid"></p>
+                  <h3>Màu hồng – Biểu tượng lãng mạn và nữ tính</h3>
+                  <p>Là gam màu được thảm đỏ Oscar danh giá ưu ái năm nay, sắc hồng sẽ làm sáng bừng những ngày tiết trời u buồn của mùa thu. Dù là sắc hồng pastel nhẹ nhàng hay gam hồng neon nổi bật, các nhà mốt vẫn luôn biết cách chiều lòng giới mộ điệu với các thiết kế cực kì trendy.</p>
+                  <h3>Xếp nếp ruffle bồng bềnh</h3>
+                  <p>Sau khi nhà mốt Marc Jacob trình làng mẫu đầm ruffle đồ sộ trong show Xuân Hè 2019, các fashionistas cũng bắt đầu chuẩn bị để hòa mình vào “cơn sốt” ruffle đang nhen nhóm bùng nổ.</p>
+                  <p><img src="/static/posts/post-2/featured-pic-3-2.jpg" alt="..." class="img-fluid"></p>
+                  <blockquote class="blockquote">
+                    <p>Sự lên ngôi của các gam màu tươi sáng trong mùa mốt năm nay là dịp để những tín đồ yêu thích phong cách nổi bật được thỏa sức sáng tạo và biến hóa đa dạng.</p>
+                    <footer class="blockquote-footer">CEO
+                      <cite title="Source Title">Hieu X. Nguyen</cite>
+                    </footer>
+                  </blockquote>
+                </div>
+                <div class="post-tags"><span class="tag">#Style</span><span class="tag">#Fashion</span><span class="tag">#Model</span><span class="tag">#Beauty</span></div>
+                <div class="posts-nav d-flex justify-content-between align-items-stretch flex-column flex-md-row">
+                  <a href="{% url 'Page:page_blog_page' %}" class="prev-post text-left d-flex align-items-center">
+                    <div class="icon prev"><i class="fa fa-angle-left"></i></div>
+                    <div class="text"><strong class="text-primary">Return to </strong>
+                      <h6>Blog page</h6>
+                    </div>
+                  </a>
+                </div>
+            </div>
+          </div>
+        </main>
+        <aside class="col-lg-4">
+          <!-- Widget [Latest Posts Widget]        -->
+          <div class="widget latest-posts">
+            <header>
+              <h3 class="h6">BÀI VIẾT KHÁC</h3>
+            </header>
+            <div class="blog-posts"><a href="{% url 'Page:page_blog_page_2_4' %}">
+                <div class="item d-flex align-items-center">
+                  <div class="image"><img src="/static/posts/post-2/small-thumbnail-1-1.jpg" alt="..." class="img-fluid"></div>
+                  <div class="title"><strong>Bí kíp da mịn dáng xinh nằm trong 8 loại trà thiên nhiên này </strong>
+                  </div>
+                </div></a><a href="{% url 'Page:page_blog_page_2_5' %}">
+                <div class="item d-flex align-items-center">
+                  <div class="image"><img src="/static/posts/post-2/small-thumbnail-2-1.jpg" alt="..." class="img-fluid"></div>
+                  <div class="title"><strong>Bye bye ngay mái tóc bết dính khó ưa chỉ với 6 mẹo siêu dễ</strong>
+                    <div class="d-flex align-items-center">
+                    </div>
+                  </div>
+                </div></a><a href="{% url 'Page:page_blog_page_2_6' %}">
+                <div class="item d-flex align-items-center">
+                  <div class="image"><img src="/static/posts/post-2/small-thumbnail-3-1.png" alt="..." class="img-fluid"></div>
+                  <div class="title"><strong>DIY – Thư giãn làn da với 4 loại mặt nạ thiên nhiên siêu đơn giản</strong>
+                    <div class="d-flex align-items-center">
+                    </div>
+                  </div>
+                </div></a></div>
+          </div>
+          <div class="widget tags">       
+            <header>
+              <h3 class="h6">Tags</h3>
+            </header>
+            <ul class="list-inline">
+              <li class="list-inline-item"><span class="tag">#Style</span></li>
+              <li class="list-inline-item"><span class="tag">#Beauty</span></li>
+              <li class="list-inline-item"><span class="tag">#Fashion</span></li>
+              <li class="list-inline-item"><span class="tag">#Model</span></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <!-- Page Footer-->
+        <!-- Footer -->
+        <div class="footer" id ="contact">
+            <div class="row justify-content-center">
+                <div class="col-md-5 text-center">
+                    <h1>WOW</h1>
+                    <p>Phục vụ bạn tốt nhất</p>
+                    <strong>Thông tin liên lạc:</strong>
+                    <p>(+84) 888-888888<br>someMail@gmail.com</p>
+                    <a href="" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                    <a href="" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                    <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+                    
+                </div>
+            </div>
+        </div> <!-- end of footer -->  
+        <!-- end of footer -->
+    <!-- JavaScript files-->
+    <script src="/static/js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="/static/js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="/static/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="/static/js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="/static/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="/static/js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="/static/js/morphext.min.js"></script> <!-- Morphtext rotating text in the header -->
+    <script src="/static/js/isotope.pkgd.min.js"></script> <!-- Isotope for filter -->
+    <script src="/static/js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="/static/js/scripts_base_UI_home.js"></script> <!-- Custom scripts -->
+    <script src="/static/js/js_blog.js"></script>
+  </body>
+</html>
