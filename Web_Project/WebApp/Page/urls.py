@@ -31,6 +31,7 @@ from .views import (
     Plus,
     Minus,
     change_password,
+    ManagerView,
 )
 
 urlpatterns = [
@@ -48,6 +49,7 @@ urlpatterns = [
     url(r'^register_user/$', Register_Page, name='page_register_user'),
     url(r'^logout_user/$', LogOut, name='page_logout_user'),
     url(r'^index/$', Index_User.as_view(), name='page_Index_User'),
+    url(r'^manager/$', ManagerView.as_view(), name='page_Manager'),
     url(r'^view_detail/(?P<id_to>\w+)/$', ViewDetail.as_view(), name='page_ViewDetail'),
     url(r'^add_cart', AddCart, name='page_AddCart'),
     url(r'^minus', Minus, name='page_minus'),

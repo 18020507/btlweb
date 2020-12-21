@@ -92,18 +92,17 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="{% url 'Page:page_ViewProductUserBuy' user.id %}">PURCHASE HISTORY</a>
                     </li>
-                
 
                     <li class="nav-item">
                         <a href="{% url 'Page:page_BaseViewCart' user.id %}" class="icon-shopping-cart nav-link page-scroll">
-                            <i class="fa">&#xf07a;<span class='badge badge-warning' id='lblCartCount'> 5 </span></i>  
+                            <i class="fa">&#xf07a;<span class='badge badge-warning' id='lblCartCount'> {{numPro}} </span></i>
                         </a>
                     </li>
                 {% endif %}
 
                 {% if user.customer.type == "MN" %}
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#">PURCHASE MANAGEMENT</a>
+                        <a class="nav-link page-scroll" href="{% url 'Page:page_Manager' %}">PURCHASE MANAGEMENT</a>
                     </li>
                 {% endif %}
                 <!-- Dropdown Menu -->          

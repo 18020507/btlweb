@@ -121,10 +121,29 @@ class Index_User(TemplateView, LoginRequiredMixin):
             sanpham = Product.objects.all()
             order = Order.objects.all()
             cartItem = CartItem.objects.all()
+            user_id = User.objects.get(id=request.user.id)
+            cart_id = Cart.objects.filter(id_user=user_id, is_new=True)
+            numPro = CartItem.objects.filter(id_cart=cart_id).count()
             content = {
                 'sanpham': sanpham,
                 'order': order,
                 'cartItem': cartItem,
+                'numPro': numPro,
+            }
+            return render(request, self.template_name, content)
+        else:
+            return HttpResponseRedirect(reverse('Page:page_login'))
+
+
+class ManagerView(TemplateView, LoginRequiredMixin):
+    login_url = '/'
+    template_name = '../Templates/Manager_View.html'
+
+    def get(self, request):
+        if request.user.is_authenticated():
+            order = Order.objects.all()
+            content = {
+                'order': order,
             }
             return render(request, self.template_name, content)
         else:
@@ -176,7 +195,10 @@ def Minus(request):
         id_cartItem = request.POST.get('id')
         CartItem_id = CartItem.objects.get(id=id_cartItem)
         numOld = CartItem_id.num
+        price_Each = CartItem_id.sum_product / CartItem_id.num
         CartItem_id.num = numOld - 1
+        numNew = numOld - 1
+        CartItem_id.sum_product = float(price_Each) * float(numNew)
         CartItem_id.save()
         html = render_to_string('minus_cart.html')
     return HttpResponse(html)
@@ -185,9 +207,13 @@ def Minus(request):
 def Plus(request):
     if request.is_ajax():
         id_cartItem = request.POST.get('id')
+
         CartItem_id = CartItem.objects.get(id=id_cartItem)
         numOld = CartItem_id.num
+        price_Each = CartItem_id.sum_product / CartItem_id.num
         CartItem_id.num = numOld + 1
+        numNew = numOld + 1
+        CartItem_id.sum_product = float(price_Each) * float(numNew)
         CartItem_id.save()
         html = render_to_string('plus_cart.html')
     return HttpResponse(html)
@@ -233,8 +259,12 @@ class ViewCart(TemplateView, LoginRequiredMixin):
             user_id = get_object_or_404(User, id=id_user)
             cart = Cart.objects.filter(id_user=user_id, is_new=True)
             cartItem = CartItem.objects.filter(id_cart=cart)
+            num = 0
+            for item in cartItem:
+                num = num + item.sum_product
             content = {
                 'cartItem': cartItem,
+                'total': num,
             }
             return render(request, self.template_name, content)
         else:
