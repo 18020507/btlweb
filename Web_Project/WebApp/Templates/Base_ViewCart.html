@@ -65,6 +65,7 @@
                                 <th scope="col">Sản phẩm</th>
                                 <th scope="col">Tình trạng</th>
                                 <th scope="col" class="text-center">Số lượng</th>
+                                <th scope="col" class="text-center">Đơn giá</th>
                                 <th scope="col" class="text-center">Thành tiền</th>
                                 <th> </th>
                             </tr>
@@ -98,6 +99,10 @@
                                 <td class="text-center">
                                     {{item.id_product.price_sale|floatformat:'-1'}} VNĐ
                                 </td>
+                                <!-- Product total price -->
+                                <td class="text-center">
+                                    {{item.sum_product|floatformat:'-1'}} VNĐ
+                                </td>
 
                                 <!-- Delete product -->
                                 <td class="text-right">
@@ -128,7 +133,7 @@
                                 <td></td>
                                 <td></td>
                                 <td><strong>Tổng tiền</strong></td>
-                                <td class="text-right"><strong>{{item.sum_product|floatformat:'-1'}} VNĐ</strong></td>
+                                <td class="text-right"><strong>{{total|floatformat:'-1'}} VNĐ</strong></td>
                             </tr>
                             {% endif %}
                         </tbody>
