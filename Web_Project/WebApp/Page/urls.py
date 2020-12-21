@@ -1,6 +1,7 @@
 from django.conf.urls import url
 
 from .views import (
+    Product_List,
     Index_Page,
     Present_Page,
     Blog_Page,
@@ -45,6 +46,7 @@ urlpatterns = [
     url(r'^blog/page_2/post_4$', Blog_Page_2_Post_4, name='page_blog_page_2_4'),
     url(r'^blog/page_2/post_5$', Blog_Page_2_Post_5, name='page_blog_page_2_5'),
     url(r'^blog/page_2/post_6$', Blog_Page_2_Post_6, name='page_blog_page_2_6'),
+    url(r'^productList/$', Product_List.as_view(), name='page_product_list'),
     url(r'^login_user/$', Login_Page, name='page_login'),
     url(r'^register_user/$', Register_Page, name='page_register_user'),
     url(r'^logout_user/$', LogOut, name='page_logout_user'),
