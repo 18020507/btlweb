@@ -30,6 +30,7 @@ from .views import (
     ViewHistory,
     Plus,
     Minus,
+    change_password,
 )
 
 urlpatterns = [
@@ -62,4 +63,5 @@ urlpatterns = [
     url(r'^delete_order/(?P<id_order>\w+)/$', DeleteOrder, name='page_deleteOrder'),
     url(r'^delete_product/(?P<id_user>\w+)/(?P<id_cartItem>\w+)/$', DeleteCartItem, name='page_DeleteCart'),
     url(r'^cancel_order/(?P<id_user>\w+)/(?P<id_order>\w+)/$', CancelOrder, name='page_cancelOrder'),
+    url(r'^password/$', change_password, name='change_password'),
 ]
