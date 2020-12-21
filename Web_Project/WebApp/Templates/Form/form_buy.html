@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Giỏ hàng</title>
 </head>
 <body>
-    <header class="w3-container w3-light-blue">
+    <!-- <header class="w3-container w3-light-blue">
         <span onclick="document.getElementById('id{{item.id}}').style.display='none'"
               class="w3-button w3-display-topright">&times;</span>
         <h4 align="center" style="color: #000099">THÔNG BÁO CHỐT ĐƠN HÀNG</h4>
@@ -64,6 +64,53 @@
             </span>
         </div>
     </div>
-    <br>
+    <br> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="checkout_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Danh sách sản phẩm</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="table-responsive">
+                <table class = "table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Chọn</th>
+                            <th scope="col">Sản phẩm</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cartItem %}
+                        <tr>
+                            <td><input type="checkbox" name="selected_product" value="{{item.id_product.id}}" checked></td>
+                            <td>{{item.id_product}}</td>
+                            <td>{{item.id_product.price_sale|floatformat:'-1'}} VNĐ</td>
+                            <td>
+                                <span class = "quantity_in_cart_item_{{item.id}}">
+                                    <span class="child_{{item.id}}" style="padding: 10px">  {{item.num}}  </span>
+                                </span>
+                            </td>
+                            <td>{{item.sum_product|floatformat:'-1'}} VNĐ</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+            <button type="button" class="btn btn-primary">Tiếp tục</button>
+        </div>
+        </div>
+    </div>
+    </div>
 </body>
 </html>

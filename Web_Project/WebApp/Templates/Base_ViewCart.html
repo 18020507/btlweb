@@ -8,9 +8,43 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <script>
+        var quantity = 0;
+        // Updata product quantity
+        $(document).ready(function() {
+            //alert("load Ok");
+        });
+        function minus(id){
+            $.post('/minus', {'id':id, 'csrfmiddlewaretoken':'{{csrf_token}}'}, 
+            function(data){
+            //    alert("Bạn vừa giảm số lượng thêm 1!");
+            });
+            classes_list = document.getElementsByClassName(`quantity_in_cart_item_${id}`); 
+            for (i = 0; i < classes_list.length; i++)
+            {
+                let num = +classes_list[i].getElementsByClassName(`child_${id}`)[0].innerHTML;
+                if(num - 1 === 1) {
+                $(`#minus_cart_item_quantity-${id}`).prop('disabled', true);
+                }
+                    classes_list[i].getElementsByClassName(`child_${id}`)[0].innerHTML = num-1;
+            }
+        }
 
-    <link href="../static/css/cart.css" rel="stylesheet">
-
+        function plus(id){
+            $.post('/plus', {'id':id, 'csrfmiddlewaretoken':'{{csrf_token}}'}, 
+            function(data){
+            //    alert("Bạn vừa tăng số lượng thêm 1!");
+            });
+            $(`#minus_cart_item_quantity-${id}`).prop('disabled', false);
+            classes_list = document.getElementsByClassName(`quantity_in_cart_item_${id}`); 
+            for (i = 0; i < classes_list.length; i++)
+            {
+                let num = +classes_list[i].getElementsByClassName(`child_${id}`)[0].innerHTML;
+                classes_list[i].getElementsByClassName(`child_${id}`)[0].innerHTML = num+1;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -52,12 +86,11 @@
                                 <td>Còn hàng</td>
 
                                 <!-- Product Quantity -->
-                                <td class="text-center">{% if item.num > 1 %}
-                                    <button onclick="minus({{item.id}})" class="fa fa-minus"></button>
-                                    {% elif item.num == 1 %}
-                                    <button onclick="minus({{item.id}})" class="fa fa-minus"></button>
-                                    {% endif %}&nbsp;
-                                    <input type="text" name="" value="{{item.num}}" size="3">&nbsp;
+                                <td class="text-center">
+                                    <button  id="minus_cart_item_quantity-{{item.id}}" {% if item.num == 1 %} disabled {%endif%} onclick="minus({{item.id}})" class="fa fa-minus"></button>
+                                    <span class = "quantity_in_cart_item_{{item.id}}">
+                                        <span class="child_{{item.id}}" style="padding: 10px">  {{item.num}}  </span>
+                                    </span>
                                     <button onclick="plus({{item.id}})" class="fa fa-plus"></button>
                                 </td>
 
@@ -66,31 +99,19 @@
                                     {{item.id_product.price_sale|floatformat:'-1'}} VNĐ
                                 </td>
 
-                                <!-- Remove product -->
+                                <!-- Delete product -->
                                 <td class="text-right">
-                                    <button class="btn btn-sm btn-danger">
-                                        <span class="fa fa-trash" 
-                                            onclick="document.getElementById('{{item.id}}').style.display='block'"></span>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-sm btn-danger fa fa-trash" data-toggle="modal" data-target="#delete_form">
                                     </button>
+                                    {% include 'Form/form_deleteProduct.html' %}
                                 </td>
+                                <!-- End Remove product -->
                             </tr>
                             {% endfor %}
-                            <script>
-                                $(document).ready(function() {
-                                    //alert("load Ok");
-                                });
-                                function minus(id){
-                                    $.post('/minus', {'id':id, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
-                                       alert("Bạn vừa giảm số lượng thêm 1!");
-                                    });
-                                }
-                                function plus(id){
-                                    $.post('/plus', {'id':id, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
-                                       alert("Bạn vừa tăng số lượng thêm 1!");
-                                    });
-                                }
-                            </script>
+                
                             {% if cartItem|length != 0%}
+                            <!-- Shipping -->
                             <tr>
                                 <td></td>
                                 <td></td>
@@ -99,6 +120,8 @@
                                 <td>Vận chuyển</td>
                                 <td class="text-right">Miễn phí</td>
                             </tr>
+                            
+                            <!-- Total Money -->
                             <tr>
                                 <td></td>
                                 <td></td>
@@ -112,28 +135,74 @@
                     </table>
                 </div>
             </div>
-
+            
+            {% if cartItem|length != 0%}
             <div class="col mb-2">
                 <div class="row">
+                    <!-- Continue Shopping -->
                     <td><div class="col-sm-12  col-md-3"></div></td>
                     <td><div class="col-sm-12  col-md-3"></div></td>
                     <td>
                         <div class="col-sm-6  col-md-3 text-center">
-                            <button class="btn btn-block btn-primary">Tiếp tục mua sắm</button>
+                            <button class="btn btn-block btn-primary">
+                                <a href="../../index" 
+                                    style="text-decoration:none; color: white">Tiếp tục mua sắm
+                                </a>
+                            </button>
                         </div>                       
                     </td>
+
+                    <!-- Checkout -->
                     <td>
                         <div class="col-sm-6 col-md-3 text-center">
-                            <button class="btn btn-block btn-block btn-success">
-                                <span class="" onclick="document.getElementById('id{{item.id}}').style.display='block'"
-                                      data-toggle="tooltip" title="Thanh toán">Thanh toán ngay
-                                </span>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-block btn-block btn-success" 
+                                data-toggle="modal" data-target="#checkout_form">
+                            Thanh toán
                             </button>
-                        </div>   
+                            {% include 'Form/form_buy.html' %}
+                        </div>
                     </td>
-                    
+                    <!-- End Checkout -->
                 </div>
             </div>
+            {% endif %}
+
+            {% if cartItem|length == 0 %}
+            <div class="container">
+                <div class="row justify-content-start">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-4">
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-4">
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="col-4">
+                    Bạn chưa có sản phẩm nào trong giỏ hàng.
+                    </div>
+                    <div class="col-4">
+                    </div>
+                </div>
+                <div class="row justify-content-around">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-4">
+                    </div>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-4">
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </body>
