@@ -341,28 +341,28 @@ def confirm(request, id_order):
     order_id = Order.objects.get(id=id_order)
     order_id.status = 'confirm'
     order_id.save()
-    return HttpResponseRedirect(reverse('Page:page_Index_User'))
+    return HttpResponseRedirect(reverse('Page:page_Manager'))
 
 
 def shipping(request, id_order):
     order_id = Order.objects.get(id=id_order)
     order_id.status = 'shipping'
     order_id.save()
-    return HttpResponseRedirect(reverse('Page:page_Index_User'))
+    return HttpResponseRedirect(reverse('Page:page_Manager'))
 
 
 def paid(request, id_order):
     order_id = Order.objects.get(id=id_order)
     order_id.status = 'paid'
     order_id.save()
-    return HttpResponseRedirect(reverse('Page:page_Index_User'))
+    return HttpResponseRedirect(reverse('Page:page_Manager'))
 
 
 def completed(request, id_order):
     order_id = Order.objects.get(id=id_order)
     order_id.status = 'completed'
     order_id.save()
-    return HttpResponseRedirect(reverse('Page:page_Index_User'))
+    return HttpResponseRedirect(reverse('Page:page_Manager'))
 
 
 def change_password(request):
