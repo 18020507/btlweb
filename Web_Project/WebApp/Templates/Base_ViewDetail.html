@@ -1,38 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Aria is a business focused HTML landing page template built with Bootstrap to help you create lead generation websites for companies and their services.">
+    <meta name="author" content="Inovatik">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+    <meta property="og:site_name" content="" /> <!-- website name -->
+    <meta property="og:site" content="" /> <!-- website link -->
+    <meta property="og:title" content="" /> <!-- title shown in the actual shared post -->
+    <meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+    <meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+    <meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+    <meta property="og:type" content="article" />
+
+    <!-- Website Title -->
+    <title>WOW PRODUCTS</title>
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext"
+        rel="stylesheet">
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/fontawesome-all.css" rel="stylesheet">
+    <link href="/static/css/swiper.css" rel="stylesheet">
+    <link href="/static/css/magnific-popup.css" rel="stylesheet">
+    <link href="/static/css/mdb.min.css" rel="stylesheet">
+    <link href="/static/css/styles_base_UI_home.css" rel="stylesheet">
+
+    <style>
+        @media(max-width: 767px) {
+            .quantity-box {
+                justify-content: center;
+            }
+        }
+
+        .posts-nav a {
+            color: inherit;
+            width: calc(50% - 10px);
+            padding: 10px 20px;
+            border: 1px solid #eee;
+            margin-bottom: 15px;
+            text-decoration:none;
+        }
+
+        .icon {
+            min-width: 35px;
+            max-width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            line-height: 32px;
+            border: 1px solid #ddd;
+            color: #aaa;
+            font-size: 1.5em;
+            text-align: center;
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+        }
+
+        .icon:hover {
+            background-color: #14bf98;
+            color:white;
+        }
+
+        .icon.prev {
+            margin-right: 20px;
+        }
+
+        .icon.next {
+            margin-left: 20px;
+        }
+
+        #element-style strong {
+            color: white;
+            font-size: larger;
+        }
+
+        .navbar .dropdown-menu a {
+            color:white;
+        }
+
+        .products-page {
+            color: #14bf98!important;
+        }
+
+
+    </style>
+
+    <!-- Favicon  -->
+    <link rel="icon" href="../Media/other_image/favicon.png">
 </head>
+
 <body>
-    {% include 'NavigationBar/nav_User_or_Manager.html' %}
-    <br>
-    <br>
-    <br>
-    <div class="container">
-        {% for obj in product_id %}
-        <div class="row">
-            <div class="col-md-4" style="border: 1px solid grey" align="center">
-                <img src="{{ obj.img.url }}">
-            </div>
-            <div class="col-md-6">
-                <p><b>{{ obj.title }}</b></p>
-                <p>{{obj.description}}</p>
-                <p><b>Giá sản phẩm:</b> {{ obj.price|floatformat:'-1' }} VNĐ</p>
-                <hr>
-                <button type="button" class="btn btn-success btn-block">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                    </svg>
-                    <a title="Add Cart" href="{% url 'Page:page_login' %}" style="text-decoration: none">Add Cart</a>
-                </button>
-            </div>
+
+    <!-- Preloader -->
+    <div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
         </div>
+    </div>
+    <!-- end of preloader -->
+
+
+    <!-- Navbar -->
+    {% if user.customer.type == 'US' or user.customer.type == 'MN' %}
+        {% include 'NavigationBar/nav_User_or_Manager.html' %}
+    {% else %}
+        {% include 'NavigationBar/nav.html' %}
+    {% endif %}
+    <!-- end of navbar -->
+
+    <div class="container mt-5 pt-3">
+        <!-- Section: product details -->
+        {% for obj in product_id %}
+        <section id="productDetails" class="pb-5">
+
+            <!-- News card -->
+            <div class="card mt-5 hoverable">
+
+                <div class="row mt-5">
+
+                    <div class="col-lg-7">
+                        {% if obj.img %}
+                            <img class="img-fluid w-100"
+                                src="{{ obj.img.url }}" alt="Sample">
+                        {% else %}
+                            <img class="img-fluid w-100"
+                                src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
+                        {% endif %}
+                    </div> <!-- end of col -->
+
+                    <div class="col-lg-4 mr-3 text-center text-md-left">
+
+                        <h2
+                            class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
+
+                            <strong>{{ obj.title }}</strong>
+
+                        </h2>
+                        <p class="text-center text-md-left mb-1 ml-xl-0 ml-4 text-muted text-uppercase small">{{ obj.type }}</p>
+
+                        <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">Chính hãng</span>
+
+                        </strong>
+
+                        </h2>
+
+                        <span class="badge badge-success product mb-4 ml-2">Đảm bảo</span>
+
+                        <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
+
+                            <span class="red-text font-weight-bold">
+
+                                <strong>{{ obj.price_sale|floatformat:'-1' }} VND</strong>
+
+                            </span>
+
+                        </h3>
+
+                        <p class="ml-xl-0 ml-4">
+                            {% if obj.description|length > 0 %}
+                                {{ obj.description }}
+                            {% else %}
+                                Còn gì tuyệt vời hơn khi mặc bộ đồ này ra đường hóng gió cùng bạn bè.
+                            {% endif %}
+                        </p>
+
+                        <p class="ml-xl-0 ml-4">
+                            <strong>Khu vực: </strong>Hà Nội, Việt Nam
+                        </p>
+
+                        <!-- Add to Cart -->
+                        <section class="size-and-quantity">
+
+                            <div class="mt-5 text-center text-md-left mb-5 ml-xl-0 ml-4">
+
+                                <p class="grey-text">Chọn kích cỡ:</p>
+
+                                <div class="row text-center text-md-left">
+
+                                    <div class="col-md-3 col-12 ">
+
+                                        <!-- Radio group -->
+                                        <div class="form-group">
+
+                                            <input class="form-check-input" name="size" type="radio" id="S_size"
+                                                checked="checked">
+
+                                            <label for="S_size" class="form-check-label dark-grey-text">S</label>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <!-- Radio group -->
+                                        <div class="form-group">
+
+                                            <input class="form-check-input" name="size" type="radio" id="M_size">
+
+                                            <label for="M_size" class="form-check-label dark-grey-text">M</label>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <!-- Radio group -->
+                                        <div class="form-group">
+
+                                            <input class="form-check-input" name="size" type="radio" id="L_size">
+
+                                            <label for="L_size" class="form-check-label dark-grey-text">L</label>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+
+                                        <!-- Radio group -->
+                                        <div class="form-group">
+
+                                            <input class="form-check-input" name="size" type="radio" id="XL_size">
+
+                                            <label for="XL_size" class="form-check-label dark-grey-text">XL</label>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <p class="grey-text">Chọn số lượng:</p>
+
+                                <div class="row text-center text-md-left quantity-box pl-3">
+                                    <div class="md-form md-outline my-0">
+                                        <input class="quantities" min="0" name="quantities" value="1" type="number" id="cart_quantity_{{obj.id}}">
+                                    </div>
+                                </div>
+
+                                <div class="row mt-5 mb-4">
+
+                                    
+                                    <div class="col-md-12 text-center">
+
+                                        {% if user.customer.type == 'US' %}
+
+                                        <button class="btn btn-primary btn-rounded" onclick="addCart({{obj.id}}, {{user.id}})">
+
+                                            <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> Add to
+                                            cart
+                                        </button>
+
+                                        {% else %}
+
+                                        <a class="btn btn-primary btn-rounded" role="button" style="text-decoration:none;" 
+                                                href="{% url 'Page:page_login' %}">
+
+                                            <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i> Add to
+                                            cart
+
+                                        </a>
+
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+
+                                
+
+                            </div>
+
+                        </section>
+                        <!-- Add to Cart -->
+
+                    </div>
+                    
+
+                </div>
+
+                <!--Link to other page-->
+                
+                    <div class="row mt-5 mb-4 ml-1 col-lg-12 posts-nav d-flex justify-content-between align-items-stretch flex-column flex-md-row">     
+                        <a href="{% url 'Page:page_product_list' %}" class="prev-post text-left d-flex align-items-center">
+                          <div class="icon prev"><i class="fa fa-angle-left"></i></div>
+                          <div class="text"><strong class="text-primary">Go to </strong>
+                            <h6>PRODUCT PAGE</h6>
+                          </div>
+                        </a>
+
+                        {% if user.customer.type == 'US' %}
+                        <a href="{% url 'Page:page_BaseViewCart' user.id %}" class="next-post text-right d-flex align-items-center justify-content-end">
+                          <div class="text"><strong class="text-primary">Go to </strong>
+                            <h6>CART</h6>
+                          </div>
+                          <div class="icon next"><i class="fa fa-angle-right"></i></div>
+
+                        </a>
+                        {% endif %}
+                    </div>
+                
+
+            </div>
+            <!-- News card -->
+
+        </section>
         {% endfor %}
     </div>
+
+    <!-- Footer -->
+    <div class="footer" id="contact">
+        <div class="row justify-content-center">
+            <div class="col-md-5 text-center">
+                <h1>WOW</h1>
+                <p>Phục vụ bạn tốt nhất</p>
+                <strong>Thông tin liên lạc:</strong>
+                <p>(+84) 888-888888<br>someMail@gmail.com</p>
+                <a href="" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                <a href="" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                <a href="" target="_blank"><i class="fab fa-instagram"></i></a>
+
+            </div>
+        </div>
+    </div> <!-- end of footer -->
+    <!-- end of footer -->
+
+
+    <!-- Scripts -->
+    <script src="/static/js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="/static/js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="/static/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="/static/js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="/static/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="/static/js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="/static/js/morphext.min.js"></script> <!-- Morphtext rotating text in the header -->
+    <script src="/static/js/isotope.pkgd.min.js"></script> <!-- Isotope for filter -->
+    <script src="/static/js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script>
+        (function ($) {
+            "use strict";
+
+            /* Preloader */
+            $(window).on('load', function () {
+                var preloaderFadeOutTime = 500;
+                function hidePreloader() {
+                    var preloader = $('.spinner-wrapper');
+                    setTimeout(function () {
+                        preloader.fadeOut(preloaderFadeOutTime);
+                    }, 500);
+                }
+                hidePreloader();
+            });
+
+        })(jQuery);
+    </script>
+
+    <script>
+        $(document).ready(function() {
+                //alert("load Ok");
+            });
+        function addCart(id, user){
+            num = $(`#cart_quantity_${id}`).val();
+            $.post('/add_cart', {'id':id, 'num':num, 'user':user, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
+            alert("Bạn vừa mua sản phẩm!");
+            });
+        }
+    </script>
 </body>
+
 </html>
