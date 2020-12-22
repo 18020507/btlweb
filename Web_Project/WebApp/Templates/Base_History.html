@@ -10,14 +10,15 @@
     <link href="/static/css/swiper.css" rel="stylesheet">
 	<link href="/static/css/magnific-popup.css" rel="stylesheet">
 	<link href="/static/css/styles_base_UI_home.css" rel="stylesheet">
-    <style>
+    <!-- <style>
         #history-table {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
+            margin-left:10%;
         }
         #history-table td, #history-table th {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 10px;
         }
         #history-table tr:nth-child(even){background-color: #f2f2f2;}
 
@@ -37,11 +38,16 @@
         .navbar-custom .nav-item .nav-link.history {
             color:#14bf98!important;
         }
-    </style>
+    </style> -->
 </head>
 <body>
-    {% include 'NavigationBar/nav_User_or_Manager.html' %}
-    <div class="row product-user-buy">
+    <section class="jumbotron jumbotron-fluid" style="background-color: transparent;">
+        <div class="container">
+            {% include 'NavigationBar/nav_User_or_Manager.html' %}
+         </div>
+    </section>
+    
+   <!-- <div class="row product-user-buy">
     <div>
         <div class="panel-heading" align="center"><b>THÔNG TIN ĐƠN HÀNG ĐÃ MUA CỦA KHÁCH HÀNG</b></div>
     	<table class="w3-table-all" id="history-table">
@@ -73,6 +79,62 @@
             </tbody>
         </table>
 	</div>
-    </div>
+    </div>    -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class = "text-center">
+                                <th scope="col" class="text-left">Sản phẩm đã mua</th>
+                                <th scope="col"></th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Ngày mua</th>
+                                <th scope="col">Đơn giá</th>
+                                <th scope="col">Thành tiền</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for od in order %}
+                                {% if od.status == 'completed' %}
+                                    {% for item in cartItem %}
+                                        {% if item.id_cart == od.id_cart %}
+                                            <tr class = "text-center">
+                                                <td class = "align-middle">
+                                                    <img src="https://dummyimage.com/50x50/55595c/fff" />
+                                                </td>
+                                                <td class = "text-left align-middle">
+                                                    <a href="{% url 'Page:page_ViewDetail' item.id_product.id %}" 
+                                                    role="button" class="font-weight-bold text-capitalize"
+                                                    style="text-decoration: none;" 
+                                                    >{{item.id_product}}</a>
+                                                </td>
+                                                <td class = "align-middle">
+                                                    {{item.num}}
+                                                </td>
+                                                <td class = "align-middle">
+                                                    {{od.id_cart.CreateAt}}
+                                                </td>
+                                                <td class = align-middle>
+                                                    {{item.id_product.price_sale|floatformat:'-1'}} VNĐ
+                                                </td>
+                                                <td class = "text-right align-middle">
+                                                    {{item.sum_product|floatformat:'-1'}} VNĐ
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>   
 </body>
 </html>

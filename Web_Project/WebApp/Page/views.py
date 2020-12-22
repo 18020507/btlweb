@@ -286,6 +286,19 @@ class ViewProductUserBuy(TemplateView, LoginRequiredMixin):
     login_url = '/'
     template_name = '../Templates/Base_Product_User.html'
 
+    # def get(self, request, id_user):
+    #     if request.user.is_authenticated():
+    #         user_id = get_object_or_404(User, id=id_user)
+    #         order = Order.objects.filter(id_user=user_id)
+    #         cartItem = CartItem.objects.all()
+    #         content = {
+    #             'order': order,
+    #             'cartItem': cartItem,
+    #         }
+    #         return render(request, self.template_name, content)
+    #     else:
+    #         return HttpResponseRedirect(reverse('Page:page_login'))
+
     def get(self, request, id_user):
         if request.user.is_authenticated():
             user_id = get_object_or_404(User, id=id_user)
@@ -307,9 +320,11 @@ class ViewHistory(TemplateView, LoginRequiredMixin):
     def get(self, request, id_user):
         if request.user.is_authenticated():
             user_id = get_object_or_404(User, id=id_user)
-            order = Order.objects.filter(id_user=user_id)
+            order = Order.objects.filter(id_user=user_id, status="completed")
+            cartItem = CartItem.objects.all()
             content = {
                 'order': order,
+                'cartItem': cartItem,
             }
             return render(request, self.template_name, content)
         else:

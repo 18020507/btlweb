@@ -48,7 +48,7 @@
 </head>
 
 <body>
-    <section class="jumbotron jumbotron-fluid">
+    <section class="jumbotron jumbotron-fluid" style="background-color: transparent;">
         <div class="container">
             {% include 'NavigationBar/nav_User_or_Manager.html' %}
          </div>
@@ -61,8 +61,8 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col"> </th>
                                 <th scope="col">Sản phẩm</th>
+                                <th scope="col"></th>
                                 <th scope="col">Tình trạng</th>
                                 <th scope="col" class="text-center">Số lượng</th>
                                 <th scope="col" class="text-center">Đơn giá</th>
@@ -77,17 +77,18 @@
                                 <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
 
                                 <!-- Product name -->
-                                <td>
+                                <td class = "align-middle">
                                     <a href="{% url 'Page:page_ViewDetail' item.id_product.id %}" 
-                                    role="button" class="font-weight-bold" 
-                                    >{{item.id_product}}</a>
+                                        role="button" class="font-weight-bold text-capitalize"
+                                        style="text-decoration: none;" 
+                                        >{{item.id_product}}</a>
                                 </td>
 
                                 <!-- Product Status -->
-                                <td>Còn hàng</td>
+                                <td class="align-middle">Còn hàng</td>
 
                                 <!-- Product Quantity -->
-                                <td class="text-center">
+                                <td class="text-center align-middle">
                                     <button  id="minus_cart_item_quantity-{{item.id}}" {% if item.num == 1 %} disabled {%endif%} onclick="minus({{item.id}})" class="fa fa-minus"></button>
                                     <span class = "quantity_in_cart_item_{{item.id}}">
                                         <span class="child_{{item.id}}" style="padding: 10px">  {{item.num}}  </span>
@@ -96,16 +97,16 @@
                                 </td>
 
                                 <!-- Product price -->
-                                <td class="text-center">
+                                <td class="text-center align-middle">
                                     {{item.id_product.price_sale|floatformat:'-1'}} VNĐ
                                 </td>
                                 <!-- Product total price -->
-                                <td class="text-center">
+                                <td class="text-center align-middle">
                                     {{item.sum_product|floatformat:'-1'}} VNĐ
                                 </td>
 
                                 <!-- Delete product -->
-                                <td class="text-right">
+                                <td class="text-right align-middle">
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-sm btn-danger fa fa-trash" data-toggle="modal" data-target="#delete_form">
                                     </button>
@@ -122,8 +123,9 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Vận chuyển</td>
-                                <td class="text-right">Miễn phí</td>
+                                <td></td>
+                                <td class="align-middle">Vận chuyển</td>
+                                <td class="text-right align-middle">Miễn phí</td>
                             </tr>
                             
                             <!-- Total Money -->
@@ -132,8 +134,9 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
                                 <td><strong>Tổng tiền</strong></td>
-                                <td class="text-right"><strong>{{total|floatformat:'-1'}} VNĐ</strong></td>
+                                <td class="text-right align-middle"><strong>{{total|floatformat:'-1'}} VNĐ</strong></td>
                             </tr>
                             {% endif %}
                         </tbody>
@@ -147,7 +150,7 @@
                     <!-- Continue Shopping -->
                     <td><div class="col-sm-12  col-md-3"></div></td>
                     <td><div class="col-sm-12  col-md-3"></div></td>
-                    <td>
+                    <td class="align-middle">
                         <div class="col-sm-6  col-md-3 text-center">
                             <button class="btn btn-block btn-primary">
                                 <a href="../../index" 
