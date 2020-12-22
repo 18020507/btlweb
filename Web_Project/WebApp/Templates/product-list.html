@@ -306,7 +306,7 @@
                         <div class="row">
                           <div class="col-lg-7 col-xl-7">
                   
-                            <h5>{{ obj.title }}</h5>
+                            <h5 style="text-transform: capitalize">{{ obj.title }}</h5>
                             <p class="mb-2 text-muted text-uppercase small">{{ obj.type }}</p>
                             <hr>
                             <h6 class="mb-3"><span>{{ obj.price_sale|floatformat:'-1' }} VND</span></h6>
@@ -362,7 +362,7 @@
                 {% endif %}
             </div> <!-- end of col -->
             <div class="col-lg-4">
-                <h5>{{ obj.title }}</h5>
+                <h5 style="text-transform: capitalize;">{{ obj.title }}</h5>
                 <p class="mb-2 text-muted text-uppercase small">{{ obj.type }}</p>
                 <p><span class="mr-1"><strong>{{ obj.price_sale|floatformat:'-1' }} VND</strong></span></p>
                 <p class="pt-1">Một bộ trang phục không thể tuyệt vời hơn khi mặc cùng bạn bè đi dạo phố đêm Noel nếu
@@ -467,9 +467,14 @@
             });
             function addCart(id, user){
                 num = $(`#cart_quantity_${id}`).val();
-                $.post('/add_cart', {'id':id, 'num':num, 'user':user, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
-                   alert("Bạn vừa mua sản phẩm!");
-                });
+                if(num > 0) {
+                    $.post('/add_cart', {'id':id, 'num':num, 'user':user, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
+                    alert("Bạn vừa mua sản phẩm!");
+                    });
+                }
+                else {
+                    alert("Số lượng phải lớn hơn 0!")
+                }
             }
     </script>
 </body>

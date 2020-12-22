@@ -143,7 +143,7 @@
                         <h2
                             class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
 
-                            <strong>{{ obj.title }}</strong>
+                            <strong style="text-transform: capitalize;">{{ obj.title }}</strong>
 
                         </h2>
                         <p class="text-center text-md-left mb-1 ml-xl-0 ml-4 text-muted text-uppercase small">{{ obj.type }}</p>
@@ -246,7 +246,7 @@
 
                                 <div class="row text-center text-md-left quantity-box pl-3">
                                     <div class="md-form md-outline my-0">
-                                        <input class="quantities" min="0" name="quantities" value="1" type="number" id="cart_quantity_{{obj.id}}">
+                                        <input class="quantities" min="1" name="quantities" value="1" type="number" id="cart_quantity_{{obj.id}}">
                                     </div>
                                 </div>
 
@@ -368,15 +368,20 @@
     </script>
 
     <script>
-        $(document).ready(function() {
+       $(document).ready(function() {
                 //alert("load Ok");
             });
-        function addCart(id, user){
-            num = $(`#cart_quantity_${id}`).val();
-            $.post('/add_cart', {'id':id, 'num':num, 'user':user, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
-            alert("Bạn vừa mua sản phẩm!");
-            });
-        }
+            function addCart(id, user){
+                num = $(`#cart_quantity_${id}`).val();
+                if(num > 0) {
+                    $.post('/add_cart', {'id':id, 'num':num, 'user':user, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
+                    alert("Bạn vừa mua sản phẩm!");
+                    });
+                }
+                else {
+                    alert("Số lượng phải lớn hơn 0!")
+                }
+            }
     </script>
 </body>
 
