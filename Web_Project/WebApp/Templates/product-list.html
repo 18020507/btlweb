@@ -428,6 +428,13 @@
                 </div>
                 <button class="btn-solid-reg" onclick="addCart({{obj.id}}, {{user.id}})">ADD CART</button> <a class="btn-outline-reg mfp-close as-button"
                     href="#product_list">BACK</a>
+                <div class="success" style="padding-left:1rem; display:none; padding-top: 1rem;">
+                    <p class="text-md-left" style="color: #14bf98;"><i class="fas fa-check"></i> Thêm vào giỏ thành công <i class="fas fa-check"></i></p>
+                </div>
+                    
+                <div class="failure" style="padding-left:1rem; display:none; padding-top: 1rem;">
+                    <p class="text-md-left" style="color: red;"><i class="fas fa-times"></i> Số lượng cần lớn hơn 0 <i class="fas fa-times"></i></p>
+                </div>
             </div> <!-- end of col -->
         </div> <!-- end of row -->
     </div> <!-- end of lightbox-basic -->
@@ -470,15 +477,20 @@
             });
             function addCart(id, user){
                 num = $(`#cart_quantity_${id}`).val();
-                var str ="#project-" + id + " .col-lg-4";
+                
                 if(num > 0) {
                     $.post('/add_cart', {'id':id, 'num':num, 'user':user, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
-                        alert("Successful");
+                        link ="#project-" + id + " .success";
+                        success_state = document.querySelector(link);
+                        success_state.style.display = "block";
+                        setTimeout(function(){success_state.style.display = "none"}, 2000);
                     });
                 }
                 else {
-                    alert("Failure");
-                    
+                    link ="#project-" + id + " .failure";
+                    failure_state = document.querySelector(link);
+                    failure_state.style.display = "block";
+                    setTimeout(function(){failure_state.style.display = "none"}, 2000);
                 }
             }
     </script>
