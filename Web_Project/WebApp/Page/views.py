@@ -327,7 +327,7 @@ def LogOut(request):
 
 class Index_User(TemplateView, LoginRequiredMixin):
     login_url = '/'
-    template_name = '../Templates/Base_UI_WithLogIN.html'
+    template_name = '../Templates/Base_UI_WithLogIn.html'
 
     def get(self, request):
         if request.user.is_authenticated():
