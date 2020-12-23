@@ -48,6 +48,7 @@
         </div>
 
         {% for od in order %}
+        {% if od.status != 'completed' %}
         <div class="row">
             <div class="col-lg-12 mx-auto">
                 <!-- List group-->
@@ -85,9 +86,10 @@
                             <div class="col-3">
                                 <div class="text-center" 
                                 style="color: black; text-transform: capitalize; margin-top: 9%;"> 
-                                    {{od.address}}
+                                    {{ od.address }}
                                 </div>
                             </div>
+
                             <!-- Order Status -->
                             <div class="col">
                                 <div class="text-center" id="order_{{od.id}}_status"
@@ -96,54 +98,44 @@
                                 </div>
                             </div>
 
-                            <!-- Need fixing -->
                             <!-- Confirm or Delete Order -->
+
                             <div class="col text-right">
                                 <!-- <button ><i class="fas fa-check"></i></button> -->
                                 <div style="margin-top: 20%;">
                                 {% if od.status == 'pending' %}
-                                    <button ><i class="fas fa-check">
-                                        <a href="{% url 'Page:page_confirm' od.id %}"></a>
-                                    </i></button>
+                                    <button>
+                                        <a href="{% url 'Page:page_confirm' od.id %}" class="fas fa-check" style="text-decoration: none">Confirm</a>
+                                    </button>
 
-                                    <button><i class="fas fa-trash">
-                                        <a href="{% url 'Page:page_deleteOrder' od.id %}" data-toggle="tooltip"></a>
-                                    </i></button>
+                                    <button>
+                                        <a href="{% url 'Page:page_deleteOrder' od.id %}" class="fas fa-trash" style="text-decoration: none"></a>
+                                    </button>
 
                                 {% elif od.status == 'confirm' %}
-                                    <button ><i class="fas fa-check">
-                                        <a href="{% url 'Page:page_isShipping' od.id %}"></a>
-                                    </i></button>
-
-                                    <button><i class="fas fa-trash">
-                                        <a href="{% url 'Page:page_deleteOrder' od.id %}" data-toggle="tooltip"></a>
-                                    </i></button>
+                                    <button>
+                                        <a href="{% url 'Page:page_isShipping' od.id %}" class="fas fa-check" style="text-decoration: none">Shipping</a>
+                                    </button>
 
                                 {% elif od.status == 'shipping' %}
-                                    <button ><i class="fas fa-check">
-                                        <a href="{% url 'Page:page_isPaid' od.id %}"></a>
-                                    </i></button>
-
-                                    <button><i class="fas fa-trash">
-                                        <a href="{% url 'Page:page_deleteOrder' od.id %}" data-toggle="tooltip"></a>
-                                    </i></button>
+                                    <button>
+                                        <a href="{% url 'Page:page_isPaid' od.id %}" class="fas fa-check" style="text-decoration: none">Paid</a>
+                                    </button>
 
                                 {% elif od.status == 'paid' %}
-                                    <button ><i class="fas fa-check">
-                                        <a href="{% url 'Page:page_isCompleted' od.id %}"></a>
-                                    </i></button>
-
-                                    <button><i class="fas fa-trash">
-                                        <a href="{% url 'Page:page_deleteOrder' od.id %}" data-toggle="tooltip"></a>
-                                    </i></button>
+                                    <button>
+                                        <a href="{% url 'Page:page_isCompleted' od.id %}" class="fas fa-check" style="text-decoration: none">Completed</a>
+                                    </button>
                                 {% endif %}
                                 </div>
                             </div>
+
                         </div>
                     </li> <!-- End -->
                 </ul> <!-- End -->
             </div>
         </div>
+        {% endif %}
         {% endfor %}
 
         {% for od in order %}

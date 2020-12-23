@@ -9,42 +9,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
-    <script>
-        var quantity = 0;
-        // Updata product quantity
-        $(document).ready(function() {
-            //alert("load Ok");
-        });
-        function minus(id){
-            $.post('/minus', {'id':id, 'csrfmiddlewaretoken':'{{csrf_token}}'}, 
-            function(data){
-            //    alert("Bạn vừa giảm số lượng thêm 1!");
-            });
-            classes_list = document.getElementsByClassName(`quantity_in_cart_item_${id}`); 
-            for (i = 0; i < classes_list.length; i++)
-            {
-                let num = +classes_list[i].getElementsByClassName(`child_${id}`)[0].innerHTML;
-                if(num - 1 === 1) {
-                $(`#minus_cart_item_quantity-${id}`).prop('disabled', true);
-                }
-                    classes_list[i].getElementsByClassName(`child_${id}`)[0].innerHTML = num-1;
-            }
-        }
 
-        function plus(id){
-            $.post('/plus', {'id':id, 'csrfmiddlewaretoken':'{{csrf_token}}'}, 
-            function(data){
-            //    alert("Bạn vừa tăng số lượng thêm 1!");
-            });
-            $(`#minus_cart_item_quantity-${id}`).prop('disabled', false);
-            classes_list = document.getElementsByClassName(`quantity_in_cart_item_${id}`); 
-            for (i = 0; i < classes_list.length; i++)
-            {
-                let num = +classes_list[i].getElementsByClassName(`child_${id}`)[0].innerHTML;
-                classes_list[i].getElementsByClassName(`child_${id}`)[0].innerHTML = num+1;
-            }
-        }
-    </script>
 </head>
 
 <body>
@@ -92,11 +57,9 @@
 
                                 <!-- Product Quantity -->
                                 <td class="text-center align-middle">
-                                    <button  id="minus_cart_item_quantity-{{item.id}}" {% if item.num == 1 %} disabled {%endif%} onclick="minus({{item.id}})" class="fa fa-minus"></button>
-                                    <span class = "quantity_in_cart_item_{{item.id}}">
-                                        <span class="child_{{item.id}}" style="padding: 10px">  {{item.num}}  </span>
+                                    <span>
+                                        <span style="padding: 10px">  {{item.num}}</span>
                                     </span>
-                                    <button onclick="plus({{item.id}})" class="fa fa-plus"></button>
                                 </td>
 
                                 <!-- Product price -->
