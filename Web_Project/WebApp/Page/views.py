@@ -337,7 +337,7 @@ class Index_User(TemplateView, LoginRequiredMixin):
             sanpham = Product.objects.all()
             order = Order.objects.all()
             cartItem = CartItem.objects.all()
-            numOfCus = Customer.objects.all()
+            numOfCus = Customer.objects.all().count()
             user_id = User.objects.get(id=request.user.id)
             cart_id = Cart.objects.filter(id_user=user_id, is_new=True)
             numPro = CartItem.objects.filter(id_cart=cart_id).count()
