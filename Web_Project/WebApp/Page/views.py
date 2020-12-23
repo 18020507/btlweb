@@ -23,8 +23,11 @@ class Index_Page(TemplateView, LoginRequiredMixin):
 
     def get(self, request):
         sanpham = Product.objects.all()
+        cus = Customer.objects.all()
+        numOfCus = cus.count()
         content = {
-            'sanpham': sanpham
+            'sanpham': sanpham,
+            'num': numOfCus
         }
         return render(request, self.template_name, content)
 
@@ -334,6 +337,7 @@ class Index_User(TemplateView, LoginRequiredMixin):
             sanpham = Product.objects.all()
             order = Order.objects.all()
             cartItem = CartItem.objects.all()
+            numOfCus = Customer.objects.all()
             user_id = User.objects.get(id=request.user.id)
             cart_id = Cart.objects.filter(id_user=user_id, is_new=True)
             numPro = CartItem.objects.filter(id_cart=cart_id).count()
@@ -342,6 +346,7 @@ class Index_User(TemplateView, LoginRequiredMixin):
                 'order': order,
                 'cartItem': cartItem,
                 'numPro': numPro,
+                'num': numOfCus,
             }
             return render(request, self.template_name, content)
         else:
