@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import login as auth_login
-from django.http import JsonResponse, HttpResponse, HttpResponseRedirect, HttpRequest
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.urls import reverse
@@ -73,100 +73,11 @@ def Blog_Page_2_Post_6(request):
     template_name = '../Templates/blog_post_without_login/post-6.html'
     return render(request, template_name)
 
-
 class Product_List(TemplateView, LoginRequiredMixin):
     login_url = '/'
     template_name = '../Templates/product-list.html'
 
     def get(self, request):
-        gender = request.GET.get('gender')
-        clothing = request.GET.get('clothing')
-        price = request.GET.get('price')
-
-        if gender != '' and clothing != '' and price != '' and gender is not None and clothing is not None and price is not None:
-            if(gender == 'male'):
-                sanpham = Product.objects.filter(for_male=True, type=clothing, price_sale__lte=price)
-                content = {
-                    'sanpham': sanpham
-                }
-                return render(request, self.template_name, content)
-            else:
-                sanpham = Product.objects.filter(for_female=True, type=clothing, price_sale__lte=price)
-                content = {
-                    'sanpham': sanpham
-                }
-                return render(request, self.template_name, content)
-
-        if gender == '' and clothing != '' and price != '' and gender is not None and clothing is not None and price is not None:
-            sanpham = Product.objects.filter(type=clothing, price_sale__lte=price)
-            content = {
-                'sanpham': sanpham
-            }
-            return render(request, self.template_name, content)
-
-        if gender != '' and clothing == '' and price != '' and gender is not None and clothing is not None and price is not None:
-            if (gender == 'male'):
-                sanpham = Product.objects.filter(for_male=True, price_sale__lte=price)
-                content = {
-                    'sanpham': sanpham
-                }
-                return render(request, self.template_name, content)
-            else:
-                sanpham = Product.objects.filter(for_female=True, price_sale__lte=price)
-                content = {
-                    'sanpham': sanpham
-                }
-                return render(request, self.template_name, content)
-
-        if gender != '' and clothing != '' and price == '' and gender is not None and clothing is not None and price is not None:
-            if (gender == 'male'):
-                sanpham = Product.objects.filter(for_male=True, type=clothing)
-                content = {
-                    'sanpham': sanpham
-                }
-                return render(request, self.template_name, content)
-            else:
-                sanpham = Product.objects.filter(for_female=True, type=clothing)
-                content = {
-                    'sanpham': sanpham
-                }
-                return render(request, self.template_name, content)
-
-        if gender == '' and clothing == '' and price != '' and gender is not None and clothing is not None and price is not None:
-            sanpham = Product.objects.filter(price_sale__lte=price)
-            content = {
-                'sanpham': sanpham
-            }
-            return render(request, self.template_name, content)
-
-        if gender != '' and clothing == '' and price == '' and gender is not None and clothing is not None and price is not None:
-            if (gender == 'male'):
-                sanpham = Product.objects.filter(for_male=True)
-                content = {
-                    'sanpham': sanpham
-                }
-                return render(request, self.template_name, content)
-            else:
-                sanpham = Product.objects.filter(for_female=True)
-                content = {
-                    'sanpham': sanpham
-                }
-                return render(request, self.template_name, content)
-
-        if gender == '' and clothing != '' and price == '' and gender is not None and clothing is not None and price is not None:
-            sanpham = Product.objects.filter(type=clothing)
-            content = {
-                'sanpham': sanpham
-            }
-            return render(request, self.template_name, content)
-
-        if gender == '' and clothing == '' and price == '' and gender is not None and clothing is not None and price is not None:
-            sanpham = Product.objects.all()
-            content = {
-                'sanpham': sanpham
-            }
-            return render(request, self.template_name, content)
-
         sanpham = Product.objects.all()
         content = {
             'sanpham': sanpham
@@ -242,8 +153,10 @@ class ManagerView(TemplateView, LoginRequiredMixin):
     def get(self, request):
         if request.user.is_authenticated():
             order = Order.objects.all()
+            cartItem = CartItem.objects.all()
             content = {
                 'order': order,
+                'cartItem': cartItem,
             }
             return render(request, self.template_name, content)
         else:
@@ -346,7 +259,7 @@ def Buy(request, id_user):
             item.id_cart = Cart_id
             item.save()
 
-    return HttpResponseRedirect(reverse('Page:page_Index_User'))
+    return HttpResponseRedirect(reverse('Page:page_BaseViewCart', kwargs={'id_user': id_user}))
 
 
 class ViewCart(TemplateView, LoginRequiredMixin):

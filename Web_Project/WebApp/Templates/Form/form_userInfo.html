@@ -1,36 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <header class="w3-container w3-light-blue">
-        <span onclick="document.getElementById('{{item.id}}').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-        <h4 align="center" style="color: #000099"><strong>Thông tin khách hàng</strong></h4>
-    </header>
-
-    <div class="w3-container">
-    <br>
-    <div align="">
-        <hr>
-            <form action="" method="post" action="" enctype="multipart/form-data">
-                <div>
-                    <div>
-                        <p><b>Người dùng: {{item.id_user.customer.name}}</b></p>
-                        <p><b>Địa chỉ mail: {{item.id_user.email}}</b></p>
-                        <p><b>Số điện thoại: 0{{item.id_user.customer.phone}}</b></p>
-                    </div>
+  <!-- Modal -->
+  <div class="modal fade" id="customer_of_order_{{od.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Thông tin người dùng</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body font-weight-bold" style="color: black;">
+            <div class="row text-left">
+                <div class="col-4">
+                    <label style="color: blue;"><b>Tên đăng ký:</b></label>
                 </div>
-            </form>
-        <hr>
+                <div class="col-8">
+                    {{ od.id_user.customer.name }}
+                </div>
+            </div>
+          
+            <div class="row text-left">
+                <div class="col-4">
+                    <label style="color: blue;"><b>Tên tài khoản:</b></label>
+                </div>
+                <div class="col-8">
+                    {{ od.id_user }}
+                </div>
+            </div>
+
+            <div class="row text-left">
+                <div class="col-4">
+                    <label style="color: blue;"><b>Địa chỉ Email:</b></label>
+                </div>
+                <div class="col-8">
+                    {{od.id_user.email}}
+                </div>
+            </div>
+
+            <div class="row text-left">
+                <div class="col-4">
+                    <label style="color: blue;"><b>Số điện thoại:</b></label>
+                </div>
+                <div class="col-8">
+                    0{{od.id_user.customer.phone}}
+                </div>
+            </div>
+          <!-- <label style="color: blue;"><b>Tên tài khoản:  </b></label>
+          {{ od.id_user }} <br>
+          <label style="color: blue;"><b>Địa chỉ Email:  </b></label>
+          {{od.id_user.email}} <br>
+          <label style="color: blue;"><b>Số điện thoại:  </b></label>
+          {{od.id_user.customer.phone}} -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
-    <div align="right">
-        <span onclick="document.getElementById('{{item.id}}').style.display='none'">
-            <button type="button" class="btn btn-warning  btn-xs">Ignore</button>
-        </span>
-    </div>
-    <br>
-    </div>
-</body>
-</html>
+  </div>

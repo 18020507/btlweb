@@ -2,129 +2,157 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
-    <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
-    <!-- ajax-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    {% load static %}
-    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-    <link href="{% static 'css/fontawesome-all.css' %}" rel="stylesheet">
-    <link href="{% static 'css/swiper.css' %}" rel="stylesheet">
-	<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet"> 
-	<link href="{% static 'css/styles_base_UI_home.css' %}" rel="stylesheet">
-    <style>
-        #cart-table {
-            font-family: Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-        }
-        #cart-table td, #cart-table th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        #cart-table tr:nth-child(even){background-color: #f2f2f2;}
-
-        #cart-table tr:hover {background-color: #ddd;}
-
-        #cart-table th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .purchase-management {
-            color: #14bf98!important;
-        }
-
-        .management-board {
-            margin-top: 5rem;
-            margin-right: 10rem;
-        }
-    </style>
+    <title>Admin</title>
 </head>
+
+<script>
+    function changeStatus(id)
+    {
+        document.getElementById().innerHTML = 
+    }
+</script>
 <body>
+
     {% include 'NavigationBar/nav_User_or_Manager.html' %}
 
-    <div class="row management-board">
-        <div class="panel panel-info">
-            <div class="panel-heading" align="center"><b>THÔNG TIN SẢN PHẨM ĐẶT HÀNG CỦA KHÁCH HÀNG</b></div>
-            <table class="w3-table-all" id="cart-table">
-                <thead>
-                    <tr>
-                        <th class="w3-center">STT</th>
-                        <th class="w3-center">Người đặt</th>
-                        <th class="w3-center">Đơn hàng</th>
-                        <th class="w3-center">Địa chỉ</th>
-                        <th class="w3-center">Trạng thái</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in order %}
-                    {% if item.status != 'completed' %}
-                    <tr>
-                        <td class="w3-center">{{forloop.counter}}</td>
-                        <td>{{item.id_user}}&nbsp
-                            <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('{{item.id}}').style.display='block'"
-                                  class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin User">
-                            </span>
-                            <div id="{{item.id}}" class="w3-modal">
-                                <div class="w3-modal-content">
-                                    {% include 'Form/form_userInfo.html'%}
-                                </div>
+    <div class="container" style="margin-top:120px">
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <!-- List group-->
+                <ul class="list-group shadow">
+                    <!-- list group item -->
+                    <li class="list-group-item list-group list-group-item-secondary" 
+                    style="font-family: 'Open Sans Condensed';">
+                        <div class = "row text-center">
+                            <div class="col-3 text-left">
+                                <h6>Người dùng</h6>
                             </div>
-                        </td>
-                        <td class="w3-center">
-                            {{item.id_cart.CreateAt}}
-                            <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('id{{item.id}}').style.display='block'"
-                                  class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin User">
-                            </span>
-                            <div id="id{{item.id}}" class="w3-modal">
-                                <div class="w3-modal-content">
-                                    {% include 'Form/form_productInfo.html'%}
-                                </div>
+
+                            <div class="col-3">
+                                <h6>Đơn hàng</h6>
                             </div>
-                        </td>
-                        <td class="w3-center">
-                            {{item.address}}
-                        </td>
-                        {% if item.status == 'pending' %}
-                        <td class="w3-center">
-                            <button>
-                                <a href="{% url 'Page:page_confirm' item.id %}">Confirm</a>
-                            </button>
-                            <button>
-                                <a href="{% url 'Page:page_deleteOrder' item.id %}" class="fa fa-trash" data-toggle="tooltip" title="Xóa Đơn Hàng"></a>
-                            </button>
-                        </td>
-                        {% elif item.status == 'confirm' %}
-                        <td class="w3-center">
-                            <button>
-                                <a href="{% url 'Page:page_isShipping' item.id %}">Shipping</a>
-                            </button>
-                        </td>
-                        {% elif item.status == 'shipping' %}
-                        <td class="w3-center">
-                            <button>
-                                <a href="{% url 'Page:page_isPaid' item.id %}">Paid</a>
-                            </button>
-                        </td>
-                        {% elif item.status == 'paid' %}
-                        <td class="w3-center">
-                            <button>
-                                <a href="{% url 'Page:page_isCompleted' item.id %}">Completed</a>
-                            </button>
-                        </td>
-                        {% endif %}
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
-                </tbody>
-            </table>
+
+                            <div class="col-3">
+                                <h6>Địa chỉ nhận hàng</h6>
+                            </div>
+                            
+                            <div class="col text-center">
+                                <h6>Trạng thái</h6>
+                            </div>
+
+                            <div class="col text-right">
+                                <h6></h6>
+                            </div>
+                        </div>
+                    </li> <!-- End -->
+                </ul> <!-- End -->
+            </div>
         </div>
+
+        {% for od in order %}
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <!-- List group-->
+                <ul class="list-group shadow">
+                    <!-- list group item -->
+                    <li class="list-group-item list-group-item-action list-group-item-light">
+                        <div class = "row text-center">
+                            <div class="col-3">
+                                <!-- customer name -->
+                                <div class="text-left font-weight-bold" style="color: black;">
+                                    {{od.id_user.customer.name}}
+                                </div>
+                                <div></div>
+                                <div class="text-right" style="margin-top:10px">
+                                    <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#customer_of_order_{{od.id}}">
+                                        Xem chi tiết
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Order Info -->
+                            <div class="col-3">
+                                <div class="text-left" style="color: black;">
+                                    {{od.id_cart.CreateAt}}
+                                </div>
+                                <div></div>
+                                <div class="text-right" style="margin-top:10px">
+                                    <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#order_detail_{{od.id}}">
+                                        Xem chi tiết
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Order address -->
+                            <div class="col-3">
+                                <div class="text-center" 
+                                style="color: black; text-transform: capitalize; margin-top: 9%;"> 
+                                    {{od.address}}
+                                </div>
+                            </div>
+                            <!-- Order Status -->
+                            <div class="col">
+                                <div class="text-center" id="order_{{od.id}}_status"
+                                style="color: black; text-transform: capitalize; margin-top: 20%;">
+                                    {{ od.status }}
+                                </div>
+                            </div>
+
+                            <!-- Need fixing -->
+                            <!-- Confirm or Delete Order -->
+                            <div class="col text-right">
+                                <!-- <button ><i class="fas fa-check"></i></button> -->
+                                <div style="margin-top: 20%;">
+                                {% if od.status == 'pending' %}
+                                    <button ><i class="fas fa-check">
+                                        <a href="{% url 'Page:page_confirm' od.id %}"></a>
+                                    </i></button>
+
+                                    <button><i class="fas fa-trash">
+                                        <a href="{% url 'Page:page_deleteOrder' od.id %}" data-toggle="tooltip"></a>
+                                    </i></button>
+
+                                {% elif od.status == 'confirm' %}
+                                    <button ><i class="fas fa-check">
+                                        <a href="{% url 'Page:page_isShipping' od.id %}"></a>
+                                    </i></button>
+
+                                    <button><i class="fas fa-trash">
+                                        <a href="{% url 'Page:page_deleteOrder' od.id %}" data-toggle="tooltip"></a>
+                                    </i></button>
+
+                                {% elif od.status == 'shipping' %}
+                                    <button ><i class="fas fa-check">
+                                        <a href="{% url 'Page:page_isPaid' od.id %}"></a>
+                                    </i></button>
+
+                                    <button><i class="fas fa-trash">
+                                        <a href="{% url 'Page:page_deleteOrder' od.id %}" data-toggle="tooltip"></a>
+                                    </i></button>
+
+                                {% elif od.status == 'paid' %}
+                                    <button ><i class="fas fa-check">
+                                        <a href="{% url 'Page:page_isCompleted' od.id %}"></a>
+                                    </i></button>
+
+                                    <button><i class="fas fa-trash">
+                                        <a href="{% url 'Page:page_deleteOrder' od.id %}" data-toggle="tooltip"></a>
+                                    </i></button>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </li> <!-- End -->
+                </ul> <!-- End -->
+            </div>
+        </div>
+        {% endfor %}
+
+        {% for od in order %}
+            {% include 'Form/form_userInfo.html' %}
+            {% include 'Form/form_orderInfo.html' %}
+        {% endfor %}
+
     </div>
 </body>
 </html>
