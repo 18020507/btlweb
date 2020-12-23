@@ -279,6 +279,14 @@
 
                                 </div>
 
+                                <div class="success" style="padding-left:1rem; display:none; padding-top: 1rem;">
+                                    <p class="text-md-center" style="color: #14bf98;"><i class="fas fa-check"></i> Thêm vào giỏ thành công <i class="fas fa-check"></i></p>
+                                </div>
+                                    
+                                <div class="failure" style="padding-left:1rem; display:none; padding-top: 1rem;">
+                                    <p class="text-md-center" style="color: red;"><i class="fas fa-times"></i> Số lượng cần lớn hơn 0 <i class="fas fa-times"></i></p>
+                                </div>
+
                                 
 
                             </div>
@@ -373,13 +381,18 @@
             });
             function addCart(id, user){
                 num = $(`#cart_quantity_${id}`).val();
+                
                 if(num > 0) {
                     $.post('/add_cart', {'id':id, 'num':num, 'user':user, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
-                    alert("Bạn vừa mua sản phẩm!");
+                        success_state = document.querySelector(".size-and-quantity .success");
+                        success_state.style.display = "block";
+                        setTimeout(function(){success_state.style.display = "none"}, 2000);
                     });
                 }
                 else {
-                    alert("Số lượng phải lớn hơn 0!")
+                    failure_state = document.querySelector(".size-and-quantity .failure");
+                    failure_state.style.display = "block";
+                    setTimeout(function(){failure_state.style.display = "none"}, 2000);
                 }
             }
     </script>
