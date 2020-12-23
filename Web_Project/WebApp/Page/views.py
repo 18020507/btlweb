@@ -289,7 +289,7 @@ class Product_List(TemplateView, LoginRequiredMixin):
 
 
 def Login_Page(request):
-    template_name = '../Templates/NavigationBar/LogIn_Page.html'
+    template_name = '../Templates/NavigationBar/Login_Page.html'
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
