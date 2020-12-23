@@ -1,42 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <header class="w3-container w3-light-blue">
-        <span onclick="document.getElementById('{{item.id}}').style.display='none'"
-          class="w3-button w3-display-topright">&times;</span>
-        <h4 align="center" style="color: #000099"><strong>Các sản phẩm có trong order được tạo lúc {{item.id_cart.CreateAt}}</strong></h4>
-    </header>
-    <table>
-        <thead>
-            <tr>
-                <th>Sản phẩm</th>
-                <th class="w3-center">Giá sản phẩm</th>
-                <th class="w3-center">Số lượng</th>
-                <th class="w3-center">Thành tiền</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for product in cartItem %}
-            <tr>
-                {% if product.id_cart == item.id_cart %}
-                <td>{{product.id_product}}</td>
-                <td>{{product.id_product.price_sale|floatformat:'-1'}}VND</td>
-                <td>{{product.num}}</td>
-                <td>{{product.sum_product|floatformat:'-1'}}VND</td>
-                {% endif%}
-            </tr>
-        {% endfor %}
-        </tbody>
-        <tbody>
-
-        </tbody>
-    </table>
-</body>
-</html> -->
 
 <div class="modal fade" id="order_detail_{{od.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -64,7 +25,12 @@
                             {% if item.id_cart == od.id_cart %}
                                 <tr>
                                     <!-- Product Image -->
-                                    <td><img src="https://dummyimage.com/50x50/55595c/fff"/> </td>
+                                    <td>
+                                        {% if item.id_product.img %}
+                                        <img align="center" src="{{ item.id_product.img.url }}"  class="w3-hover-opacity"
+                                             width="50" height="50">
+                                        {% endif %}
+                                    </td>
 
                                     <!-- Product name -->
                                     <td class = "align-middle">
