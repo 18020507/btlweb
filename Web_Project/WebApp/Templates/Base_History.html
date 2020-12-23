@@ -15,35 +15,6 @@
             color: #14bf98!important;
         }
     </style>
-    <!-- <style>
-        #history-table {
-            font-family: Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            margin-left:10%;
-        }
-        #history-table td, #history-table th {
-            border: 1px solid #ddd;
-            padding: 10px;
-        }
-        #history-table tr:nth-child(even){background-color: #f2f2f2;}
-
-        #history-table tr:hover {background-color: #ddd;}
-
-        #history-table th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .product-user-buy {
-            padding-top: 6rem;
-        }
-
-        .navbar-custom .nav-item .nav-link.history {
-            color:#14bf98!important;
-        }
-    </style> -->
 </head>
 <body>
     <section class="jumbotron jumbotron-fluid" style="background-color: transparent;">
@@ -51,40 +22,6 @@
             {% include 'NavigationBar/nav_User_or_Manager.html' %}
          </div>
     </section>
-    
-   <!-- <div class="row product-user-buy">
-    <div>
-        <div class="panel-heading" align="center"><b>THÔNG TIN ĐƠN HÀNG ĐÃ MUA CỦA KHÁCH HÀNG</b></div>
-    	<table class="w3-table-all" id="history-table">
-            <thead>
-                <tr>
-                	<th class="w3-center">STT</th>
-                	<th class="w3-center">Đơn Hàng</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in order %}
-                {% if item.status == 'completed' %}
-                <tr>
-                	<td class="w3-center">{{forloop.counter}}</td>
-                    <td class="w3-center">Create At: {{item.id_cart.CreateAt}}
-                        <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('{{item.id}}').style.display='block'"
-                              class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin đơn hàng">
-                        </span>
-                        <div id="{{item.id}}" class="w3-modal">
-                            <div class="w3-modal-content">
-                                {% include 'Form/form_orderInfo.html'%}
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
-	</div>
-    </div>    -->
 
     <div class="container">
         <div class="row">
