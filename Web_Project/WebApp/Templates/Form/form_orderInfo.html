@@ -64,7 +64,12 @@
                             {% if item.id_cart == od.id_cart %}
                                 <tr>
                                     <!-- Product Image -->
-                                    <td><img src="https://dummyimage.com/50x50/55595c/fff"/> </td>
+                                    <td>
+                                        {% if item.id_product.img %}
+                                            <img align="center" src="{{ item.id_product.img.url }}"  class="w3-hover-opacity"
+                                         width="50" height="50">
+                                        {% endif %}
+                                    </td>
 
                                     <!-- Product name -->
                                     <td class = "align-middle">

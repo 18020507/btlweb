@@ -477,6 +477,7 @@ class ViewCart(TemplateView, LoginRequiredMixin):
             num = 0
             for item in cartItem:
                 num = num + item.sum_product
+
             content = {
                 'cartItem': cartItem,
                 'total': num,

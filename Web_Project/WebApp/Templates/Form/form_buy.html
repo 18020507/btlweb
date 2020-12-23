@@ -5,67 +5,6 @@
     <title>Giỏ hàng</title>
 </head>
 <body>
-    <!-- <header class="w3-container w3-light-blue">
-        <span onclick="document.getElementById('id{{item.id}}').style.display='none'"
-              class="w3-button w3-display-topright">&times;</span>
-        <h4 align="center" style="color: #000099">THÔNG BÁO CHỐT ĐƠN HÀNG</h4>
-    </header>
-
-    <div class="w3-container">
-        <br>
-        <div align="center">
-            <hr>
-                <form action="{% url 'Page:page_Buy' user.id %}" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div>
-                        <div>
-                            <p><span class="glyphicon glyphicon-alert"></span> Bạn có chắc muốn thanh toán đơn hàng bao gồm:</p>
-                            <table>
-                                <thead>
-                                    <th>STT</th>
-                                    <th>Sản phẩm</th>
-                                    <th>Giá sản phẩm</th>
-                                    <th>Số lượng</th>
-                                    <th>Thành tiền</th>
-                                </thead>
-                                <tbody>
-                                    {% for item in cartItem %}
-                                    <tr>
-                                        <td>{{forloop.counter}}</td>
-                                        <td>
-                                            <input type="checkbox" name="selected_product" value="{{item.id_product.id}}" checked>
-                                            {{item.id_product}}
-                                        </td>
-                                        <td>{{item.id_product.price_sale|floatformat:'-1'}} VNĐ</td>
-                                        <td>{{item.num}}</td>
-                                        <td>{{item.sum_product|floatformat:'-1'}} VNĐ</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                            <p align="center">Đồng ý xin vui lòng nhập địa chỉ giao hàng và nhấn <b>"Agree"</b> | Không đồng ý nhấn <b>"Ignore"</b></p>
-                        </div>
-                    </div>
-                    <div>
-                        Địa Chỉ:
-                        <textarea name="addressInputText" cols="40", rows="10"></textarea>
-                    </div>
-                    <div>
-                        <button type="submit">Agree</button>
-                    </div>
-                </form>
-            <hr>
-        </div>
-    </div>
-    <div align="right">
-            <span onclick="document.getElementById('id{{item.id}}').style.display='none'"
-                  class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge">
-                <b style="font-size:12px">Ignore</b>
-            </span>
-        </div>
-    </div>
-    <br> -->
-
     <!-- Modal -->
     <div class="modal fade" id="checkout_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -95,7 +34,7 @@
                                 {% for item in cartItem %}
                                 <tr>
                                     <td><input type="checkbox" name="selected_product" value="{{item.id_product.id}}" checked></td>
-                                    <td>{{item.id_product}}</td>
+                                    <td style="text-transform: capitalize;">{{item.id_product}}</td>
                                     <td>{{item.id_product.price_sale|floatformat:'-1'}} VNĐ</td>
                                     <td>
                                         <span class = "quantity_in_cart_item_{{item.id}}">
@@ -110,7 +49,7 @@
                     </div> 
 
                     <div style="color: black; text-align:left">Địa chỉ nhận hàng</div>
-                    <textarea name="addressInputText" id="address" class="form-control" rows="1"></textarea>
+                    <textarea name="addressInputText" id="address" class="form-control" rows="1" required></textarea>
                 </div> 
 
                 <div class="modal-footer">
