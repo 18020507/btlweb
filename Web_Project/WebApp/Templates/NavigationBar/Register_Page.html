@@ -91,102 +91,29 @@
     <center>
         <form action="." method="POST">
             {% csrf_token %}
-                <div class="container">
-                    <!-- <div class="row">
-                        <div class="col-md-8 mx-auto">
-                            <div class="logo mb-3">
-                                <div class="col-md-12 text-center title">
-                                    <h3>Sign Up now for new Experience !</h3>
-                                </div>
-                            </div>
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.username.label}}
-                                </div>
-                                {{form.username}}
-                            </div>
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.email.label}}
-                                </div>
-                                {{form.email}}
-                            </div>
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.password1.label}}
-                                </div>
-                                {{form.password1}}
-                            </div>
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.password2.label}}
-                                </div>
-                                {{form.password2}}
-                            </div>
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.fullname.label}}
-                                </div>
-                                {{form.fullname}}
-                            </div>
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.address.label}}
-                                </div>
-                                {{form.address}}
-                            </div>
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.age.label}}
-                                </div>
-                                {{form.age}}
-                            </div>
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.sexual.label}}
-                                </div>
-                                {{form.sexual}}
-                            </div>
-                            <div class="form-group form-control">
-                                <div class = "information">
-                                    {{form.phone.label}}
-                                </div>
-                                {{form.phone}}
-                            </div>
-                            <div class="col-md-12 text-center start-button">
-                                <button type="submit" class = "mb-3 btn btn-block mybtn btn-primary tx-tfm" value="Đăng ký">Start Explore Now !</button>
-                            </div>
-                            <div class="col-md-12 form">
-                                <p class="text-center"><a href="../login_user/#" id="signin">Already have an account?</a></p>
-                            </div>
-                            {% if error_message %}
-                            <div class="col-md-12 text-center warning">
-                                <p><strong>{{ error_message }}</strong></p>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div> -->
+            <div class="container">
+
                     <div class = 'title'>
                         <h2>Đăng ký</h2>
                     </div>
     
                     <div class = "information">
-                        <label>Tài khoản</label>
+                        <label style="margin-top:0px">Tài khoản</label>
                             {{form.username}}
-
-                        <label>Email</label>
+                        <label style="font-size:8px">{{form.errors.username}}</label>
+                        <label style="margin-top:0px">Email</label>
                             {{form.email}}
-
-                        <label>Mật khẩu</label>
+                        <label style="font-size:8px">{{form.errors.email}}</label>
+                        <label style="margin-top:0px">Mật khẩu</label>
                             {{form.password1}}
+                        <label style="font-size:8px">{{form.errors.password1}}</label>
 
-                        <label>Xác nhận mật khẩu</label>
+                        <label style="margin-top:0px">Xác nhận mật khẩu</label>
                             {{form.password2}}
-
-                        <label>Họ và tên</label>
+                        <label style="font-size:8px">{{form.errors.password2}}</label>
+                        <label style="margin-top:0px">Họ và tên</label>
                             {{form.fullname}}
-
-                        <label>Số điện thoại</label>
+                        <label style="margin-top:0px">Số điện thoại</label>
                             {{form.phone}}
                     </div>
     
@@ -201,12 +128,14 @@
                         <a href="../" id="link"> Quay lại trang chủ </a>
                     </div>
     
-                    <div class = 'warning'>
-                        {% if error_message %}
-                            <p><strong>{{ error_message }}</strong></p>
-                        {% endif %}
-                    </div>
-                </div>
+<!--                    <div class = 'warning'>-->
+<!--                        {% for error in form.errors %}-->
+<!--                            {% if error %}-->
+<!--                            <p>{{error}} invalid</p>-->
+<!--                            {% endif %}-->
+<!--                        {% endfor %}-->
+<!--                    </div>-->
+            </div>
         </form>
     </center>
 </body>

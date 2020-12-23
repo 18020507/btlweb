@@ -22,11 +22,6 @@ class SignUpForm(forms.Form):
     password2 = forms.CharField(label='Input Password Again',
                                 widget=forms.PasswordInput(attrs={"class": "textbox"}))
     fullname = forms.CharField(label='Fullname', max_length=30, widget=forms.TextInput(attrs={"class": "textbox"}))
-    # address = forms.CharField(label='Address', max_length=30, widget=forms.TextInput(attrs={"class": "form-control"}))
-    # age = forms.IntegerField(label='Age', max_value=100, min_value=2,
-    #                          widget=forms.NumberInput(attrs={"class": "form-control"}))
-    # sexual = forms.CharField(label="Sexual", max_length=3, required=False,
-    #                          widget=forms.TextInput(attrs={"class": "form-control"}))
     phone = forms.CharField(label='Phone_Number', max_length=11,
                             widget=forms.TextInput(attrs={"class": "textbox"}))
 
