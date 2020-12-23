@@ -73,6 +73,7 @@ def Blog_Page_2_Post_6(request):
     template_name = '../Templates/blog_post_without_login/post-6.html'
     return render(request, template_name)
 
+
 class Product_List(TemplateView, LoginRequiredMixin):
     login_url = '/'
     template_name = '../Templates/product-list.html'
@@ -83,42 +84,137 @@ class Product_List(TemplateView, LoginRequiredMixin):
         price = request.GET.get('price')
 
         if gender != '' and clothing != '' and price != '' and gender is not None and clothing is not None and price is not None:
-            if(gender == 'male'):
-                sanpham = Product.objects.filter(for_male=True, type=clothing, price_sale__lte=price)
-                content = {
-                    'sanpham': sanpham
-                }
-                return render(request, self.template_name, content)
+            if gender == 'male':
+                if price == '0_3':
+                    sanpham = Product.objects.filter(for_male=True, type=clothing, price_sale__range=(0, 300000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+                if price == '3_6':
+                    sanpham = Product.objects.filter(for_male=True, type=clothing, price_sale__range=(300000, 600000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+                if price == '6_10':
+                    sanpham = Product.objects.filter(for_male=True, type=clothing, price_sale__range=(600000, 1000000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+                else:
+                    sanpham = Product.objects.filter(for_male=True, type=clothing, price_sale__gte=(1000000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
             else:
-                sanpham = Product.objects.filter(for_female=True, type=clothing, price_sale__lte=price)
-                content = {
-                    'sanpham': sanpham
-                }
-                return render(request, self.template_name, content)
+                if price == '0_3':
+                    sanpham = Product.objects.filter(for_female=True, type=clothing, price_sale__range=(0, 300000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+                if price == '3_6':
+                    sanpham = Product.objects.filter(for_female=True, type=clothing, price_sale__range=(300000, 600000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+                if price == '6_10':
+                    sanpham = Product.objects.filter(for_female=True, type=clothing, price_sale__range=(600000, 1000000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+                else:
+                    sanpham = Product.objects.filter(for_female=True, type=clothing, price_sale__gte=1000000)
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
 
         if gender == '' and clothing != '' and price != '' and gender is not None and clothing is not None and price is not None:
-            sanpham = Product.objects.filter(type=clothing, price_sale__lte=price)
-            content = {
-                'sanpham': sanpham
-            }
-            return render(request, self.template_name, content)
-
-        if gender != '' and clothing == '' and price != '' and gender is not None and clothing is not None and price is not None:
-            if (gender == 'male'):
-                sanpham = Product.objects.filter(for_male=True, price_sale__lte=price)
+            if price == '0_3':
+                sanpham = Product.objects.filter(type=clothing, price_sale__range=(0, 300000))
+                content = {
+                    'sanpham': sanpham
+                }
+                return render(request, self.template_name, content)
+            if price == '3_6':
+                sanpham = Product.objects.filter(type=clothing, price_sale__range=(300000, 600000))
+                content = {
+                    'sanpham': sanpham
+                }
+                return render(request, self.template_name, content)
+            if price == '6_10':
+                sanpham = Product.objects.filter(type=clothing, price_sale__range=(600000, 1000000))
                 content = {
                     'sanpham': sanpham
                 }
                 return render(request, self.template_name, content)
             else:
-                sanpham = Product.objects.filter(for_female=True, price_sale__lte=price)
+                sanpham = Product.objects.filter(type=clothing, price_sale__gte=1000000)
                 content = {
                     'sanpham': sanpham
                 }
                 return render(request, self.template_name, content)
 
+        if gender != '' and clothing == '' and price != '' and gender is not None and clothing is not None and price is not None:
+            if gender == 'male':
+                if price == '0_3':
+                    sanpham = Product.objects.filter(for_male=True, price_sale__range=(0, 300000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+                if price == '3_6':
+                    sanpham = Product.objects.filter(for_male=True, price_sale__range=(300000, 600000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+                if price == '6_10':
+                    sanpham = Product.objects.filter(for_male=True, price_sale__range=(600000, 1000000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+                if price == '10_':
+                    sanpham = Product.objects.filter(for_male=True, price_sale__gte=1000000)
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+            else:
+                if price == '0_3':
+                    sanpham = Product.objects.filter(for_female=True, price_sale__range=(0, 300000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+                if price == '3_6':
+                    sanpham = Product.objects.filter(for_female=True, price_sale__range=(300000, 600000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+                if price == '6_10':
+                    sanpham = Product.objects.filter(for_female=True, price_sale__range=(600000, 1000000))
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+                if price == '10_':
+                    sanpham = Product.objects.filter(for_female=True, price_sale__gte=1000000)
+                    content = {
+                        'sanpham': sanpham
+                    }
+                    return render(request, self.template_name, content)
+
         if gender != '' and clothing != '' and price == '' and gender is not None and clothing is not None and price is not None:
-            if (gender == 'male'):
+            if gender == 'male':
                 sanpham = Product.objects.filter(for_male=True, type=clothing)
                 content = {
                     'sanpham': sanpham
@@ -132,14 +228,33 @@ class Product_List(TemplateView, LoginRequiredMixin):
                 return render(request, self.template_name, content)
 
         if gender == '' and clothing == '' and price != '' and gender is not None and clothing is not None and price is not None:
-            sanpham = Product.objects.filter(price_sale__lte=price)
-            content = {
-                'sanpham': sanpham
-            }
-            return render(request, self.template_name, content)
+            if price == '0_3':
+                sanpham = Product.objects.filter(price_sale__range=(0, 300000))
+                content = {
+                    'sanpham': sanpham
+                }
+                return render(request, self.template_name, content)
+            if price == '3_6':
+                sanpham = Product.objects.filter(price_sale__range=(300000, 600000))
+                content = {
+                    'sanpham': sanpham
+                }
+                return render(request, self.template_name, content)
+            if price == '6_10':
+                sanpham = Product.objects.filter(price_sale__range=(600000, 1000000))
+                content = {
+                    'sanpham': sanpham
+                }
+                return render(request, self.template_name, content)
+            if price == '10_':
+                sanpham = Product.objects.filter(price_sale__gte=1000000)
+                content = {
+                    'sanpham': sanpham
+                }
+                return render(request, self.template_name, content)
 
         if gender != '' and clothing == '' and price == '' and gender is not None and clothing is not None and price is not None:
-            if (gender == 'male'):
+            if gender == 'male':
                 sanpham = Product.objects.filter(for_male=True)
                 content = {
                     'sanpham': sanpham
@@ -199,7 +314,6 @@ def Register_Page(request):
             form.save()
             return HttpResponseRedirect('/')
     return render(request, template_name, {'form': form})
-    # return render(request, template_name, {})
 
 
 def LogOut(request):
@@ -375,19 +489,6 @@ class ViewCart(TemplateView, LoginRequiredMixin):
 class ViewProductUserBuy(TemplateView, LoginRequiredMixin):
     login_url = '/'
     template_name = '../Templates/Base_Product_User.html'
-
-    # def get(self, request, id_user):
-    #     if request.user.is_authenticated():
-    #         user_id = get_object_or_404(User, id=id_user)
-    #         order = Order.objects.filter(id_user=user_id)
-    #         cartItem = CartItem.objects.all()
-    #         content = {
-    #             'order': order,
-    #             'cartItem': cartItem,
-    #         }
-    #         return render(request, self.template_name, content)
-    #     else:
-    #         return HttpResponseRedirect(reverse('Page:page_login'))
 
     def get(self, request, id_user):
         if request.user.is_authenticated():

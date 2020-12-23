@@ -74,8 +74,11 @@
                             {% for item in cartItem %}
                             <tr>
                                 <!-- Product Image -->
-                                <td class = "align-middle"><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-
+                                <td class = "align-middle">
+                                    {% if item.id_product.img %}
+                                    <img align="center" src="{{ item.id_product.img.url }}"  class="w3-hover-opacity"
+                                         width="50" height="50">
+                                    {% endif %}
                                 <!-- Product name -->
                                 <td class = "align-middle">
                                     <a href="{% url 'Page:page_ViewDetail' item.id_product.id %}" 
@@ -153,7 +156,7 @@
                     <td class="align-middle">
                         <div class="col-sm-6  col-md-3 text-center">
                             <button class="btn btn-block btn-primary">
-                                <a href="../../index" 
+                                <a href="{% url 'Page:page_product_list' %}"
                                     style="text-decoration:none; color: white">Tiếp tục mua sắm
                                 </a>
                             </button>
