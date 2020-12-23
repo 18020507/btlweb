@@ -55,7 +55,7 @@
 
                     <li class="nav-item">
                         <a href="{% url 'Page:page_BaseViewCart' user.id %}" class="icon-shopping-cart nav-link">
-                            <i class="fa">&#xf07a;<span class='badge badge-warning' id='lblCartCount'>  </span></i>
+                            <i class="fa">&#xf07a;<span class='badge badge-warning' id='lblCartCount' style="background: #ff0000;"> {{numPro}} </span></i>
                         </a>
                     </li>
                 {% endif %}
