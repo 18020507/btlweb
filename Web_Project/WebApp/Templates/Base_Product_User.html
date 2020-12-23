@@ -2,91 +2,126 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
-    <link href="/static/css/bootstrap.css" rel="stylesheet">
-    <link href="/static/css/fontawesome-all.css" rel="stylesheet">
-    <link href="/static/css/swiper.css" rel="stylesheet">
-	<link href="/static/css/magnific-popup.css" rel="stylesheet">
-	<link href="/static/css/styles_base_UI_home.css" rel="stylesheet">
-    <style>
-        #history-table {
-            font-family: Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-        }
-        #history-table td, #history-table th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        #history-table tr:nth-child(even){background-color: #f2f2f2;}
-
-        #history-table tr:hover {background-color: #ddd;}
-
-        #history-table th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .product-user-buy {
-            padding-top: 6rem;
-        }
-        
-        .navbar-custom .nav-item .nav-link.bill_status {
-            color:#14bf98!important;
-        }
-    </style>
+    <title>Admin</title>
 </head>
+
+<script>
+    
+</script>
 <body>
+
     {% include 'NavigationBar/nav_User_or_Manager.html' %}
-    <div class="row product-user-buy">
-    <div>
-        <div class="panel-heading" align="center"><b>THÔNG TIN ĐƠN HÀNG ĐANG CHỜ CỦA KHÁCH HÀNG</b></div>
-    	<table class="w3-table-all" id="history-table">
-            <thead>
-                <tr>
-                	<th class="w3-center">STT</th>
-                	<th class="w3-center">Đơn Hàng</th>
-                	<th class="w3-center">Trạng thái</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in order %}
-                {% if item.status != 'completed' %}
-                <tr>
-                	<td class="w3-center">{{forloop.counter}}</td>
-                    <td class="w3-center">Create At: {{item.id_cart.CreateAt}}
-                        <span class="glyphicon glyphicon-info-sign" onclick="document.getElementById('{{item.id}}').style.display='block'"
-                              class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Thông tin đơn hàng">
-                        </span>
-                        <div id="{{item.id}}" class="w3-modal">
-                            <div class="w3-modal-content">
-                                {% include 'Form/form_orderInfo.html'%}
+
+    <div class="container" style="margin-top:120px">
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <!-- List group-->
+                <ul class="list-group shadow">
+                    <!-- list group item -->
+                    <li class="list-group-item list-group list-group-item-secondary" 
+                    style="font-family: 'Open Sans Condensed';">
+                        <div class = "row text-center">
+                            <div class="col text-left">
+                                <h6>Đơn hàng</h6>
+                            </div>
+
+                            <div class="col">
+                                <h6>Tổng tiền</h6>
+                            </div>
+                            
+                            <div class="col-2 text-center">
+                                <h6>Trạng thái</h6>
+                            </div>
+
+                            <div class="col-2 text-right">
+                                <h6>Tùy chọn</h6>
                             </div>
                         </div>
-                    </td>
-                    {% if item.status == 'pending' or item.status == 'confirm' %}
-                    <td class="w3-center">{{item.status}}
-                        <span class="fa fa-trash" onclick="document.getElementById('id{{item.id}}').style.display='block'"
-                              class="w3-button w3-black" style="color: #0077b3" data-toggle="tooltip" title="Xóa Đơn Đặt Hàng">
-                        </span>
-                        <div id="id{{item.id}}" class="w3-modal">
-                            <div class="w3-modal-content">
-                                {% include 'Form/form_cancelOrder.html'%}
+                    </li> <!-- End -->
+                </ul> <!-- End -->
+            </div>
+        </div>
+
+        {% for od in order %}
+        {% if od.status != 'completed' %}
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <!-- List group-->
+                <ul class="list-group shadow">
+                    <!-- list group item -->
+                    <li class="list-group-item list-group-item-action list-group-item-light">
+                        <div class = "row text-center">
+                            <!-- Order Info -->
+                            <div class="col font-weight-bold">
+                                <div class="text-left" style="color: black;">
+                                    {{od.id_cart.CreateAt}}
+                                </div>
+                                <div></div>
+                                <div class="text-right" style="margin-top:10px">
+                                    <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#order_detail_{{od.id}}">
+                                        Xem chi tiết
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Order Total Money -->
+                            <div class="col">
+                                <div class="text-center" style="color: black; margin-top: 5%;">
+                                    <!-- {{od.id_cart.CreateAt}} --> Fixing
+                                </div>
+                            </div>
+
+                            <!-- Order address -->
+                            <!-- <div class="col-3">
+                                <div class="text-center" 
+                                style="color: black; text-transform: capitalize; margin-top: 9%;"> 
+                                    {{od.address}}
+                                </div>
+                            </div> -->
+
+                            <!-- Order Status -->
+                            <div class="col-2">
+                                <div class="text-center" 
+                                    style="color: black; text-transform: capitalize; margin-top: 9%;"> 
+                                    {% if od.status == 'shipping' %}
+                                        <i class="fas fa-shipping-fast" style="margin-right: 10px"></i>
+                                    {% elif od.status == 'pending' %}
+                                        <i class="fas fa-clock" style="margin-right: 10px"></i>
+                                    {% elif od.status == 'pending' %}
+                                    <i class="fas fa-dollar-sign" style="margin-right: 10px"></i>
+                                    {% endif %}
+
+                                    {{ od.status }}
+                                </div>
+                            </div>
+
+                            <div class="col-2 text-right" style="color: black;">
+                                {% if od.status != 'pending' %}
+                                    <button type="button" class="btn btn-sm btn-danger fas fa-trash" 
+                                            data-toggle="modal" data-target="#cancel_order_form_{{od.id}}" 
+                                            style="margin-top: 10%" disabled>
+                                    </button>
+                                {% else %}
+                                    <button type="button" class="btn btn-sm btn-danger fas fa-trash" 
+                                            data-toggle="modal" data-target="#cancel_order_form_{{od.id}}" 
+                                            style="margin-top: 10%">
+                                    </button>
+                                {% endif %}
                             </div>
                         </div>
-                    </td>
-                    {% else %}
-                    <td class="w3-center">{{item.status}}</td>
-                    {% endif %}
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
-	</div>
+                    </li> <!-- End -->
+                </ul> <!-- End -->
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        {% for od in order %}
+            {% include 'Form/form_userInfo.html' %}
+            {% include 'Form/form_orderInfo.html' %}
+            {% include 'Form/form_cancelOrder.html' %}
+        {% endfor %}
+
     </div>
 </body>
 </html>

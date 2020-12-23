@@ -1,38 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-    <header class="w3-container w3-light-blue">
-        <span onclick="document.getElementById('id{{item.id}}').style.display='none'"
-          class="w3-button w3-display-topright">&times;</span>
-        <h4 align="center" style="color: #000099"><strong>Thông báo</strong></h4>
-    </header>
-
-    <div class="w3-container">
-        <br>
-        <div align="center">
-            <hr>
-                <form action="" method="post" action="" enctype="multipart/form-data">
-                    <div>
-                        <div>
-                            <p><span class="fa fa-warning"></span> Bạn có chắc là hủy đơn hàng</p>
-                            <p align="center">Đồng ý xin vui lòng nhấn <b>"Agree"</b> | Không đồng ý nhấn <b>"Ignore"</b></p>
-                        </div>
-                    </div>
-                </form>
-            <hr>
+<!-- Modal -->
+<div class="modal fade" id="cancel_order_form_{{od.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Xác nhận hủy đơn hàng</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div align="right">
-            <a href="{% url 'Page:page_cancelOrder' user.id item.id %}"
-               class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge" style="text-decoration:none"><b style="font-size:12px">Accept</b>
+        <div class="modal-body">
+          Bạn có chắc muốn hủy đơn hàng này ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+          <button type="button" class="btn btn-primary">
+            <a href="{% url 'Page:page_cancelOrder' user.id od.id %}"
+            style="text-decoration:none; color: white">Xác nhận
             </a>
-            <span onclick="document.getElementById('id{{item.id}}').style.display='none'" class="w3-button w3-blue w3-tiny w3-padding-small w3-round-xlarge">
-                <b style="font-size:12px">Ignore</b>
-            </span>
+        </button>
         </div>
-        <br>
+      </div>
     </div>
-</body>
-</html>
+  </div>
