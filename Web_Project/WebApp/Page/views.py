@@ -450,11 +450,16 @@ def Buy(request, id_user):
         Order.objects.create(id_user=User_id, id_cart=cart_id, status='pending', address=address)
         Cart_id = Cart.objects.create(id_user=User_id, total_price=0)
 
+        num = 0
         for item in selected_value:
             Product_id = get_object_or_404(Product, id=item)
             cartItem_id = CartItem.objects.get(id_cart=cart_id, id_product=Product_id)
             cartItem_id.is_checked = True
+            num = num + cartItem_id.sum_product
             cartItem_id.save()
+
+        cart_id.total_price = num
+        cart_id.save()
 
         CartItem_id = CartItem.objects.filter(id_cart=cart_id, is_checked=False)
         for item in CartItem_id:
