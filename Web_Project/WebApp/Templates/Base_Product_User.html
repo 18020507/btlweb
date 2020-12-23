@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin</title>
+    <title>Đơn hàng</title>
 </head>
 
 <script>
@@ -65,8 +65,8 @@
                             </div>
 
                             <!-- Order Total Money -->
-                            <div class="col">
-                                <div class="text-center" style="color: black; margin-top: 5%;">
+                            <div class="col font-weight-bold">
+                                <div class="text-center" style="color: black; margin-top: 4%;">
                                     {{od.id_cart.total_price}} VNĐ
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                             </div> -->
 
                             <!-- Order Status -->
-                            <div class="col-2">
+                            <div class="col-2 font-weight-bold">
                                 <div class="text-center" 
                                     style="color: black; text-transform: capitalize; margin-top: 9%;"> 
                                     {% if od.status == 'shipping' %}

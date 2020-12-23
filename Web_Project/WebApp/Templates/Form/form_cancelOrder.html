@@ -1,24 +1,24 @@
 <!-- Modal -->
 <div class="modal fade" id="cancel_order_form_{{od.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Xác nhận hủy đơn hàng</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Bạn có chắc muốn hủy đơn hàng này ?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
-          <button type="button" class="btn btn-primary">
-            <a href="{% url 'Page:page_cancelOrder' user.id od.id %}"
-            style="text-decoration:none; color: white">Xác nhận
-            </a>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Xác nhận hủy đơn hàng</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
         </button>
-        </div>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc muốn hủy đơn hàng này ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+        <button type="button" class="btn btn-primary">
+          <a href="{% url 'Page:page_cancelOrder' user.id od.id %}"
+          style="text-decoration:none; color: white">Xác nhận
+          </a>
+      </button>
       </div>
     </div>
   </div>
+</div>

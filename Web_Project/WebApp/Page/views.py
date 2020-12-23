@@ -322,7 +322,7 @@ def LogOut(request):
     context = {
         "form": form,
     }
-    return render(request, 'NavigationBar/LogIn_Page.html', context)
+    return render(request, 'NavigationBar/Login_Page.html', context)
 
 
 class Index_User(TemplateView, LoginRequiredMixin):

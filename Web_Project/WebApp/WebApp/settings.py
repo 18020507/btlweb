@@ -26,7 +26,7 @@ SECRET_KEY = '#kf17nxlx_i68ismah&eqj&@cx8ou8jc$ejo^zadmc^eb4jqk#'
 DEBUG = True
 
 ALLOWED_HOSTS = ['Giangpt.pythonanywhere.com']
-
+# ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -126,7 +126,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/Media/'
+MEDIA_URL = '/media/'
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
