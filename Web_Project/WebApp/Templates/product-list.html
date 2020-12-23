@@ -472,11 +472,11 @@
                 num = $(`#cart_quantity_${id}`).val();
                 if(num > 0) {
                     $.post('/add_cart', {'id':id, 'num':num, 'user':user, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
-                    alert("Bạn vừa mua sản phẩm!");
+                        alert("Thành công");
                     });
                 }
                 else {
-                    alert("Số lượng phải lớn hơn 0!")
+                    alert("Số lượng hàng phải lớn hơn 0");
                 }
             }
     </script>
