@@ -9,7 +9,11 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     
-
+    <style>
+        a:hover{
+            color: blue;
+        }
+    </style>
 </head>
 
 <body>
@@ -48,8 +52,9 @@
                                 <td class = "align-middle">
                                     <a href="{% url 'Page:page_ViewDetail' item.id_product.id %}" 
                                         role="button" class="font-weight-bold text-capitalize"
-                                        style="text-decoration: none;" 
-                                        >{{item.id_product}}</a>
+                                        style="text-decoration: none; color: green;"  
+                                        onMouseOver="this.style.color='blue'"
+                                        onMouseOut="this.style.color='green'">{{item.id_product}}</a>
                                 </td>
 
                                 <!-- Product Status -->
