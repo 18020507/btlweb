@@ -470,13 +470,15 @@
             });
             function addCart(id, user){
                 num = $(`#cart_quantity_${id}`).val();
+                var str ="#project-" + id + " .col-lg-4";
                 if(num > 0) {
                     $.post('/add_cart', {'id':id, 'num':num, 'user':user, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
-                        alert("Thành công");
+                        alert("Successful");
                     });
                 }
                 else {
-                    alert("Số lượng hàng phải lớn hơn 0");
+                    alert("Failure");
+                    
                 }
             }
     </script>
