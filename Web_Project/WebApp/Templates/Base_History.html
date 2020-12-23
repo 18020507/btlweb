@@ -30,12 +30,10 @@
                     <table class="table table-striped">
                         <thead>
                             <tr class = "text-center">
-                                <th scope="col" class="text-left">Sản phẩm đã mua</th>
-                                <th scope="col"></th>
-                                <th scope="col">Số lượng</th>
+                                <th scope="col" class="text-left">STT</th>
+                                <th scope="col">Đơn Hàng</th>
                                 <th scope="col">Ngày mua</th>
-                                <th scope="col">Đơn giá</th>
-                                <th scope="col">Thành tiền</th>
+                                <th scope="col">Tổng tiền</th>
                                 <th> </th>
                             </tr>
                         </thead>
@@ -43,33 +41,12 @@
                         <tbody>
                             {% for od in order %}
                                 {% if od.status == 'completed' %}
-                                    {% for item in cartItem %}
-                                        {% if item.id_cart == od.id_cart %}
-                                            <tr class = "text-center">
-                                                <td class = "align-middle">
-                                                    <img src="https://dummyimage.com/50x50/55595c/fff" />
-                                                </td>
-                                                <td class = "text-left align-middle">
-                                                    <a href="{% url 'Page:page_ViewDetail' item.id_product.id %}" 
-                                                    role="button" class="font-weight-bold text-capitalize"
-                                                    style="text-decoration: none;" 
-                                                    >{{item.id_product}}</a>
-                                                </td>
-                                                <td class = "align-middle">
-                                                    {{item.num}}
-                                                </td>
-                                                <td class = "align-middle">
-                                                    {{od.id_cart.CreateAt}}
-                                                </td>
-                                                <td class = align-middle>
-                                                    {{item.id_product.price_sale|floatformat:'-1'}} VNĐ
-                                                </td>
-                                                <td class = "text-right align-middle">
-                                                    {{item.sum_product|floatformat:'-1'}} VNĐ
-                                                </td>
-                                            </tr>
-                                        {% endif %}
-                                    {% endfor %}
+                                    <tr class = "text-center">
+                                        <td>{{ forloop.counter}}</td>
+                                        <td> Số {{ forloop.counter }}</td>
+                                        <td> {{od.id_cart.CreateAt}}</td>
+                                        <td> {{od.id_cart.total_price}} VNĐ</td>
+                                    </tr>
                                 {% endif %}
                             {% endfor %}
                         </tbody>
